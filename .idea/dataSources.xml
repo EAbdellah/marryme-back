@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
+    <data-source source="LOCAL" name="hibernateTest@localhost" uuid="c77ddeca-cccc-4f7b-a0f2-c00af30bf54d">
+      <driver-ref>postgresql</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://localhost:5432/hibernateTest</jdbc-url>
+    </data-source>
+    <data-source source="LOCAL" name="myschema@localhost" uuid="9e8cdaf8-845f-4a10-8def-4c5e976f3564">
+      <driver-ref>mysql.8</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://localhost:3306/myschema</jdbc-url>
+    </data-source>
+  </component>
+</project>

@@ -1,0 +1,694 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="issues">
+    <option name="index">
+      <map>
+        <entry key="/Dummy.txt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="/a.dummy">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="/entityManagerFactory">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="/fragment.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../QuizzTionMe/backend/src/main/java/eu/busi/quizztionmebackend/dataaccess/dao/QuizzDAO.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../QuizzTionMe/backend/src/main/java/eu/busi/quizztionmebackend/dataaccess/entity/PropositionEntity.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../QuizzTionMe/backend/src/main/java/eu/busi/quizztionmebackend/dataaccess/entity/QuizzEntity.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../QuizzTionMe/backend/src/main/java/eu/busi/quizztionmebackend/dataaccess/entity/VerificationTokenEntity.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../ma-premiere-app/ma-premiere-app/angular.json">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/pom.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/be/ahe/testdb/hibernatetest/dataaccess/SocieteRepo.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/be/ahe/testdb/hibernatetest/dataaccess/dao/AddressDAO.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/be/ahe/testdb/hibernatetest/dataaccess/dao/AdressDAO.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/be/ahe/testdb/hibernatetest/dataaccess/dao/FermetureDAO.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/be/ahe/testdb/hibernatetest/dataaccess/dao/FormuleDAO.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/be/ahe/testdb/hibernatetest/dataaccess/dao/ImageDAO.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/be/ahe/testdb/hibernatetest/dataaccess/dao/MakeUpAndHairDAO.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/be/ahe/testdb/hibernatetest/dataaccess/dao/MediaDAO.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/be/ahe/testdb/hibernatetest/dataaccess/dao/MusiqueDAO.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/be/ahe/testdb/hibernatetest/dataaccess/dao/ParkingDAO.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/be/ahe/testdb/hibernatetest/dataaccess/dao/PersonDAO.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/be/ahe/testdb/hibernatetest/dataaccess/dao/ReservationDAO.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/be/ahe/testdb/hibernatetest/dataaccess/dao/SalleDAO.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/be/ahe/testdb/hibernatetest/dataaccess/dao/ServiceTraiteurDAO.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/be/ahe/testdb/hibernatetest/dataaccess/dao/SocieteDAO.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/be/ahe/testdb/hibernatetest/dataaccess/dao/TraiteurDAO.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/be/ahe/testdb/hibernatetest/dataaccess/dao/UserDAO.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/be/ahe/testdb/hibernatetest/dataaccess/entity/AddressEntity.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/be/ahe/testdb/hibernatetest/dataaccess/entity/Adresse.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/be/ahe/testdb/hibernatetest/dataaccess/entity/FermetureEntity.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/be/ahe/testdb/hibernatetest/dataaccess/entity/FormuleEntity.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/be/ahe/testdb/hibernatetest/dataaccess/entity/HallType.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/be/ahe/testdb/hibernatetest/dataaccess/entity/HallTypeEntity.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/be/ahe/testdb/hibernatetest/dataaccess/entity/ImageEntity.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/be/ahe/testdb/hibernatetest/dataaccess/entity/MakeUpAndHairDress.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/be/ahe/testdb/hibernatetest/dataaccess/entity/MakeUpAndHairDressEntity.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/be/ahe/testdb/hibernatetest/dataaccess/entity/MakeUpAndHairEntity.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/be/ahe/testdb/hibernatetest/dataaccess/entity/Media.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/be/ahe/testdb/hibernatetest/dataaccess/entity/MediaEntity.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/be/ahe/testdb/hibernatetest/dataaccess/entity/Musique.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/be/ahe/testdb/hibernatetest/dataaccess/entity/MusiqueEntity.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/be/ahe/testdb/hibernatetest/dataaccess/entity/MusiqueType.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/be/ahe/testdb/hibernatetest/dataaccess/entity/ParkingEntity.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/be/ahe/testdb/hibernatetest/dataaccess/entity/PersonEntity.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/be/ahe/testdb/hibernatetest/dataaccess/entity/ReservationEntity.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/be/ahe/testdb/hibernatetest/dataaccess/entity/Role.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/be/ahe/testdb/hibernatetest/dataaccess/entity/Salle.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/be/ahe/testdb/hibernatetest/dataaccess/entity/SalleEntity.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/be/ahe/testdb/hibernatetest/dataaccess/entity/Service.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/be/ahe/testdb/hibernatetest/dataaccess/entity/ServiceEntity.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/be/ahe/testdb/hibernatetest/dataaccess/entity/ServiceTraiteurEntity.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/be/ahe/testdb/hibernatetest/dataaccess/entity/Societe.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/be/ahe/testdb/hibernatetest/dataaccess/entity/SocieteEntity.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/be/ahe/testdb/hibernatetest/dataaccess/entity/TraiteurEntity.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/be/ahe/testdb/hibernatetest/dataaccess/entity/UserEntity.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/be/ahe/testdb/hibernatetest/dataaccess/repository/AddressRepo.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/be/ahe/testdb/hibernatetest/dataaccess/repository/FermetureRepo.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/be/ahe/testdb/hibernatetest/dataaccess/repository/FormuleRepo.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/be/ahe/testdb/hibernatetest/dataaccess/repository/ImageRepo.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/be/ahe/testdb/hibernatetest/dataaccess/repository/MakeUpAndHairRepo.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/be/ahe/testdb/hibernatetest/dataaccess/repository/MediaRepo.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/be/ahe/testdb/hibernatetest/dataaccess/repository/MusiqueRepo.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/be/ahe/testdb/hibernatetest/dataaccess/repository/ParkingRepo.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/be/ahe/testdb/hibernatetest/dataaccess/repository/PersonRepo.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/be/ahe/testdb/hibernatetest/dataaccess/repository/ReservationRepo.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/be/ahe/testdb/hibernatetest/dataaccess/repository/SalleEntity.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/be/ahe/testdb/hibernatetest/dataaccess/repository/SalleRepo.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/be/ahe/testdb/hibernatetest/dataaccess/repository/ServiceTraiteurRepo.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/be/ahe/testdb/hibernatetest/dataaccess/repository/SocieteRepo.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/be/ahe/testdb/hibernatetest/dataaccess/repository/TraiteurRepo.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/be/ahe/testdb/hibernatetest/dataaccess/repository/UserRepo.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/be/ahe/testdb/hibernatetest/exception/AddressDatabaseException.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/be/ahe/testdb/hibernatetest/exception/FermetureDatabaseException.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/be/ahe/testdb/hibernatetest/exception/SalleDatabaseException.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/be/ahe/testdb/hibernatetest/exception/SocieteDatabaseException.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/be/ahe/testdb/hibernatetest/exception/fermetureDatabaseException.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/be/ahe/testdb/hibernatetest/model/Adresse.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/be/ahe/testdb/hibernatetest/model/Client.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/be/ahe/testdb/hibernatetest/model/Compagnie.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/be/ahe/testdb/hibernatetest/model/Media.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/be/ahe/testdb/hibernatetest/model/Photogrape.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/be/ahe/testdb/hibernatetest/model/Photographe.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/be/ahe/testdb/hibernatetest/model/Salle.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/be/ahe/testdb/hibernatetest/model/Service.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/be/ahe/testdb/hibernatetest/model/Societe.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/be/ahe/testdb/hibernatetest/runner/MyRunner.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/be/ahe/testdb/hibernatetest/service/AddressService.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/be/ahe/testdb/hibernatetest/service/FermetureService.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/be/ahe/testdb/hibernatetest/service/FormuleService.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/be/ahe/testdb/hibernatetest/service/ImageService.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/be/ahe/testdb/hibernatetest/service/MakeUpAndHairService.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/be/ahe/testdb/hibernatetest/service/MediaService.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/be/ahe/testdb/hibernatetest/service/MusiqueService.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/be/ahe/testdb/hibernatetest/service/ParkingService.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/be/ahe/testdb/hibernatetest/service/PersonService.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/be/ahe/testdb/hibernatetest/service/ReservationService.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/be/ahe/testdb/hibernatetest/service/SalleService.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/be/ahe/testdb/hibernatetest/service/ServiceTraiteurService.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/be/ahe/testdb/hibernatetest/service/SocieteService.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/be/ahe/testdb/hibernatetest/service/TraiteurService.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/be/ahe/testdb/hibernatetest/service/UserService.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/be/ahe/testdb/hibernatetest/service/implementation/AddressServiceImpl.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/be/ahe/testdb/hibernatetest/service/implementation/FermetureServiceImpl.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/be/ahe/testdb/hibernatetest/service/implementation/FormuleServiceImpl.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/be/ahe/testdb/hibernatetest/service/implementation/ImageServiceImpl.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/be/ahe/testdb/hibernatetest/service/implementation/MakeUpAndHairServiceImpl.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/be/ahe/testdb/hibernatetest/service/implementation/MediaServiceimpl.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/be/ahe/testdb/hibernatetest/service/implementation/MusiqueServiceImpl.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/be/ahe/testdb/hibernatetest/service/implementation/ParkingService.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/be/ahe/testdb/hibernatetest/service/implementation/ParkingServiceImpl.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/be/ahe/testdb/hibernatetest/service/implementation/PersonService.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/be/ahe/testdb/hibernatetest/service/implementation/PersonServiceImpl.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/be/ahe/testdb/hibernatetest/service/implementation/ReservationServiceImpl.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/be/ahe/testdb/hibernatetest/service/implementation/SAlleService.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/be/ahe/testdb/hibernatetest/service/implementation/SalleService.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/be/ahe/testdb/hibernatetest/service/implementation/SalleServiceImpl.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/be/ahe/testdb/hibernatetest/service/implementation/ServiceTraiteurServiceImpl.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/be/ahe/testdb/hibernatetest/service/implementation/SocieteServiceImpl.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/be/ahe/testdb/hibernatetest/service/implementation/TraiteurServiceImpl.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/be/ahe/testdb/hibernatetest/service/implementation/UserServiceImpl.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/be/icc/ahe/marryme/dataaccess/entity/FormuleEntity.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/be/icc/ahe/marryme/dataaccess/entity/PersonEntity.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/be/icc/ahe/marryme/dataaccess/entity/ReservationEntity.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/be/icc/ahe/marryme/dataaccess/entity/ServiceEntity.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/be/icc/ahe/marryme/dataaccess/entity/SocieteEntity.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/be/icc/ahe/marryme/dataaccess/entity/UserEntity.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/be/icc/ahe/marryme/runner/MyRunner.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/resources/META-INF/additional-spring-configuration-metadata.json">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/resources/application.yml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/test/java/be/ahe/testdb/hibernatetest/HibernateTestApplicationTests.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../mon-premier-projet/mon-premier-projet/angular.json">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../mon-premier-projet/mon-premier-projet/src/app/app.component.html">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../mon-premier-projet/mon-premier-projet/src/app/app.component.ts">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../mon-premier-projet/mon-premier-projet/src/app/app.module.ts">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../mon-premier-projet/mon-premier-projet/src/app/appareil/appareil.component.html">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../mon-premier-projet/mon-premier-projet/src/app/appareil/appareil.component.ts">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../mon-premier-projet/mon-premier-projet/src/app/mon-premier/mon-premier.component.html">
+          <value>
+            <set />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>
