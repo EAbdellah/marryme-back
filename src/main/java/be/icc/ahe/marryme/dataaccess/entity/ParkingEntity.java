@@ -1,10 +1,18 @@
 package be.icc.ahe.marryme.dataaccess.entity;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
 @Table(name = "parking")
+@NoArgsConstructor
+@Setter
+@Getter
+
 public class ParkingEntity implements Serializable {
 
     @Id
@@ -27,49 +35,4 @@ public class ParkingEntity implements Serializable {
     @JoinColumn(name="service_id")
     private SalleEntity salleEntity;
 
-    public ParkingEntity() {
-    }
-
-    public Long getParkingID() {
-        return parkingID;
-    }
-
-    public void setParkingID(Long parkingID) {
-        this.parkingID = parkingID;
-    }
-
-    public Integer getCapacity() {
-        return capacity;
-    }
-
-    public void setCapacity(Integer capacity) {
-        this.capacity = capacity;
-    }
-
-    public Boolean getVoiturier() {
-        return voiturier;
-    }
-
-    public void setVoiturier(Boolean voiturier) {
-        this.voiturier = voiturier;
-    }
-
-    public SalleEntity getSalleEntity() {
-        return salleEntity;
-    }
-
-    public void setSalleEntity(SalleEntity salleEntity) {
-        this.salleEntity = salleEntity;
-    }
-
-
-
-    @Override
-    public String toString() {
-        return "ParkingEntity{" +
-                "parkingID=" + parkingID +
-                ", capacity=" + capacity +
-                ", voiturier=" + voiturier +
-                '}';
-    }
-}
+  }

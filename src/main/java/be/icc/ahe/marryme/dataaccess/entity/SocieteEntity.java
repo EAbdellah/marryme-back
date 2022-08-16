@@ -1,10 +1,15 @@
 package be.icc.ahe.marryme.dataaccess.entity;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
 @Table(name = "societe")
+@NoArgsConstructor @Getter @Setter
 public class SocieteEntity implements Serializable {
 
     @Id
@@ -31,83 +36,5 @@ public class SocieteEntity implements Serializable {
     private PersonEntity owner;
 
 
-    public SocieteEntity() {
-    }
 
-    public Long getSocieteID() {
-        return societeID;
-    }
-
-    public void setSocieteID(Long societeID) {
-        this.societeID = societeID;
-    }
-
-    public Long getnTVA() {
-        return nTVA;
-    }
-
-    public void setnTVA(Long nTVA) {
-        this.nTVA = nTVA;
-    }
-
-    public Long getnEntreprise() {
-        return nEntreprise;
-    }
-
-    public void setnEntreprise(Long nEntreprise) {
-        this.nEntreprise = nEntreprise;
-    }
-
-    public String getNom() {
-        return nom;
-    }
-
-    public void setNom(String nom) {
-        this.nom = nom;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public Long getnTel() {
-        return nTel;
-    }
-
-    public void setnTel(Long nTel) {
-        this.nTel = nTel;
-    }
-
-    public AddressEntity getLocalisation() {
-        return localisation;
-    }
-
-    public void setLocalisation(AddressEntity localisation) {
-        this.localisation = localisation;
-    }
-
-    public PersonEntity getOwner() {
-        return owner;
-    }
-
-    public void setOwner(PersonEntity owner) {
-        this.owner = owner;
-    }
-
-    @Override
-    public String toString() {
-        return "SocieteEntity{" +
-                "societeID=" + societeID +
-                ", nTVA=" + nTVA +
-                ", nEntreprise=" + nEntreprise +
-                ", nom='" + nom + '\'' +
-                ", email='" + email + '\'' +
-                ", nTel=" + nTel +
-                ", localisation=" + localisation +
-                '}';
-    }
 }

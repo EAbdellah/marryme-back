@@ -1,9 +1,13 @@
 package be.icc.ahe.marryme.runner;
 
 
+import be.icc.ahe.marryme.dataaccess.entity.enumeration.HallType;
+import be.icc.ahe.marryme.dataaccess.entity.enumeration.Role;
 import be.icc.ahe.marryme.exception.FermetureDatabaseException;
 import be.icc.ahe.marryme.dataaccess.entity.*;
+import be.icc.ahe.marryme.model.Address;
 import be.icc.ahe.marryme.model.Societe;
+import be.icc.ahe.marryme.model.mapper.SocieteMapper;
 import be.icc.ahe.marryme.service.*;
 import com.github.javafaker.Faker;
 import org.slf4j.Logger;
@@ -14,7 +18,8 @@ import org.springframework.stereotype.Component;
 
 import java.sql.Date;
 import java.time.Instant;
-import java.util.*;
+import java.util.Arrays;
+import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
 @Component
@@ -69,30 +74,33 @@ public class MyRunner implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
+
+
         Faker faker = new Faker((new Locale("fr_BE")));
 
         AddressEntity addressEntity = createAddress(faker);
-        PersonEntity personEntity = createPerson(faker,Role.CLIENT);
+        addressService.save(addressEntity);
+        PersonEntity personEntity = createPerson(faker, Role.CLIENT);
 
         SocieteEntity societeEntity = createSociete(faker);
         societeEntity.setOwner(personEntity);
         societeService.save(societeEntity);
 
-
-        SalleEntity salleEntity = createSalle(faker);
-        salleEntity.setServiceAdress(addressEntity);
-        salleEntity.setSociete(societeEntity);
-        salleEntity.setServiceAdress(addressEntity);
-
-
-       FormuleEntity formuleEntity =  createFormule(faker);
-        ImageEntity image = createImage(faker);
-        image.setFormule(formuleEntity);
-        formuleEntity.setImages(Arrays.asList(image));
-        salleEntity.setFormuleEntities(Arrays.asList(formuleEntity));
-        formuleEntity.setServiceEntity(salleEntity);
-
-        salleService.save(salleEntity);
+//
+//        SalleEntity salleEntity = createSalle(faker);
+//        salleEntity.setServiceAdress(addressEntity);
+//        salleEntity.setSociete(societeEntity);
+//        salleEntity.setServiceAdress(addressEntity);
+//
+//
+//       FormuleEntity formuleEntity =  createFormule(faker);
+//        ImageEntity image = createImage(faker);
+//        image.setFormule(formuleEntity);
+//        formuleEntity.setImages(Arrays.asList(image));
+//        salleEntity.setFormuleEntities(Arrays.asList(formuleEntity));
+//        formuleEntity.setServiceEntity(salleEntity);
+//
+//        salleService.save(salleEntity);
 
 
     }
@@ -119,7 +127,7 @@ public class MyRunner implements CommandLineRunner {
             client.setNom(faker.name().lastName());
             client.setPrenom(faker.name().firstName());
             client.setEmail(faker.internet().emailAddress());
-            client.setnTel(Long.parseLong((0 + "" + faker.number().numberBetween(470000000, 490000000))));
+            client.setNTel(Long.parseLong((0 + "" + faker.number().numberBetween(470000000, 490000000))));
             client.setLogin(faker.name().username());
             client.setMdp(faker.internet().password());
             client.setRole(role);
@@ -130,11 +138,11 @@ public class MyRunner implements CommandLineRunner {
         private SocieteEntity createSociete(Faker faker) throws Exception {
             SocieteEntity societe = new SocieteEntity();
             Long tel = Long.parseLong(0 + "" + faker.number().numberBetween(470000000, 490000000));
-            societe.setnTVA(Long.parseLong(faker.number().numberBetween(0, 1) + "" + faker.number().numberBetween(1000000000, 999999999)));
+            societe.setNTVA(Long.parseLong(faker.number().numberBetween(0, 1) + "" + faker.number().numberBetween(1000000000, 999999999)));
             societe.setEmail(faker.internet().safeEmailAddress());
-            societe.setnEntreprise(faker.number().numberBetween(30000L, 5000L));
+            societe.setNEntreprise(faker.number().numberBetween(30000L, 5000L));
             societe.setNom(faker.company().name());
-            societe.setnTel(tel);
+            societe.setNTel(tel);
             return societe;
         }
 
@@ -165,8 +173,8 @@ public class MyRunner implements CommandLineRunner {
             salleEntity.setPlaceAssise(capacity - 20 < 0 ? 13 : capacity - 20);
             salleEntity.setTraiteur(faker.bool().bool());
             salleEntity.setHaveParking(faker.bool().bool());
-                salleEntity.setHallTypeEntity(HallTypeEntity.RandomHallType());
-                salleEntity.setExternal(faker.bool().bool());
+                salleEntity.setHallTypeEntity(HallType.RandomHallType());
+                salleEntity.setIsExternal(faker.bool().bool());
 
             return salleEntity;
         }
@@ -189,7 +197,7 @@ public class MyRunner implements CommandLineRunner {
 
         formuleEntity.setDescription(faker.lorem().sentence());
         Boolean isUnique = faker.bool().bool();
-        formuleEntity.setUniquePrix(isUnique);
+        formuleEntity.setIsUniquePrix(isUnique);
 
         if (!isUnique) {
             formuleEntity.setSupDimanche(faker.number().numberBetween(10, 50));

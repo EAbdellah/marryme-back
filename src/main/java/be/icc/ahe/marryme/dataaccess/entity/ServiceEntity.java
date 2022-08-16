@@ -1,13 +1,20 @@
 package be.icc.ahe.marryme.dataaccess.entity;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.*;
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
-//@MappedSuperclass
 @Table(name = "AbstractService")
+@NoArgsConstructor
+@Setter
+@Getter
+
 public abstract class ServiceEntity  implements Serializable{
 
     @Id
@@ -48,106 +55,4 @@ public abstract class ServiceEntity  implements Serializable{
 @OneToOne(targetEntity = ImageEntity.class,cascade = CascadeType.ALL,fetch = FetchType.LAZY,mappedBy = "serviceEntity")
 private ImageEntity image;
 
-
-    public ServiceEntity() {
-    }
-
-    public Long getServiceID() {
-        return ServiceID;
-    }
-
-    public void setServiceID(Long serviceID) {
-        ServiceID = serviceID;
-    }
-
-    public String getNom() {
-        return nom;
-    }
-
-    public void setNom(String nom) {
-        this.nom = nom;
-    }
-
-    public AddressEntity getServiceAdress() {
-        return serviceAdress;
-    }
-
-    public void setServiceAdress(AddressEntity serviceAdress) {
-        this.serviceAdress = serviceAdress;
-    }
-
-    public SocieteEntity getSociete() {
-        return societe;
-    }
-
-    public void setSociete(SocieteEntity societe) {
-        this.societe = societe;
-    }
-
-    public List<FormuleEntity> getFormuleEntities() {
-        return formuleEntities;
-    }
-
-    public void setFormuleEntities(List<FormuleEntity> formuleEntities) {
-        this.formuleEntities.clear();
-        this.formuleEntities.addAll(formuleEntities);
-
-//        this.formuleEntities = formuleEntities;
-    }
-
-    public Collection<FermetureEntity> getFermetures() {
-        return fermetures;
-    }
-
-    public void setFermetures(Collection<FermetureEntity> fermetures) {
-//        this.fermetures.clear();
-//        this.fermetures.addAll(fermetures);
-        this.fermetures = fermetures;
-    }
-
-    public ImageEntity getImage() {
-        return image;
-    }
-
-    public void setImage(ImageEntity image) {
-        this.image = image;
-    }
-
-    public List<ReservationEntity> getReservationEntities() {
-        return reservationEntities;
-    }
-
-    public void setReservationEntities(List<ReservationEntity> reservationEntities) {
-        this.reservationEntities = reservationEntities;
-    }
-
-    @Override
-    public String toString() {
-        return "ServiceEntity{" +
-                "ServiceID=" + ServiceID +
-                ", nom='" + nom + '\'' +
-                ", serviceAdress=" + serviceAdress +
-                ", societe=" + societe +
-                '}';
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof ServiceEntity)) return false;
-        ServiceEntity that = (ServiceEntity) o;
-        return Objects.equals(getServiceID(), that.getServiceID()) &&
-                Objects.equals(getNom(), that.getNom()) &&
-                Objects.equals(getServiceAdress(), that.getServiceAdress()) &&
-                Objects.equals(getSociete(), that.getSociete()) &&
-                Objects.equals(getFormuleEntities(), that.getFormuleEntities()) &&
-                Objects.equals(reservationEntities, that.reservationEntities) &&
-                Objects.equals(getFermetures(), that.getFermetures()) &&
-                Objects.equals(getImage(), that.getImage());
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(getServiceID(), getNom(), getServiceAdress(), getSociete(), getFormuleEntities(), reservationEntities, getFermetures(), getImage());
-    }
 }

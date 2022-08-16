@@ -1,5 +1,9 @@
 package be.icc.ahe.marryme.dataaccess.entity;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
@@ -7,6 +11,10 @@ import java.io.Serializable;
 
 @Entity
 @Table(name = "traiteur")
+@NoArgsConstructor
+@Setter
+@Getter
+
 public class TraiteurEntity  extends ServiceEntity implements Serializable {
 
     @Column(name = "do_meat", nullable = false)
@@ -22,49 +30,4 @@ public class TraiteurEntity  extends ServiceEntity implements Serializable {
         this.doMeat = doMeat;
     }
 
-    public TraiteurEntity() {
-
-    }
-
-    public Boolean getDoMeat() {
-        return doMeat;
-    }
-
-    public void setDoMeat(Boolean doMeat) {
-        this.doMeat = doMeat;
-    }
-
-    public Boolean getDoFish() {
-        return doFish;
-    }
-
-    public void setDoFish(Boolean doFish) {
-        this.doFish = doFish;
-    }
-
-    public Boolean getDoVegan() {
-        return doVegan;
-    }
-
-    public void setDoVegan(Boolean doVegan) {
-        this.doVegan = doVegan;
-    }
-
-    public Boolean getDoVegetarian() {
-        return DoVegetarian;
-    }
-
-    public void setDoVegetarian(Boolean doVegetarian) {
-        DoVegetarian = doVegetarian;
-    }
-
-    @Override
-    public String toString() {
-        return "TraiteurEntity{" +
-                "doMeat=" + doMeat +
-                ", doFish=" + doFish +
-                ", doVegan=" + doVegan +
-                ", DoVegetarian=" + DoVegetarian +
-                '}';
-    }
-}
+  }

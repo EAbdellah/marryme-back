@@ -1,7 +1,7 @@
-server:
-  port: 8080
-  servlet:
-    context-path:
+#server:
+#  port: 8080
+#  servlet:
+#    context-path:
 #spring:
 #  datasource:
 #    url: jdbc:postgresql://localhost:5432/hibernateTest?user=postgres&currentSchema=public
@@ -18,6 +18,14 @@ server:
 #      database-platform: org.hibernate.dialect.PostgreSQL9Dialect
 #
 
+
+
+
+
+server:
+  port: 8080
+  servlet:
+    context-path:
 spring:
   datasource:
     url: jdbc:mysql://localhost:3306/myschema

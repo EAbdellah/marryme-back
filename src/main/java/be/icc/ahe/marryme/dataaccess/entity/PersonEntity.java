@@ -1,10 +1,18 @@
 package be.icc.ahe.marryme.dataaccess.entity;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
 @Table(name = "person")
+@NoArgsConstructor
+@Setter
+@Getter
+
 public class PersonEntity implements Serializable {
 
     @Id
@@ -28,62 +36,4 @@ public class PersonEntity implements Serializable {
     @JoinColumn(name="adress_id")
     private AddressEntity localisation;
 
-    public PersonEntity() {
-    }
-
-    public Long getPersonID() {
-        return personID;
-    }
-
-    public void setPersonID(Long personID) {
-        this.personID = personID;
-    }
-
-    public String getNom() {
-        return nom;
-    }
-
-    public void setNom(String nom) {
-        this.nom = nom;
-    }
-
-    public String getPrenom() {
-        return prenom;
-    }
-
-    public void setPrenom(String prenom) {
-        this.prenom = prenom;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public Long getnTel() {
-        return nTel;
-    }
-
-    public void setnTel(Long nTel) {
-        this.nTel = nTel;
-    }
-
-//    public SocieteEntity getSocieteEntity() {
-//        return societeEntity;
-//    }
-//
-//    public void setSocieteEntity(SocieteEntity societeEntity) {
-//        this.societeEntity = societeEntity;
-//    }
-
-    public AddressEntity getLocalisation() {
-        return localisation;
-    }
-
-    public void setLocalisation(AddressEntity localisation) {
-        this.localisation = localisation;
-    }
-}
+  }

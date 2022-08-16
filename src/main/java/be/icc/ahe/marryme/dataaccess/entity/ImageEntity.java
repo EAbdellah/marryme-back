@@ -1,10 +1,18 @@
 package be.icc.ahe.marryme.dataaccess.entity;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
 @Table(name = "image")
+@NoArgsConstructor
+@Setter
+@Getter
+
 public class ImageEntity implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,38 +32,4 @@ public class ImageEntity implements Serializable {
     @JoinColumn(name="formule_id")
     private FormuleEntity formule;
 
-    public ImageEntity() {
-    }
-
-    public ServiceEntity getServiceEntity() {
-        return serviceEntity;
-    }
-
-    public void setServiceEntity(ServiceEntity serviceEntity) {
-        this.serviceEntity = serviceEntity;
-    }
-
-    public Long getImageID() {
-        return imageID;
-    }
-
-    public void setImageID(Long imageID) {
-        this.imageID = imageID;
-    }
-
-    public byte[] getPhoto() {
-        return photo;
-    }
-
-    public void setPhoto(byte[] photo) {
-        this.photo = photo;
-    }
-
-    public FormuleEntity getFormule() {
-        return formule;
-    }
-
-    public void setFormule(FormuleEntity formule) {
-        this.formule = formule;
-    }
-}
+ }

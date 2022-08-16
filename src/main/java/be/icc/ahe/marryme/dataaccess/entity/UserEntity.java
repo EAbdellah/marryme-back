@@ -1,11 +1,20 @@
 package be.icc.ahe.marryme.dataaccess.entity;
 
+import be.icc.ahe.marryme.dataaccess.entity.enumeration.Role;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
 
 @Entity
 @Table(name = "user")
+@NoArgsConstructor
+@Setter
+@Getter
+
 public class UserEntity extends PersonEntity implements Serializable {
 
     private String login;
@@ -18,30 +27,4 @@ public class UserEntity extends PersonEntity implements Serializable {
     private List<ReservationEntity> reservationEntities;
 
 
-    public UserEntity() {
-    }
-
-    public String getLogin() {
-        return login;
-    }
-
-    public void setLogin(String login) {
-        this.login = login;
-    }
-
-    public String getMdp() {
-        return mdp;
-    }
-
-    public void setMdp(String mdp) {
-        this.mdp = mdp;
-    }
-
-    public Role getRole() {
-        return role;
-    }
-
-    public void setRole(Role role) {
-        this.role = role;
-    }
 }

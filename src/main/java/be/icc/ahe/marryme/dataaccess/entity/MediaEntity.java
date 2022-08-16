@@ -1,5 +1,9 @@
 package be.icc.ahe.marryme.dataaccess.entity;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
@@ -7,6 +11,9 @@ import java.io.Serializable;
 
 @Entity
 @Table(name = "media")
+@NoArgsConstructor
+@Setter
+@Getter
 public class MediaEntity extends ServiceEntity implements Serializable {
 
     @Column(name = "isPhoto", nullable = false)
@@ -18,48 +25,4 @@ public class MediaEntity extends ServiceEntity implements Serializable {
     @Column(name = "doSouvenir", nullable = false)
     private Boolean doSouvenir;
 
-    public MediaEntity() {
-    }
-
-    public Boolean getPhoto() {
-        return isPhoto;
-    }
-
-    public void setPhoto(Boolean photo) {
-        isPhoto = photo;
-    }
-
-    public Boolean getVideo() {
-        return isVideo;
-    }
-
-    public void setVideo(Boolean video) {
-        isVideo = video;
-    }
-
-    public Boolean getDoAlbum() {
-        return doAlbum;
-    }
-
-    public void setDoAlbum(Boolean doAlbum) {
-        this.doAlbum = doAlbum;
-    }
-
-    public Boolean getDoSouvenir() {
-        return doSouvenir;
-    }
-
-    public void setDoSouvenir(Boolean doSouvenir) {
-        this.doSouvenir = doSouvenir;
-    }
-
-    @Override
-    public String toString() {
-        return "MediaEntity{" +
-                "isPhoto=" + isPhoto +
-                ", isVideo=" + isVideo +
-                ", doAlbum=" + doAlbum +
-                ", doSouvenir=" + doSouvenir +
-                '}';
-    }
-}
+  }

@@ -1,5 +1,9 @@
 package be.icc.ahe.marryme.dataaccess.entity;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
@@ -7,6 +11,10 @@ import java.io.Serializable;
 
 @Entity
 @Table(name = "make_up_and_hair")
+@NoArgsConstructor
+@Setter
+@Getter
+
 public class MakeUpAndHairEntity  extends ServiceEntity implements Serializable {
 
     @Column(name = "do_hair", nullable = false)
@@ -17,49 +25,4 @@ public class MakeUpAndHairEntity  extends ServiceEntity implements Serializable 
     private Boolean doMan;
     @Column(name = "do_woman", nullable = false)
     private Boolean doWoman;
-
-    public MakeUpAndHairEntity() {
-    }
-
-    public Boolean getDoHair() {
-        return doHair;
-    }
-
-    public void setDoHair(Boolean doHair) {
-        this.doHair = doHair;
-    }
-
-    public Boolean getDoMakeUp() {
-        return doMakeUp;
-    }
-
-    public void setDoMakeUp(Boolean doMakeUp) {
-        this.doMakeUp = doMakeUp;
-    }
-
-    public Boolean getDoMan() {
-        return doMan;
-    }
-
-    public void setDoMan(Boolean doMan) {
-        this.doMan = doMan;
-    }
-
-    public Boolean getDoWoman() {
-        return doWoman;
-    }
-
-    public void setDoWoman(Boolean doWoman) {
-        this.doWoman = doWoman;
-    }
-
-    @Override
-    public String toString() {
-        return "MakeUpAndHairEntity{" +
-                "doHair=" + doHair +
-                ", doMakeUp=" + doMakeUp +
-                ", doMan=" + doMan +
-                ", doWoman=" + doWoman +
-                '}';
-    }
 }

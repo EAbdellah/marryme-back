@@ -1,5 +1,9 @@
 package be.icc.ahe.marryme.dataaccess.entity;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.sql.Date;
@@ -7,6 +11,9 @@ import java.util.*;
 
 @Entity
 @Table(name = "fermeture")
+@NoArgsConstructor
+@Setter
+@Getter
 public class FermetureEntity implements Serializable {
 
 
@@ -29,30 +36,4 @@ public class FermetureEntity implements Serializable {
     @ManyToMany(mappedBy = "fermetures", fetch = FetchType.LAZY)
     Collection <ServiceEntity> serviceEntity = new HashSet<>();
 
-    public FermetureEntity() {
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Date getDate() {
-        return date;
-    }
-
-    public void setDate(Date date) {
-        this.date = date;
-    }
-
-    public Collection<ServiceEntity> getServiceEntity() {
-        return serviceEntity;
-    }
-
-    public void setServiceEntity(Collection<ServiceEntity> serviceEntity) {
-        this.serviceEntity = serviceEntity;
-    }
 }

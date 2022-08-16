@@ -1,11 +1,19 @@
 package be.icc.ahe.marryme.dataaccess.entity;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.sql.Date;
 
 @Entity
 @Table(name = "reservation")
+@NoArgsConstructor
+@Setter
+@Getter
+
 public class ReservationEntity  implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,48 +31,4 @@ public class ReservationEntity  implements Serializable {
     @ManyToOne
     @JoinColumn(name="person_id", nullable=false)
     private UserEntity userEntity;
-
-
-    public ReservationEntity() {
-    }
-
-    public Long getReservationID() {
-        return reservationID;
-    }
-
-    public void setReservationID(Long reservationID) {
-        this.reservationID = reservationID;
-    }
-
-    public Date getReservationDate() {
-        return reservationDate;
-    }
-
-    public void setReservationDate(Date reservationDate) {
-        this.reservationDate = reservationDate;
-    }
-
-    public String getTicket() {
-        return ticket;
-    }
-
-    public void setTicket(String ticket) {
-        this.ticket = ticket;
-    }
-
-    public ServiceEntity getServiceEntity() {
-        return serviceEntity;
-    }
-
-    public void setServiceEntity(ServiceEntity serviceEntity) {
-        this.serviceEntity = serviceEntity;
-    }
-
-    public UserEntity getUserEntity() {
-        return userEntity;
-    }
-
-    public void setUserEntity(UserEntity userEntity) {
-        this.userEntity = userEntity;
-    }
 }
