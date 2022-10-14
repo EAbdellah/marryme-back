@@ -6,8 +6,12 @@ import be.icc.ahe.marryme.dataaccess.entity.enumeration.Role;
 import be.icc.ahe.marryme.exception.FermetureDatabaseException;
 import be.icc.ahe.marryme.dataaccess.entity.*;
 import be.icc.ahe.marryme.model.Address;
+import be.icc.ahe.marryme.model.Person;
 import be.icc.ahe.marryme.model.Societe;
+import be.icc.ahe.marryme.model.dto.UserRegistrationFormDTO;
+import be.icc.ahe.marryme.model.mapper.PersonMapper;
 import be.icc.ahe.marryme.model.mapper.SocieteMapper;
+import be.icc.ahe.marryme.model.mapper.dtomapper.RegistrationUserMapper;
 import be.icc.ahe.marryme.service.*;
 import com.github.javafaker.Faker;
 import org.slf4j.Logger;
@@ -74,17 +78,32 @@ public class MyRunner implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
+        UserRegistrationFormDTO urf = new UserRegistrationFormDTO(
+                "Abdellah","Elachhab","Belgique","Bruxelles","1070","Boulevard Prince de Liege",
+                "44","4","0484732465","tamere@tamer.tame","SalutLesBronzé","par eamil"
+        );
+
+        Person person = RegistrationUserMapper.INSTANCE.dtotomodel(urf);
+
+        System.out.println(person);
+
+        PersonEntity personEntity =  PersonMapper.INSTANCE.modelToEntity(person);
+        System.out.println(personEntity);
+
+        personService.save(personEntity);
 
 
-        Faker faker = new Faker((new Locale("fr_BE")));
-
-        AddressEntity addressEntity = createAddress(faker);
-        addressService.save(addressEntity);
-        PersonEntity personEntity = createPerson(faker, Role.CLIENT);
-
-        SocieteEntity societeEntity = createSociete(faker);
-        societeEntity.setOwner(personEntity);
-        societeService.save(societeEntity);
+//        Faker faker = new Faker((new Locale("fr_BE")));
+//
+//        AddressEntity addressEntity = createAddress(faker);
+//        addressService.save(addressEntity);
+//
+//        UserEntity  userEntity = createUser(faker, Role.CLIENT);
+//        PersonEntity personEntity = createPerson(faker);
+//
+//        SocieteEntity societeEntity = createSociete(faker);
+//        societeEntity.setOwner(personEntity);
+//        societeService.save(societeEntity);
 
 //
 //        SalleEntity salleEntity = createSalle(faker);
@@ -121,14 +140,23 @@ public class MyRunner implements CommandLineRunner {
             return adress;
         }
 
-        private PersonEntity createPerson(Faker faker, Role role) throws Exception{
+
+    private PersonEntity createPerson(Faker faker) throws Exception{
+        /**Person1**/
+        PersonEntity person = new PersonEntity();
+        person.setNom(faker.name().lastName());
+        person.setPrenom(faker.name().firstName());
+        person.setEmail(faker.internet().emailAddress());
+        person.setNTel(Long.parseLong((0 + "" + faker.number().numberBetween(470000000, 490000000))));
+
+
+        return person;
+    }
+
+        private UserEntity createUser(Faker faker, Role role) throws Exception{
             /**Person1**/
             UserEntity client = new UserEntity();
-            client.setNom(faker.name().lastName());
-            client.setPrenom(faker.name().firstName());
-            client.setEmail(faker.internet().emailAddress());
-            client.setNTel(Long.parseLong((0 + "" + faker.number().numberBetween(470000000, 490000000))));
-            client.setLogin(faker.name().username());
+
             client.setMdp(faker.internet().password());
             client.setRole(role);
 

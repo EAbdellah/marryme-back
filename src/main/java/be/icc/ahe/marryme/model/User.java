@@ -13,24 +13,19 @@ import javax.persistence.OneToMany;
 import java.util.List;
 
 @NoArgsConstructor @Setter @Getter
-public class User extends Person {
+public class User  {
 
-    private String login;
     private String mdp;
     private Role role;
+    private boolean isActive;
+    private boolean isNonLocked;
+    private String[] authorities;
     private List<Reservation> reservations;
 
     @Override
     public String toString() {
         return "User{" +
 
-                "personID=" + getPersonID() +
-                ", nom='" + getNom() + '\'' +
-                ", prenom='" + getPrenom() + '\'' +
-                ", email='" + getEmail() + '\'' +
-                ", nTel=" + getNTel() +
-                ", localisation=" + getLocalisation() +
-                "login='" + login + '\'' +
                 ", mdp='" + mdp + '\'' +
                 ", role=" + role +
                 ", reservations=" + reservations +

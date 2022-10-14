@@ -3,6 +3,7 @@ package be.icc.ahe.marryme.dataaccess.entity;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -12,7 +13,7 @@ import java.io.Serializable;
 @NoArgsConstructor
 @Setter
 @Getter
-
+@ToString
 public class PersonEntity implements Serializable {
 
     @Id
@@ -35,5 +36,9 @@ public class PersonEntity implements Serializable {
     @OneToOne(targetEntity = AddressEntity.class, fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     @JoinColumn(name="adress_id")
     private AddressEntity localisation;
+    @OneToOne(targetEntity = UserEntity.class, fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+    @JoinColumn(name="user_id")
+    private UserEntity userEntity;
 
-  }
+
+}

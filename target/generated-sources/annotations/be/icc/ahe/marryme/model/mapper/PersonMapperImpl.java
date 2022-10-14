@@ -2,25 +2,28 @@ package be.icc.ahe.marryme.model.mapper;
 
 import be.icc.ahe.marryme.dataaccess.entity.AddressEntity;
 import be.icc.ahe.marryme.dataaccess.entity.PersonEntity;
+import be.icc.ahe.marryme.dataaccess.entity.UserEntity;
 import be.icc.ahe.marryme.model.Address;
 import be.icc.ahe.marryme.model.Person;
+import be.icc.ahe.marryme.model.User;
 import javax.annotation.processing.Generated;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2022-08-16T01:51:58+0200",
+    date = "2022-10-03T17:16:26+0200",
     comments = "version: 1.5.2.Final, compiler: javac, environment: Java 11.0.8 (Oracle Corporation)"
 )
 public class PersonMapperImpl implements PersonMapper {
 
     @Override
-    public PersonEntity entityToModel(Person person) {
+    public PersonEntity modelToEntity(Person person) {
         if ( person == null ) {
             return null;
         }
 
         PersonEntity personEntity = new PersonEntity();
 
+        personEntity.setUserEntity( userToUserEntity( person.getUser() ) );
         personEntity.setPersonID( person.getPersonID() );
         personEntity.setNom( person.getNom() );
         personEntity.setPrenom( person.getPrenom() );
@@ -32,13 +35,14 @@ public class PersonMapperImpl implements PersonMapper {
     }
 
     @Override
-    public Person modelToEntity(PersonEntity personEntity) {
+    public Person entityToModel(PersonEntity personEntity) {
         if ( personEntity == null ) {
             return null;
         }
 
         Person person = new Person();
 
+        person.setUser( userEntityToUser( personEntity.getUserEntity() ) );
         person.setPersonID( personEntity.getPersonID() );
         person.setNom( personEntity.getNom() );
         person.setPrenom( personEntity.getPrenom() );
@@ -47,6 +51,21 @@ public class PersonMapperImpl implements PersonMapper {
         person.setLocalisation( addressEntityToAddress( personEntity.getLocalisation() ) );
 
         return person;
+    }
+
+    protected UserEntity userToUserEntity(User user) {
+        if ( user == null ) {
+            return null;
+        }
+
+        UserEntity userEntity = new UserEntity();
+
+        userEntity.setMdp( user.getMdp() );
+        userEntity.setRole( user.getRole() );
+        userEntity.setActive( user.isActive() );
+        userEntity.setNonLocked( user.isNonLocked() );
+
+        return userEntity;
     }
 
     protected AddressEntity addressToAddressEntity(Address address) {
@@ -65,6 +84,21 @@ public class PersonMapperImpl implements PersonMapper {
         addressEntity.setBox( address.getBox() );
 
         return addressEntity;
+    }
+
+    protected User userEntityToUser(UserEntity userEntity) {
+        if ( userEntity == null ) {
+            return null;
+        }
+
+        User user = new User();
+
+        user.setMdp( userEntity.getMdp() );
+        user.setRole( userEntity.getRole() );
+        user.setActive( userEntity.isActive() );
+        user.setNonLocked( userEntity.isNonLocked() );
+
+        return user;
     }
 
     protected Address addressEntityToAddress(AddressEntity addressEntity) {

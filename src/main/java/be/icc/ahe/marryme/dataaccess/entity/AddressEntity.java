@@ -3,13 +3,14 @@ package be.icc.ahe.marryme.dataaccess.entity;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
 @Table(name = "adress")
-@NoArgsConstructor @Setter @Getter
+@NoArgsConstructor @Setter @Getter @ToString
 public class AddressEntity implements Serializable {
 
     @Id
@@ -32,10 +33,8 @@ public class AddressEntity implements Serializable {
     @Column(name = "numero", nullable = false, length = 128)
     private String numero;
 
-    @Column(name = "box", nullable = false, length = 128)
+    @Column(name = "box", nullable = true, length = 128)
     private String box;
-
-
 
 
 }

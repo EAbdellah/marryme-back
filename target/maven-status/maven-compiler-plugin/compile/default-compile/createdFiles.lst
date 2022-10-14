@@ -73,6 +73,7 @@ be\icc\ahe\marryme\dataaccess\entity\TraiteurEntity.class
 be\icc\ahe\marryme\MarrymeBack.class
 be\icc\ahe\marryme\dataaccess\entity\ReservationEntity.class
 be\icc\ahe\marryme\service\MusiqueService.class
+be\icc\ahe\marryme\security\UserPrincipal.class
 be\icc\ahe\marryme\service\implementation\FermetureServiceImpl.class
 be\icc\ahe\marryme\service\SalleService.class
 be\icc\ahe\marryme\model\Image.class

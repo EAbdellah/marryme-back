@@ -6,13 +6,13 @@ import javax.annotation.processing.Generated;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2022-08-16T01:51:58+0200",
+    date = "2022-10-03T17:16:26+0200",
     comments = "version: 1.5.2.Final, compiler: javac, environment: Java 11.0.8 (Oracle Corporation)"
 )
 public class AddressMapperImpl implements AddressMapper {
 
     @Override
-    public AddressEntity entityToModel(Address address) {
+    public AddressEntity modelToEntity(Address address) {
         if ( address == null ) {
             return null;
         }
@@ -31,7 +31,7 @@ public class AddressMapperImpl implements AddressMapper {
     }
 
     @Override
-    public Address modelToEntity(AddressEntity addressEntity) {
+    public Address entityToModel(AddressEntity addressEntity) {
         if ( addressEntity == null ) {
             return null;
         }

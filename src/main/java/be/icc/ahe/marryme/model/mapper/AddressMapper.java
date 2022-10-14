@@ -10,7 +10,7 @@ public interface AddressMapper {
 
     AddressMapper INSTANCE = Mappers.getMapper( AddressMapper.class );
 
-    AddressEntity entityToModel(Address address);
-    Address modelToEntity(AddressEntity addressEntity);
+    AddressEntity modelToEntity(Address address);
+    Address entityToModel(AddressEntity addressEntity);
 
 }

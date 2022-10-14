@@ -15,6 +15,7 @@ public class Person {
     private String email;
     private Long nTel;
     private Address localisation;
+    private User user;
 
     @Override
     public String toString() {
@@ -25,6 +26,7 @@ public class Person {
                 ", email='" + email + '\'' +
                 ", nTel=" + nTel +
                 ", localisation=" + localisation +
+                ", user=" + user +
                 '}';
     }
 }
