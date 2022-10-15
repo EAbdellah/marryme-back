@@ -22,6 +22,7 @@ C:\Users\abdellah.elachhab\Desktop\MarryMe Project\marryme-back\src\main\java\be
 C:\Users\abdellah.elachhab\Desktop\MarryMe Project\marryme-back\src\main\java\be\icc\ahe\marryme\model\Media.java
 C:\Users\abdellah.elachhab\Desktop\MarryMe Project\marryme-back\src\main\java\be\icc\ahe\marryme\dataaccess\entity\FermetureEntity.java
 C:\Users\abdellah.elachhab\Desktop\MarryMe Project\marryme-back\src\main\java\be\icc\ahe\marryme\service\implementation\MediaServiceimpl.java
+C:\Users\abdellah.elachhab\Desktop\MarryMe Project\marryme-back\src\main\java\be\icc\ahe\marryme\dataaccess\repository\VerificationTokenRepository.java
 C:\Users\abdellah.elachhab\Desktop\MarryMe Project\marryme-back\src\main\java\be\icc\ahe\marryme\model\Fermeture.java
 C:\Users\abdellah.elachhab\Desktop\MarryMe Project\marryme-back\src\main\java\be\icc\ahe\marryme\service\FermetureService.java
 C:\Users\abdellah.elachhab\Desktop\MarryMe Project\marryme-back\src\main\java\be\icc\ahe\marryme\service\implementation\UserServiceImpl.java
@@ -32,6 +33,7 @@ C:\Users\abdellah.elachhab\Desktop\MarryMe Project\marryme-back\src\main\java\be
 C:\Users\abdellah.elachhab\Desktop\MarryMe Project\marryme-back\src\main\java\be\icc\ahe\marryme\dataaccess\repository\MusiqueRepo.java
 C:\Users\abdellah.elachhab\Desktop\MarryMe Project\marryme-back\src\main\java\be\icc\ahe\marryme\service\implementation\FermetureServiceImpl.java
 C:\Users\abdellah.elachhab\Desktop\MarryMe Project\marryme-back\src\main\java\be\icc\ahe\marryme\service\TraiteurService.java
+C:\Users\abdellah.elachhab\Desktop\MarryMe Project\marryme-back\src\main\java\be\icc\ahe\marryme\event\OnRegistrationCompleteEvent.java
 C:\Users\abdellah.elachhab\Desktop\MarryMe Project\marryme-back\src\main\java\be\icc\ahe\marryme\model\mapper\ParkingMapper.java
 C:\Users\abdellah.elachhab\Desktop\MarryMe Project\marryme-back\src\main\java\be\icc\ahe\marryme\dataaccess\dao\ParkingDAO.java
 C:\Users\abdellah.elachhab\Desktop\MarryMe Project\marryme-back\src\main\java\be\icc\ahe\marryme\service\UserService.java
@@ -42,6 +44,7 @@ C:\Users\abdellah.elachhab\Desktop\MarryMe Project\marryme-back\src\main\java\be
 C:\Users\abdellah.elachhab\Desktop\MarryMe Project\marryme-back\src\main\java\be\icc\ahe\marryme\security\domain\HttpResponse.java
 C:\Users\abdellah.elachhab\Desktop\MarryMe Project\marryme-back\src\main\java\be\icc\ahe\marryme\exception\SalleDatabaseException.java
 C:\Users\abdellah.elachhab\Desktop\MarryMe Project\marryme-back\src\main\java\be\icc\ahe\marryme\service\implementation\EmailServiceImpl.java
+C:\Users\abdellah.elachhab\Desktop\MarryMe Project\marryme-back\src\main\java\be\icc\ahe\marryme\dataaccess\dao\TokenAccesDAO.java
 C:\Users\abdellah.elachhab\Desktop\MarryMe Project\marryme-back\src\main\java\be\icc\ahe\marryme\dataaccess\entity\SocieteEntity.java
 C:\Users\abdellah.elachhab\Desktop\MarryMe Project\marryme-back\src\main\java\be\icc\ahe\marryme\service\implementation\MakeUpAndHairServiceImpl.java
 C:\Users\abdellah.elachhab\Desktop\MarryMe Project\marryme-back\src\main\java\be\icc\ahe\marryme\dataaccess\dao\TraiteurDAO.java
@@ -78,6 +81,7 @@ C:\Users\abdellah.elachhab\Desktop\MarryMe Project\marryme-back\src\main\java\be
 C:\Users\abdellah.elachhab\Desktop\MarryMe Project\marryme-back\src\main\java\be\icc\ahe\marryme\model\mapper\FormuleMapper.java
 C:\Users\abdellah.elachhab\Desktop\MarryMe Project\marryme-back\src\main\java\be\icc\ahe\marryme\constant\EmailConstant.java
 C:\Users\abdellah.elachhab\Desktop\MarryMe Project\marryme-back\src\main\java\be\icc\ahe\marryme\service\implementation\ImageServiceImpl.java
+C:\Users\abdellah.elachhab\Desktop\MarryMe Project\marryme-back\src\main\java\be\icc\ahe\marryme\listerner\RegistrationListener.java
 C:\Users\abdellah.elachhab\Desktop\MarryMe Project\marryme-back\src\main\java\be\icc\ahe\marryme\model\mapper\ServiceTraiteurMapper.java
 C:\Users\abdellah.elachhab\Desktop\MarryMe Project\marryme-back\src\main\java\be\icc\ahe\marryme\model\Person.java
 C:\Users\abdellah.elachhab\Desktop\MarryMe Project\marryme-back\src\main\java\be\icc\ahe\marryme\dataaccess\dao\UserDAO.java
@@ -100,7 +104,6 @@ C:\Users\abdellah.elachhab\Desktop\MarryMe Project\marryme-back\src\main\java\be
 C:\Users\abdellah.elachhab\Desktop\MarryMe Project\marryme-back\src\main\java\be\icc\ahe\marryme\service\MediaService.java
 C:\Users\abdellah.elachhab\Desktop\MarryMe Project\marryme-back\src\main\java\be\icc\ahe\marryme\model\Traiteur.java
 C:\Users\abdellah.elachhab\Desktop\MarryMe Project\marryme-back\src\main\java\be\icc\ahe\marryme\security\filter\JwtAccessDeniedHandler.java
-C:\Users\abdellah.elachhab\Desktop\MarryMe Project\marryme-back\src\main\java\be\icc\ahe\marryme\security\UserPrincipal.java
 C:\Users\abdellah.elachhab\Desktop\MarryMe Project\marryme-back\src\main\java\be\icc\ahe\marryme\dataaccess\repository\MakeUpAndHairRepo.java
 C:\Users\abdellah.elachhab\Desktop\MarryMe Project\marryme-back\src\main\java\be\icc\ahe\marryme\exception\FermetureDatabaseException.java
 C:\Users\abdellah.elachhab\Desktop\MarryMe Project\marryme-back\src\main\java\be\icc\ahe\marryme\exception\AddressDatabaseException.java
@@ -124,6 +127,7 @@ C:\Users\abdellah.elachhab\Desktop\MarryMe Project\marryme-back\src\main\java\be
 C:\Users\abdellah.elachhab\Desktop\MarryMe Project\marryme-back\src\main\java\be\icc\ahe\marryme\model\mapper\ImageMapper.java
 C:\Users\abdellah.elachhab\Desktop\MarryMe Project\marryme-back\src\main\java\be\icc\ahe\marryme\model\ServiceTraiteur.java
 C:\Users\abdellah.elachhab\Desktop\MarryMe Project\marryme-back\src\main\java\be\icc\ahe\marryme\model\mapper\AddressMapper.java
+C:\Users\abdellah.elachhab\Desktop\MarryMe Project\marryme-back\src\main\java\be\icc\ahe\marryme\dataaccess\entity\VerificationTokenEntity.java
 C:\Users\abdellah.elachhab\Desktop\MarryMe Project\marryme-back\src\main\java\be\icc\ahe\marryme\dataaccess\entity\UserEntity.java
 C:\Users\abdellah.elachhab\Desktop\MarryMe Project\marryme-back\src\main\java\be\icc\ahe\marryme\dataaccess\entity\enumeration\MusiqueType.java
 C:\Users\abdellah.elachhab\Desktop\MarryMe Project\marryme-back\src\main\java\be\icc\ahe\marryme\dataaccess\repository\UserRepo.java

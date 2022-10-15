@@ -10,6 +10,7 @@ import be.icc.ahe.marryme.model.Person;
 import be.icc.ahe.marryme.model.User;
 import be.icc.ahe.marryme.model.dto.UserRegistrationFormDTO;
 import be.icc.ahe.marryme.model.mapper.PersonMapper;
+import be.icc.ahe.marryme.model.mapper.UserMapper;
 import be.icc.ahe.marryme.model.mapper.dtomapper.RegistrationUserMapper;
 import be.icc.ahe.marryme.service.EmailService;
 import be.icc.ahe.marryme.service.PersonService;
@@ -44,7 +45,7 @@ public class PersonServiceImpl implements PersonService {
     }
 
     @Override
-    public void register(UserRegistrationFormDTO userForm) throws UserNotFoundException, UsernameExistException, EmailExistException, MessagingException {
+    public Person register(UserRegistrationFormDTO userForm) throws UserNotFoundException, UsernameExistException, EmailExistException, MessagingException {
         userService.validateNewEmail(EMPTY, userForm.getEmail());
 
         System.out.println(userForm);
@@ -52,9 +53,11 @@ public class PersonServiceImpl implements PersonService {
         User user = person.getUser();
         user.setJoinDate(new Date());
         user.setPassword(userService.encodePassword(userForm.getPassword()));
-        user.setActive(true);
+
+//        user.setActive(true);
+        user.setActive(false);
+
         user.setNotLocked(true);
-//        person.getUser().setRole(ROLE_USER.name());
         user.setRole(ROLE_USER);
         user.setAuthorities(ROLE_USER.getAuthorities());
         person.setUser(user);
@@ -64,6 +67,8 @@ public class PersonServiceImpl implements PersonService {
         personDAO.save(personEntity);
 
 //        emailService.sendLinkToActivateAccount(person.getFirstName(), person.getUser().getEmail());
+
+        return PersonMapper.INSTANCE.entityToModel(personEntity);
 
     }
 

@@ -69,6 +69,7 @@ be\icc\ahe\marryme\exception\SalleDatabaseException.class
 be\icc\ahe\marryme\model\mapper\UserMapperImpl.class
 be\icc\ahe\marryme\exception\NotAnImageFileException.class
 be\icc\ahe\marryme\model\Traiteur.class
+be\icc\ahe\marryme\event\OnRegistrationCompleteEvent.class
 be\icc\ahe\marryme\security\filter\JwtAccessDeniedHandler.class
 be\icc\ahe\marryme\model\Person.class
 be\icc\ahe\marryme\model\Societe.class
@@ -87,7 +88,6 @@ be\icc\ahe\marryme\service\implementation\EmailServiceImpl.class
 be\icc\ahe\marryme\dataaccess\entity\ReservationEntity.class
 be\icc\ahe\marryme\service\MusiqueService.class
 be\icc\ahe\marryme\security\domain\HttpResponse.class
-be\icc\ahe\marryme\security\UserPrincipal.class
 be\icc\ahe\marryme\service\implementation\FermetureServiceImpl.class
 be\icc\ahe\marryme\service\SalleService.class
 be\icc\ahe\marryme\model\Image.class
@@ -105,6 +105,7 @@ be\icc\ahe\marryme\service\implementation\ServiceTraiteurServiceImpl.class
 be\icc\ahe\marryme\model\Address.class
 be\icc\ahe\marryme\model\mapper\UserMapper.class
 be\icc\ahe\marryme\dataaccess\repository\ServiceTraiteurRepo.class
+be\icc\ahe\marryme\dataaccess\dao\TokenAccesDAO.class
 be\icc\ahe\marryme\model\mapper\TraiteurMapper.class
 be\icc\ahe\marryme\dataaccess\repository\TraiteurRepo.class
 be\icc\ahe\marryme\model\mapper\ServiceTraiteurMapperImpl.class
@@ -127,6 +128,7 @@ be\icc\ahe\marryme\dataaccess\dao\PersonDAO.class
 be\icc\ahe\marryme\exception\UsernameExistException.class
 be\icc\ahe\marryme\model\mapper\MediaMapperImpl.class
 be\icc\ahe\marryme\dataaccess\entity\MakeUpAndHairEntity.class
+be\icc\ahe\marryme\dataaccess\repository\VerificationTokenRepository.class
 be\icc\ahe\marryme\dataaccess\dao\SocieteDAO.class
 be\icc\ahe\marryme\service\implementation\PersonServiceImpl.class
 be\icc\ahe\marryme\dataaccess\entity\enumeration\HallType.class
@@ -135,8 +137,10 @@ be\icc\ahe\marryme\model\mapper\SocieteMapperImpl.class
 be\icc\ahe\marryme\dataaccess\dao\SalleDAO.class
 be\icc\ahe\marryme\dataaccess\dao\FermetureDAO.class
 be\icc\ahe\marryme\model\mapper\ImageMapper.class
+be\icc\ahe\marryme\dataaccess\entity\VerificationTokenEntity.class
 be\icc\ahe\marryme\service\FermetureService.class
 be\icc\ahe\marryme\service\TraiteurService.class
+be\icc\ahe\marryme\listerner\RegistrationListener.class
 be\icc\ahe\marryme\model\mapper\FermetureMapperImpl.class
 be\icc\ahe\marryme\constant\Authority.class
 be\icc\ahe\marryme\model\mapper\ParkingMapperImpl.class

@@ -1,7 +1,9 @@
 package be.icc.ahe.marryme.service;
 
+import be.icc.ahe.marryme.event.OnRegistrationCompleteEvent;
+
 import javax.mail.MessagingException;
 
 public interface EmailService {
-    void sendLinkToActivateAccount(String firstName, String email) throws MessagingException;
+    void sendLinkToConfirmRegistration(String firstName, String email, String link, OnRegistrationCompleteEvent event) throws MessagingException;
 }

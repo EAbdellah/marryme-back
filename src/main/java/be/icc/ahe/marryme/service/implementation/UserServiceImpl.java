@@ -1,11 +1,11 @@
 package be.icc.ahe.marryme.service.implementation;
 
+import be.icc.ahe.marryme.dataaccess.dao.TokenAccesDAO;
 import be.icc.ahe.marryme.dataaccess.dao.UserDAO;
 import be.icc.ahe.marryme.dataaccess.entity.UserEntity;
-import be.icc.ahe.marryme.dataaccess.repository.UserRepo;
+import be.icc.ahe.marryme.dataaccess.entity.VerificationTokenEntity;
 import be.icc.ahe.marryme.exception.EmailExistException;
 import be.icc.ahe.marryme.exception.UserNotFoundException;
-import be.icc.ahe.marryme.exception.UsernameExistException;
 import be.icc.ahe.marryme.model.User;
 import be.icc.ahe.marryme.model.mapper.UserMapper;
 import be.icc.ahe.marryme.model.mapper.UserMapperImpl;
@@ -16,13 +16,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.context.annotation.Bean;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import javax.transaction.Transactional;
 
@@ -43,12 +41,15 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     private LoginAttemptService loginAttemptService;
     private BCryptPasswordEncoder passwordEncoder;
     private final UserDAO userDAO;
+    private final TokenAccesDAO tokenAccesDAO;
+
 
     @Autowired
-    public UserServiceImpl(UserDAO userDAO, BCryptPasswordEncoder passwordEncoder, LoginAttemptService loginAttemptService) {
+    public UserServiceImpl(UserDAO userDAO, BCryptPasswordEncoder passwordEncoder, LoginAttemptService loginAttemptService,TokenAccesDAO tokenAccesDAO) {
         this.userDAO = userDAO;
         this.passwordEncoder = passwordEncoder;
         this.loginAttemptService = loginAttemptService;
+        this.tokenAccesDAO = tokenAccesDAO;
 
     }
 
@@ -68,6 +69,21 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         } else {
             return user;
         }
+
+    }
+
+    @Override
+    public void createVerificationToken(User user, String token) {
+        UserEntity userEntity = UserMapper.INSTANCE.modelToEntity(user);
+        VerificationTokenEntity myToken = new VerificationTokenEntity(token, userEntity);
+        myToken.setExpiryDate(20);
+        tokenAccesDAO.save(myToken);
+    }
+
+    @Override
+    public VerificationTokenEntity getVerificationToken(String VerificationToken) {
+
+        return tokenAccesDAO.findByToken(VerificationToken);
 
     }
 
