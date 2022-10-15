@@ -22,7 +22,7 @@ import javax.annotation.processing.Generated;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2022-10-03T17:16:26+0200",
+    date = "2022-10-15T01:15:47+0200",
     comments = "version: 1.5.2.Final, compiler: javac, environment: Java 11.0.8 (Oracle Corporation)"
 )
 public class MakeUpAndHairMapperImpl implements MakeUpAndHairMapper {
@@ -95,10 +95,9 @@ public class MakeUpAndHairMapperImpl implements MakeUpAndHairMapper {
         PersonEntity personEntity = new PersonEntity();
 
         personEntity.setPersonID( person.getPersonID() );
-        personEntity.setNom( person.getNom() );
-        personEntity.setPrenom( person.getPrenom() );
-        personEntity.setEmail( person.getEmail() );
-        personEntity.setNTel( person.getNTel() );
+        personEntity.setFirstName( person.getFirstName() );
+        personEntity.setLastName( person.getLastName() );
+        personEntity.setPhoneNbr( person.getPhoneNbr() );
         personEntity.setLocalisation( addressToAddressEntity( person.getLocalisation() ) );
 
         return personEntity;
@@ -227,10 +226,9 @@ public class MakeUpAndHairMapperImpl implements MakeUpAndHairMapper {
         Person person = new Person();
 
         person.setPersonID( personEntity.getPersonID() );
-        person.setNom( personEntity.getNom() );
-        person.setPrenom( personEntity.getPrenom() );
-        person.setEmail( personEntity.getEmail() );
-        person.setNTel( personEntity.getNTel() );
+        person.setFirstName( personEntity.getFirstName() );
+        person.setLastName( personEntity.getLastName() );
+        person.setPhoneNbr( personEntity.getPhoneNbr() );
         person.setLocalisation( addressEntityToAddress( personEntity.getLocalisation() ) );
 
         return person;

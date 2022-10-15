@@ -11,16 +11,16 @@ import org.mapstruct.factory.Mappers;
 public interface RegistrationUserMapper {
     RegistrationUserMapper INSTANCE = Mappers.getMapper(RegistrationUserMapper.class);
 
-    @Mapping(source = "firstName", target = "prenom")
-    @Mapping(source = "lastName", target = "nom")
+    @Mapping(source = "firstName", target = "firstName")
+    @Mapping(source = "lastName", target = "lastName")
     @Mapping(source = "country", target = "localisation.pays")
     @Mapping(source = "city", target = "localisation.ville")
     @Mapping(source = "postalCode", target = "localisation.codePostal")
     @Mapping(source = "street", target = "localisation.rue")
     @Mapping(source = "houseNumber", target = "localisation.numero")
     @Mapping(source = "box", target = "localisation.box")
-    @Mapping(source = "phone", target = "NTel")
-    @Mapping(source = "email", target = "email")
-    @Mapping(source = "password", target = "user.mdp")
+    @Mapping(source = "phone", target = "phoneNbr")
+    @Mapping(source = "email", target = "user.email")
+    @Mapping(source = "password", target = "user.password")
     Person dtotomodel(UserRegistrationFormDTO userRegistrationFormDTO);
 }

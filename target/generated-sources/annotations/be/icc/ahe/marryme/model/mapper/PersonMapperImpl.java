@@ -6,11 +6,12 @@ import be.icc.ahe.marryme.dataaccess.entity.UserEntity;
 import be.icc.ahe.marryme.model.Address;
 import be.icc.ahe.marryme.model.Person;
 import be.icc.ahe.marryme.model.User;
+import java.util.Arrays;
 import javax.annotation.processing.Generated;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2022-10-03T17:16:26+0200",
+    date = "2022-10-15T01:15:47+0200",
     comments = "version: 1.5.2.Final, compiler: javac, environment: Java 11.0.8 (Oracle Corporation)"
 )
 public class PersonMapperImpl implements PersonMapper {
@@ -25,10 +26,9 @@ public class PersonMapperImpl implements PersonMapper {
 
         personEntity.setUserEntity( userToUserEntity( person.getUser() ) );
         personEntity.setPersonID( person.getPersonID() );
-        personEntity.setNom( person.getNom() );
-        personEntity.setPrenom( person.getPrenom() );
-        personEntity.setEmail( person.getEmail() );
-        personEntity.setNTel( person.getNTel() );
+        personEntity.setFirstName( person.getFirstName() );
+        personEntity.setLastName( person.getLastName() );
+        personEntity.setPhoneNbr( person.getPhoneNbr() );
         personEntity.setLocalisation( addressToAddressEntity( person.getLocalisation() ) );
 
         return personEntity;
@@ -44,10 +44,9 @@ public class PersonMapperImpl implements PersonMapper {
 
         person.setUser( userEntityToUser( personEntity.getUserEntity() ) );
         person.setPersonID( personEntity.getPersonID() );
-        person.setNom( personEntity.getNom() );
-        person.setPrenom( personEntity.getPrenom() );
-        person.setEmail( personEntity.getEmail() );
-        person.setNTel( personEntity.getNTel() );
+        person.setFirstName( personEntity.getFirstName() );
+        person.setLastName( personEntity.getLastName() );
+        person.setPhoneNbr( personEntity.getPhoneNbr() );
         person.setLocalisation( addressEntityToAddress( personEntity.getLocalisation() ) );
 
         return person;
@@ -60,10 +59,20 @@ public class PersonMapperImpl implements PersonMapper {
 
         UserEntity userEntity = new UserEntity();
 
-        userEntity.setMdp( user.getMdp() );
+        userEntity.setUserID( user.getUserID() );
+        userEntity.setEmail( user.getEmail() );
+        userEntity.setPassword( user.getPassword() );
         userEntity.setRole( user.getRole() );
+        String[] authorities = user.getAuthorities();
+        if ( authorities != null ) {
+            userEntity.setAuthorities( Arrays.copyOf( authorities, authorities.length ) );
+        }
         userEntity.setActive( user.isActive() );
-        userEntity.setNonLocked( user.isNonLocked() );
+        userEntity.setNotLocked( user.isNotLocked() );
+        userEntity.setProfileImageUrl( user.getProfileImageUrl() );
+        userEntity.setLastLoginDate( user.getLastLoginDate() );
+        userEntity.setLastLoginDateDisplay( user.getLastLoginDateDisplay() );
+        userEntity.setJoinDate( user.getJoinDate() );
 
         return userEntity;
     }
@@ -93,10 +102,20 @@ public class PersonMapperImpl implements PersonMapper {
 
         User user = new User();
 
-        user.setMdp( userEntity.getMdp() );
+        user.setUserID( userEntity.getUserID() );
+        user.setPassword( userEntity.getPassword() );
+        user.setEmail( userEntity.getEmail() );
         user.setRole( userEntity.getRole() );
         user.setActive( userEntity.isActive() );
-        user.setNonLocked( userEntity.isNonLocked() );
+        user.setNotLocked( userEntity.isNotLocked() );
+        String[] authorities = userEntity.getAuthorities();
+        if ( authorities != null ) {
+            user.setAuthorities( Arrays.copyOf( authorities, authorities.length ) );
+        }
+        user.setProfileImageUrl( userEntity.getProfileImageUrl() );
+        user.setLastLoginDate( userEntity.getLastLoginDate() );
+        user.setLastLoginDateDisplay( userEntity.getLastLoginDateDisplay() );
+        user.setJoinDate( userEntity.getJoinDate() );
 
         return user;
     }

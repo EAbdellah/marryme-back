@@ -708,12 +708,47 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/be/icc/ahe/marryme/configuration/SecurityConfiguration.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/be/icc/ahe/marryme/constant/Authority.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/be/icc/ahe/marryme/constant/EmailConstant.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/be/icc/ahe/marryme/constant/SecurityConstant.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/be/icc/ahe/marryme/constant/UserImplConstant.java">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/src/main/java/be/icc/ahe/marryme/controller/UserController.java">
           <value>
             <set />
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/src/main/java/be/icc/ahe/marryme/dataaccess/addtest.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/be/icc/ahe/marryme/dataaccess/dao/PersonDAO.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/be/icc/ahe/marryme/dataaccess/dao/UserDAO.java">
           <value>
             <set />
           </value>
@@ -814,6 +849,21 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/src/main/java/be/icc/ahe/marryme/dataaccess/entity/enumeration/Role.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/be/icc/ahe/marryme/dataaccess/repository/PersonRepo.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/be/icc/ahe/marryme/dataaccess/repository/UserRepo.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/be/icc/ahe/marryme/exception/ExceptionHandling.java">
           <value>
             <set />
           </value>
@@ -1119,6 +1169,71 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/src/main/java/be/icc/ahe/marryme/security/UserPrincipal.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/be/icc/ahe/marryme/security/domain/HttpResponse.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/be/icc/ahe/marryme/security/domain/UserPrincipal.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/be/icc/ahe/marryme/security/filter/JwtAccessDeniedHandler.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/be/icc/ahe/marryme/security/filter/JwtAuthenticationEntryPoint.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/be/icc/ahe/marryme/security/filter/JwtAuthorizationFilter.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/be/icc/ahe/marryme/security/utility/JWTTokenProvider.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/be/icc/ahe/marryme/service/EmailService.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/be/icc/ahe/marryme/service/PersonService.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/be/icc/ahe/marryme/service/UserService.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/be/icc/ahe/marryme/service/implementation/EmailService.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/be/icc/ahe/marryme/service/implementation/EmailServiceImpl.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/be/icc/ahe/marryme/service/implementation/PersonServiceImpl.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/be/icc/ahe/marryme/service/implementation/UserServiceImpl.java">
           <value>
             <set />
           </value>

@@ -20,14 +20,12 @@ public class PersonEntity implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "person_id", nullable = false)
     private Long personID;
-    @Column(name = "nom", nullable = false, length = 128)
-    private String nom;
-    @Column(name = "prenom", nullable = false, length = 128)
-    private String prenom;
-    @Column(name = "email", nullable = false, length = 128)
-    private String email;
-    @Column(name = "nTel", nullable = false)
-    private Long nTel;
+    @Column(name = "firstName", nullable = false, length = 128)
+    private String firstName;
+    @Column(name = "lastName", nullable = false, length = 128)
+    private String lastName;
+    @Column(name = "phoneNbr", nullable = false)
+    private Long phoneNbr;
 
 //    @OneToOne(targetEntity = SocieteEntity.class, fetch = FetchType.EAGER)
 //    @JoinColumn(name="societe_id")

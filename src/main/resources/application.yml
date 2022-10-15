@@ -20,6 +20,8 @@
 
 
 
+jwt:
+  secret: '[a-zA-Z0-9._]^+$Guidelines89797987forAlphabeticalArraNumeralsandOtherSymbo$'
 
 
 server:
@@ -37,3 +39,17 @@ spring:
     generate-ddl: true
     show-sql: true
 
+
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: marrymebelgium@gmail.com
+    password: joruixbmwjndohev
+    properties:
+      mail:
+        transport:
+          protocol: smtp
+        smtp:
+          auth: true
+          starttls:
+            enable: true

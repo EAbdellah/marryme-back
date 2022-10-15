@@ -1,34 +1,32 @@
 package be.icc.ahe.marryme.model;
 
-import be.icc.ahe.marryme.dataaccess.entity.ReservationEntity;
 import be.icc.ahe.marryme.dataaccess.entity.enumeration.Role;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
-import javax.persistence.Column;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.OneToMany;
+import java.util.Date;
 import java.util.List;
 
-@NoArgsConstructor @Setter @Getter
+@NoArgsConstructor @Setter @Getter @ToString
 public class User  {
 
-    private String mdp;
-    private Role role;
+    private Long userID;
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    private String password;
+    private String email;
+    private Role role;//ROLE_USER{ read, edit }, ROLE_ADMIN {delete}
     private boolean isActive;
-    private boolean isNonLocked;
+    private boolean isNotLocked;
     private String[] authorities;
     private List<Reservation> reservations;
+    private String profileImageUrl;
+    private Date lastLoginDate;
+    private Date lastLoginDateDisplay;
+    private Date joinDate;
 
-    @Override
-    public String toString() {
-        return "User{" +
 
-                ", mdp='" + mdp + '\'' +
-                ", role=" + role +
-                ", reservations=" + reservations +
-                '}';
-    }
+
 }

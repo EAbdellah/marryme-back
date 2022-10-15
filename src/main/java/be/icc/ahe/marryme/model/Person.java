@@ -4,29 +4,17 @@ import be.icc.ahe.marryme.dataaccess.entity.AddressEntity;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 import javax.persistence.*;
-@Getter @Setter @NoArgsConstructor
+@Getter @Setter @NoArgsConstructor @ToString
 public class Person {
 
     private Long personID;
-    private String nom;
-    private String prenom;
-    private String email;
-    private Long nTel;
+    private String firstName;
+    private String lastName;
+    private Long phoneNbr;
     private Address localisation;
     private User user;
 
-    @Override
-    public String toString() {
-        return "Person{" +
-                "personID=" + personID +
-                ", nom='" + nom + '\'' +
-                ", prenom='" + prenom + '\'' +
-                ", email='" + email + '\'' +
-                ", nTel=" + nTel +
-                ", localisation=" + localisation +
-                ", user=" + user +
-                '}';
-    }
 }

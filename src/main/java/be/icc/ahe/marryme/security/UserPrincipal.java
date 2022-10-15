@@ -1,9 +1,6 @@
 package be.icc.ahe.marryme.security;
 
-import be.icc.ahe.marryme.dataaccess.entity.enumeration.Role;
 import be.icc.ahe.marryme.model.Person;
-import be.icc.ahe.marryme.model.User;
-import org.springframework.boot.autoconfigure.security.servlet.UserDetailsServiceAutoConfiguration;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -30,12 +27,12 @@ public class UserPrincipal implements UserDetails {
 
     @Override
     public String getPassword() {
-        return person.getUser().getMdp();
+        return person.getUser().getPassword();
     }
 
     @Override
     public String getUsername() {
-        return person.getUser().getMdp();
+        return person.getUser().getPassword();
     }
 
     @Override
@@ -45,7 +42,7 @@ public class UserPrincipal implements UserDetails {
 
     @Override
     public boolean isAccountNonLocked() {
-        return person.getUser().isNonLocked();
+        return person.getUser().isNotLocked();
     }
 
     @Override

@@ -15,7 +15,14 @@ public class UserDAO {
     }
 
     public UserEntity save(UserEntity userEntity){
-
         return userRepo.save(userEntity);
     }
+//    public UserEntity findUserByUsername(String username){
+//        return userRepo.findUserByUsername(username);
+//    }
+
+    public UserEntity findUserByEmail(String email){
+        return userRepo.findUserByEmail(email);
+    }
+
 }

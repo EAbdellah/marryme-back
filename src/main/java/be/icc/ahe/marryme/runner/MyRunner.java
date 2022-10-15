@@ -5,12 +5,9 @@ import be.icc.ahe.marryme.dataaccess.entity.enumeration.HallType;
 import be.icc.ahe.marryme.dataaccess.entity.enumeration.Role;
 import be.icc.ahe.marryme.exception.FermetureDatabaseException;
 import be.icc.ahe.marryme.dataaccess.entity.*;
-import be.icc.ahe.marryme.model.Address;
 import be.icc.ahe.marryme.model.Person;
-import be.icc.ahe.marryme.model.Societe;
 import be.icc.ahe.marryme.model.dto.UserRegistrationFormDTO;
 import be.icc.ahe.marryme.model.mapper.PersonMapper;
-import be.icc.ahe.marryme.model.mapper.SocieteMapper;
 import be.icc.ahe.marryme.model.mapper.dtomapper.RegistrationUserMapper;
 import be.icc.ahe.marryme.service.*;
 import com.github.javafaker.Faker;
@@ -22,8 +19,6 @@ import org.springframework.stereotype.Component;
 
 import java.sql.Date;
 import java.time.Instant;
-import java.util.Arrays;
-import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
 @Component
@@ -144,10 +139,9 @@ public class MyRunner implements CommandLineRunner {
     private PersonEntity createPerson(Faker faker) throws Exception{
         /**Person1**/
         PersonEntity person = new PersonEntity();
-        person.setNom(faker.name().lastName());
-        person.setPrenom(faker.name().firstName());
-        person.setEmail(faker.internet().emailAddress());
-        person.setNTel(Long.parseLong((0 + "" + faker.number().numberBetween(470000000, 490000000))));
+        person.setFirstName(faker.name().firstName());
+        person.setLastName(faker.name().lastName());
+        person.setPhoneNbr(Long.parseLong((0 + "" + faker.number().numberBetween(470000000, 490000000))));
 
 
         return person;
@@ -156,8 +150,8 @@ public class MyRunner implements CommandLineRunner {
         private UserEntity createUser(Faker faker, Role role) throws Exception{
             /**Person1**/
             UserEntity client = new UserEntity();
-
-            client.setMdp(faker.internet().password());
+            client.setEmail(faker.internet().emailAddress());
+            client.setPassword(faker.internet().password());
             client.setRole(role);
 
             return client;

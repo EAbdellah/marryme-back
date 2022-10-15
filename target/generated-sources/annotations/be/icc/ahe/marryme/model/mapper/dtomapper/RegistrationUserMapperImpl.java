@@ -8,7 +8,7 @@ import javax.annotation.processing.Generated;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2022-10-03T17:16:26+0200",
+    date = "2022-10-15T01:15:47+0200",
     comments = "version: 1.5.2.Final, compiler: javac, environment: Java 11.0.8 (Oracle Corporation)"
 )
 public class RegistrationUserMapperImpl implements RegistrationUserMapper {
@@ -23,12 +23,11 @@ public class RegistrationUserMapperImpl implements RegistrationUserMapper {
 
         person.setLocalisation( userRegistrationFormDTOToAddress( userRegistrationFormDTO ) );
         person.setUser( userRegistrationFormDTOToUser( userRegistrationFormDTO ) );
-        person.setPrenom( userRegistrationFormDTO.getFirstName() );
-        person.setNom( userRegistrationFormDTO.getLastName() );
+        person.setFirstName( userRegistrationFormDTO.getFirstName() );
+        person.setLastName( userRegistrationFormDTO.getLastName() );
         if ( userRegistrationFormDTO.getPhone() != null ) {
-            person.setNTel( Long.parseLong( userRegistrationFormDTO.getPhone() ) );
+            person.setPhoneNbr( Long.parseLong( userRegistrationFormDTO.getPhone() ) );
         }
-        person.setEmail( userRegistrationFormDTO.getEmail() );
 
         return person;
     }
@@ -59,7 +58,8 @@ public class RegistrationUserMapperImpl implements RegistrationUserMapper {
 
         User user = new User();
 
-        user.setMdp( userRegistrationFormDTO.getPassword() );
+        user.setEmail( userRegistrationFormDTO.getEmail() );
+        user.setPassword( userRegistrationFormDTO.getPassword() );
 
         return user;
     }
