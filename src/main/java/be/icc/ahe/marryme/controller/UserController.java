@@ -13,6 +13,7 @@ import be.icc.ahe.marryme.model.User;
 import be.icc.ahe.marryme.model.dto.UserRegistrationFormDTO;
 import be.icc.ahe.marryme.model.mapper.PersonMapper;
 import be.icc.ahe.marryme.model.mapper.dtomapper.RegistrationUserMapper;
+import be.icc.ahe.marryme.security.domain.HttpResponse;
 import be.icc.ahe.marryme.security.domain.UserPrincipal;
 import be.icc.ahe.marryme.security.utility.JWTTokenProvider;
 import be.icc.ahe.marryme.service.PersonService;
@@ -21,18 +22,22 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.request.WebRequest;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.mail.MessagingException;
+import java.io.IOException;
 import java.time.Period;
 import java.util.Calendar;
 import java.util.Locale;
 
 import static be.icc.ahe.marryme.constant.SecurityConstant.JWT_TOKEN_HEADER;
+import static be.icc.ahe.marryme.constant.UserImplConstant.USER_DELETED_SUCCESSFULLY;
 import static be.icc.ahe.marryme.constant.UserImplConstant.VERIFIACTION_TOKEN_EXPIRED;
 import static org.springframework.http.HttpStatus.OK;
 
@@ -112,6 +117,23 @@ public class UserController {
         user.setActive(true);
         userService.save(user);
         return "redirect:/login.html?lang=" + request.getLocale().getLanguage();
+    }
+
+    @PostMapping("/update")
+    public ResponseEntity<User> update(@RequestParam("currentEmail") String currentUsername,
+                                       @RequestParam("firstName") String firstName,
+                                       @RequestParam("lastName") String lastName,
+                                       @RequestParam("email") String email, WebRequest request) throws UserNotFoundException, IOException, EmailExistException {
+        System.out.println(request);
+        User updatedUser = userService.updateUser(currentUsername,email, firstName, lastName);
+        return new ResponseEntity<>(updatedUser, OK);
+    }
+
+    @DeleteMapping("/delete/{username}")
+//    @PreAuthorize("hasAnyAuthority('user:delete')")
+    public ResponseEntity<String> deleteUser(@PathVariable("username") String username) throws IOException {
+        userService.deleteUser(username);
+        return new ResponseEntity<>(USER_DELETED_SUCCESSFULLY, OK);
     }
 
 

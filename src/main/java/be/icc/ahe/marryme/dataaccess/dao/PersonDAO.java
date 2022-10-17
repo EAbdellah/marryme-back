@@ -1,9 +1,12 @@
 package be.icc.ahe.marryme.dataaccess.dao;
 
 import be.icc.ahe.marryme.dataaccess.entity.PersonEntity;
+import be.icc.ahe.marryme.dataaccess.entity.UserEntity;
 import be.icc.ahe.marryme.dataaccess.repository.PersonRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import java.util.Optional;
 
 @Component
 public class PersonDAO {
@@ -15,9 +18,15 @@ public class PersonDAO {
     }
 
     public PersonEntity save(PersonEntity personEntity){
-
         return personRepo.save(personEntity);
     }
 
+    public Optional<PersonEntity> findById(Long id){
+        return personRepo.findById(id);
+    }
+
+    public PersonEntity findPersonByUser(UserEntity userEntity){
+        return personRepo.findPersonByUserEntity(userEntity);
+    }
 
 }

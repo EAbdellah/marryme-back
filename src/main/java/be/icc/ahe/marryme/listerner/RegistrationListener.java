@@ -2,17 +2,13 @@ package be.icc.ahe.marryme.listerner;
 
 import be.icc.ahe.marryme.event.OnRegistrationCompleteEvent;
 import be.icc.ahe.marryme.model.Person;
-import be.icc.ahe.marryme.model.User;
 import be.icc.ahe.marryme.service.EmailService;
 import be.icc.ahe.marryme.service.UserService;
 import lombok.SneakyThrows;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.security.servlet.UserDetailsServiceAutoConfiguration;
 import org.springframework.context.ApplicationListener;
-import org.springframework.context.MessageSource;
-import org.springframework.mail.SimpleMailMessage;
 import org.springframework.stereotype.Component;
 
 import javax.mail.MessagingException;
@@ -43,8 +39,8 @@ public class RegistrationListener implements
         String email = person.getUser().getEmail();
         String firstName = person.getFirstName();
         String confirmationUrl  = /*.getAppUrl() +*/ "localhost:8080/api/user/regitrationConfirm?token=" + token;
-        LOGGER.info(confirmationUrl);
 
+        LOGGER.info(confirmationUrl);
 
         emailService.sendLinkToConfirmRegistration(firstName, email,confirmationUrl,event);
 

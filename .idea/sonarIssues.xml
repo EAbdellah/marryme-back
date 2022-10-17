@@ -893,6 +893,16 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/be/icc/ahe/marryme/listerner/AuthenticationFailureListener.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/be/icc/ahe/marryme/listerner/AuthenticationSuccessListener.java">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/src/main/java/be/icc/ahe/marryme/listerner/RegistrationListener.java">
           <value>
             <set />
@@ -1594,6 +1604,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/../../udemy/supportportal/src/main/java/com/supportportal/constant/EmailConstant.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../../udemy/supportportal/src/main/java/com/supportportal/resource/UserResource.java">
           <value>
             <set />
           </value>

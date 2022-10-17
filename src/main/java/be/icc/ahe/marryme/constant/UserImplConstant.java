@@ -7,4 +7,6 @@ public class UserImplConstant {
     public static final String FOUND_USER_BY_EMAIL = "Returning found user by username: ";
     public static final String NO_USER_FOUND_BY_EMAIL = "No user found for email: ";
     public static final String VERIFIACTION_TOKEN_EXPIRED = "Verification token has expired";
+    public static final String USER_DELETED_SUCCESSFULLY = "user deleted succesfully";
+
 }

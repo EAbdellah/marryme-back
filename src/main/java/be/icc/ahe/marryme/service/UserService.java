@@ -6,6 +6,9 @@ import be.icc.ahe.marryme.exception.EmailExistException;
 import be.icc.ahe.marryme.exception.UserNotFoundException;
 import be.icc.ahe.marryme.model.User;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.IOException;
 
 @Service
 public interface UserService {
@@ -19,6 +22,11 @@ public interface UserService {
     void createVerificationToken(User user, String token);
 
     VerificationTokenEntity getVerificationToken(String VerificationToken);
+
+    User updateUser(String currentEmail, String newEmail, String newLastName, String newFirstName) throws UserNotFoundException, EmailExistException, IOException;
+
+    void deleteUser(String email) throws IOException;
+
 
 //    String getTemporaryProfileImageUrl(String username)
 }
