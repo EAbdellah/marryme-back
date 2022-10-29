@@ -5,12 +5,14 @@ import be.icc.ahe.marryme.dataaccess.entity.ServiceEntity;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 import javax.persistence.*;
 
 @Getter
 @Setter
 @NoArgsConstructor
+@ToString
 public class Image {
 
     private Long imageID;

@@ -10,7 +10,7 @@ import org.mapstruct.factory.Mappers;
 public interface MediaMapper {
     MediaMapper INSTANCE = Mappers.getMapper( MediaMapper.class );
 
-    MediaEntity entityToModel(Media media);
-    Media modelToEntity(MediaEntity mediaEntity);
+    Media entityToModel(MediaEntity mediaEntity);
+    MediaEntity modelToEntity(Media media);
 
 }

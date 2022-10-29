@@ -9,7 +9,7 @@ import org.mapstruct.factory.Mappers;
 public interface ParkingMapper {
     ParkingMapper INSTANCE = Mappers.getMapper( ParkingMapper.class );
 
-    ParkingEntity entityToModel(Parking parking);
-    Parking modelToEntity(ParkingEntity parkingEntity);
+    Parking entityToModel(ParkingEntity parkingEntity);
+    ParkingEntity modelToEntity(Parking parking);
 
 }

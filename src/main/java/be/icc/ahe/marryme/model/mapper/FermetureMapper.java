@@ -12,7 +12,7 @@ public interface FermetureMapper {
 
     FermetureMapper INSTANCE = Mappers.getMapper( FermetureMapper.class );
 
-    FermetureEntity entityToModel(Fermeture fermeture);
-    Fermeture modelToEntity(FermetureEntity fermetureEntity);
+    Fermeture entityToModel(FermetureEntity fermetureEntity);
+    FermetureEntity modelToEntity(Fermeture fermeture);
 
 }

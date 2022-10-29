@@ -11,7 +11,7 @@ import org.mapstruct.factory.Mappers;
 public interface SalleMapper {
     SalleMapper INSTANCE = Mappers.getMapper( SalleMapper.class );
 
-    SalleEntity entityToModel(Salle salle);
-    Salle modelToEntity(SalleEntity salleEntity);
+    Salle entityToModel(SalleEntity salleEntity);
+    SalleEntity modelToEntity(Salle salle);
 
 }

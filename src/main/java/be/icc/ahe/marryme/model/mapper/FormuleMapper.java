@@ -11,7 +11,6 @@ import org.mapstruct.factory.Mappers;
 public interface FormuleMapper {
     FormuleMapper INSTANCE = Mappers.getMapper( FormuleMapper.class );
 
-    FormuleEntity entityToModel(Formule formule);
-    Formule modelToEntity(FormuleEntity formuleEntity);
-
+    Formule entityToModel(FormuleEntity formuleEntity);
+    FormuleEntity modelToEntity(Formule formule);
 }

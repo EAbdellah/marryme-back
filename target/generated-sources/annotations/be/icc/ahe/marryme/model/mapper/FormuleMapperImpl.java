@@ -11,36 +11,13 @@ import javax.annotation.processing.Generated;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2022-10-15T21:42:42+0200",
+    date = "2022-10-29T04:26:57+0200",
     comments = "version: 1.5.2.Final, compiler: javac, environment: Java 11.0.8 (Oracle Corporation)"
 )
 public class FormuleMapperImpl implements FormuleMapper {
 
     @Override
-    public FormuleEntity entityToModel(Formule formule) {
-        if ( formule == null ) {
-            return null;
-        }
-
-        FormuleEntity formuleEntity = new FormuleEntity();
-
-        formuleEntity.setFormuleID( formule.getFormuleID() );
-        formuleEntity.setNom( formule.getNom() );
-        formuleEntity.setPrix( formule.getPrix() );
-        formuleEntity.setDescription( formule.getDescription() );
-        formuleEntity.setIsUniquePrix( formule.getIsUniquePrix() );
-        formuleEntity.setSupFerrier( formule.getSupFerrier() );
-        formuleEntity.setSupvendredi( formule.getSupvendredi() );
-        formuleEntity.setCodePostal( formule.getCodePostal() );
-        formuleEntity.setSupDimanche( formule.getSupDimanche() );
-        formuleEntity.setSupVeilleFerier( formule.getSupVeilleFerier() );
-        formuleEntity.setImages( imageListToImageEntityList( formule.getImages() ) );
-
-        return formuleEntity;
-    }
-
-    @Override
-    public Formule modelToEntity(FormuleEntity formuleEntity) {
+    public Formule entityToModel(FormuleEntity formuleEntity) {
         if ( formuleEntity == null ) {
             return null;
         }
@@ -62,34 +39,27 @@ public class FormuleMapperImpl implements FormuleMapper {
         return formule;
     }
 
-    protected ImageEntity imageToImageEntity(Image image) {
-        if ( image == null ) {
+    @Override
+    public FormuleEntity modelToEntity(Formule formule) {
+        if ( formule == null ) {
             return null;
         }
 
-        ImageEntity imageEntity = new ImageEntity();
+        FormuleEntity formuleEntity = new FormuleEntity();
 
-        imageEntity.setImageID( image.getImageID() );
-        byte[] photo = image.getPhoto();
-        if ( photo != null ) {
-            imageEntity.setPhoto( Arrays.copyOf( photo, photo.length ) );
-        }
-        imageEntity.setFormule( entityToModel( image.getFormule() ) );
+        formuleEntity.setFormuleID( formule.getFormuleID() );
+        formuleEntity.setNom( formule.getNom() );
+        formuleEntity.setPrix( formule.getPrix() );
+        formuleEntity.setDescription( formule.getDescription() );
+        formuleEntity.setIsUniquePrix( formule.getIsUniquePrix() );
+        formuleEntity.setSupFerrier( formule.getSupFerrier() );
+        formuleEntity.setSupvendredi( formule.getSupvendredi() );
+        formuleEntity.setCodePostal( formule.getCodePostal() );
+        formuleEntity.setSupDimanche( formule.getSupDimanche() );
+        formuleEntity.setSupVeilleFerier( formule.getSupVeilleFerier() );
+        formuleEntity.setImages( imageListToImageEntityList( formule.getImages() ) );
 
-        return imageEntity;
-    }
-
-    protected List<ImageEntity> imageListToImageEntityList(List<Image> list) {
-        if ( list == null ) {
-            return null;
-        }
-
-        List<ImageEntity> list1 = new ArrayList<ImageEntity>( list.size() );
-        for ( Image image : list ) {
-            list1.add( imageToImageEntity( image ) );
-        }
-
-        return list1;
+        return formuleEntity;
     }
 
     protected Image imageEntityToImage(ImageEntity imageEntity) {
@@ -104,7 +74,7 @@ public class FormuleMapperImpl implements FormuleMapper {
         if ( photo != null ) {
             image.setPhoto( Arrays.copyOf( photo, photo.length ) );
         }
-        image.setFormule( modelToEntity( imageEntity.getFormule() ) );
+        image.setFormule( entityToModel( imageEntity.getFormule() ) );
 
         return image;
     }
@@ -117,6 +87,36 @@ public class FormuleMapperImpl implements FormuleMapper {
         List<Image> list1 = new ArrayList<Image>( list.size() );
         for ( ImageEntity imageEntity : list ) {
             list1.add( imageEntityToImage( imageEntity ) );
+        }
+
+        return list1;
+    }
+
+    protected ImageEntity imageToImageEntity(Image image) {
+        if ( image == null ) {
+            return null;
+        }
+
+        ImageEntity imageEntity = new ImageEntity();
+
+        imageEntity.setImageID( image.getImageID() );
+        byte[] photo = image.getPhoto();
+        if ( photo != null ) {
+            imageEntity.setPhoto( Arrays.copyOf( photo, photo.length ) );
+        }
+        imageEntity.setFormule( modelToEntity( image.getFormule() ) );
+
+        return imageEntity;
+    }
+
+    protected List<ImageEntity> imageListToImageEntityList(List<Image> list) {
+        if ( list == null ) {
+            return null;
+        }
+
+        List<ImageEntity> list1 = new ArrayList<ImageEntity>( list.size() );
+        for ( Image image : list ) {
+            list1.add( imageToImageEntity( image ) );
         }
 
         return list1;

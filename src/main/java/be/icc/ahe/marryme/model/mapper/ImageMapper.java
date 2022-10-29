@@ -11,7 +11,7 @@ import org.mapstruct.factory.Mappers;
 public interface ImageMapper {
     ImageMapper INSTANCE = Mappers.getMapper( ImageMapper.class );
 
-    ImageEntity entityToModel(Image image);
-    Image modelToEntity(ImageEntity imageEntity);
+    Image entityToModel(ImageEntity imageEntity);
+    ImageEntity modelToEntity(Image image);
 
 }

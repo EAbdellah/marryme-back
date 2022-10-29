@@ -1,5 +1,8 @@
 package be.icc.ahe.marryme.dataaccess.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -34,6 +37,7 @@ public class FermetureEntity implements Serializable {
 //            inverseJoinColumns = { @JoinColumn(name = "service_id") }
 //    )
     @ManyToMany(mappedBy = "fermetures", fetch = FetchType.LAZY)
-    Collection <ServiceEntity> serviceEntity = new HashSet<>();
+    @JsonBackReference
+Collection <ServiceEntity> serviceEntity = new HashSet<>();
 
 }

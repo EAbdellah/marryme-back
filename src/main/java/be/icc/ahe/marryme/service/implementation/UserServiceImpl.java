@@ -8,11 +8,11 @@ import be.icc.ahe.marryme.dataaccess.entity.UserEntity;
 import be.icc.ahe.marryme.dataaccess.entity.VerificationTokenEntity;
 import be.icc.ahe.marryme.exception.EmailExistException;
 import be.icc.ahe.marryme.exception.UserNotFoundException;
+import be.icc.ahe.marryme.exception.sqlexception.UserDatabaseException;
 import be.icc.ahe.marryme.model.Person;
 import be.icc.ahe.marryme.model.User;
 import be.icc.ahe.marryme.model.mapper.PersonMapper;
 import be.icc.ahe.marryme.model.mapper.UserMapper;
-import be.icc.ahe.marryme.model.mapper.UserMapperImpl;
 import be.icc.ahe.marryme.security.domain.UserPrincipal;
 import be.icc.ahe.marryme.service.UserService;
 import org.apache.commons.lang3.StringUtils;
@@ -67,14 +67,14 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     }
 
     @Override
-    public void save(UserEntity userEntity) throws Exception {
-        userDAO.save(userEntity);
+    public User save(UserEntity userEntity) throws Exception {
+        return UserMapper.INSTANCE.entityToModel(userDAO.save(userEntity));
     }
 
     public User findUserByEmail(String email){
 
         UserEntity userEntity =  userDAO.findUserByEmail(email);
-        User user = UserMapperImpl.INSTANCE.entityToModel(userEntity);
+        User user = UserMapper.INSTANCE.entityToModel(userEntity);
 
         if (user == null) {
             LOGGER.error(NO_USER_FOUND_BY_EMAIL + email);
@@ -135,6 +135,21 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
 
 //        userDAO.deleteById(userEntity.getUserID());
+    }
+
+    @Override
+    public UserEntity findByID(Long id) throws UserDatabaseException {
+        return this.userDAO.findByID(id).orElseThrow(UserDatabaseException::new);
+    }
+
+//    @Override
+//    public UserEntity update(Long id) throws UserDatabaseException {
+//        return userDAO.update(id);
+//    }
+
+    @Override
+    public void deleteById(Long id) throws UserDatabaseException {
+        userDAO.deleteById(id);
     }
 
 
@@ -207,4 +222,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 //    public String getTemporaryProfileImageUrl(String username) {
 //        return ServletUriComponentsBuilder.fromCurrentContextPath().path(DEFAULT_USER_IMAGE_PATH + username).toUriString();
 //    }
+
+
+
 }

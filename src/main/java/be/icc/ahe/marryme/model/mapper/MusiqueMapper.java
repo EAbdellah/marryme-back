@@ -10,7 +10,7 @@ import org.mapstruct.factory.Mappers;
 public interface MusiqueMapper {
     MusiqueMapper INSTANCE = Mappers.getMapper( MusiqueMapper.class );
 
-    MusiqueEntity entityToModel(Musique musique);
-    Musique modelToEntity(MusiqueEntity musiqueEntity);
+    Musique entityToModel(MusiqueEntity musiqueEntity);
+    MusiqueEntity modelToEntity(Musique musique);
 
 }

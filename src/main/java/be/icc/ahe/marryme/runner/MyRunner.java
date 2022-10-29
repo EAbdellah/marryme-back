@@ -1,14 +1,16 @@
 package be.icc.ahe.marryme.runner;
 
 
+import be.icc.ahe.marryme.dataaccess.entity.MusiqueEntity;
+import be.icc.ahe.marryme.dataaccess.entity.SocieteEntity;
+import be.icc.ahe.marryme.dataaccess.entity.UserEntity;
 import be.icc.ahe.marryme.dataaccess.entity.enumeration.HallType;
+import be.icc.ahe.marryme.dataaccess.entity.enumeration.MusiqueType;
 import be.icc.ahe.marryme.dataaccess.entity.enumeration.Role;
-import be.icc.ahe.marryme.exception.FermetureDatabaseException;
-import be.icc.ahe.marryme.dataaccess.entity.*;
-import be.icc.ahe.marryme.model.Person;
-import be.icc.ahe.marryme.model.dto.UserRegistrationFormDTO;
-import be.icc.ahe.marryme.model.mapper.PersonMapper;
-import be.icc.ahe.marryme.model.mapper.dtomapper.RegistrationUserMapper;
+import be.icc.ahe.marryme.exception.sqlexception.FermetureDatabaseException;
+import be.icc.ahe.marryme.model.*;
+import be.icc.ahe.marryme.model.mapper.SocieteMapper;
+import be.icc.ahe.marryme.model.mapper.UserMapper;
 import be.icc.ahe.marryme.service.*;
 import com.github.javafaker.Faker;
 import org.slf4j.Logger;
@@ -19,126 +21,338 @@ import org.springframework.stereotype.Component;
 
 import java.sql.Date;
 import java.time.Instant;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.List;
+import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
 @Component
 public class MyRunner implements CommandLineRunner {
 
-    private static final Logger logger = LoggerFactory.getLogger(MyRunner.class);
+    private static final Logger LOG = LoggerFactory.getLogger(MyRunner.class);
 
     private final AddressService addressService;
     private final SalleService salleService;
-    private  final SocieteService societeService;
-    private  final FermetureService fermetureService;
-    private  final ParkingService parkingService;
+    private final SocieteService societeService;
+    private final FermetureService fermetureService;
+    private final ParkingService parkingService;
     private final PersonService personService;
-    private  final FormuleService formuleService;
-    private  final ImageService imageService;
+    private final FormuleService formuleService;
+    private final ImageService imageService;
     private final UserService userService;
     private final MusiqueService musiqueService;
     private final MediaService mediaService;
     private final MakeUpAndHairService makeUpAndHairService;
-    private  final ServiceTraiteurService serviceTraiteurService;
+    private final ServiceTraiteurService serviceTraiteurService;
     private final TraiteurService traiteurService;
     private final ReservationService reservationService;
+    private final ServicesService servicesService;
+
 
     @Autowired
     public MyRunner(AddressService addressService, SalleService salleService,
                     SocieteService societeService, FermetureService fermetureService,
-                    ParkingService parkingService,PersonService personService,
-                    FormuleService formuleService,ImageService imageService,
-                    UserService userService,MusiqueService musiqueService,
-                    MediaService mediaService,MakeUpAndHairService makeUpAndHairService,
-                    ServiceTraiteurService serviceTraiteurService,TraiteurService traiteurService,
-                    ReservationService reservationService
+                    ParkingService parkingService, PersonService personService,
+                    FormuleService formuleService, ImageService imageService,
+                    UserService userService, MusiqueService musiqueService,
+                    MediaService mediaService, MakeUpAndHairService makeUpAndHairService,
+                    ServiceTraiteurService serviceTraiteurService, TraiteurService traiteurService,
+                    ReservationService reservationService,ServicesService servicesService
     ) {
-
-        this.parkingService=parkingService;
-        this.fermetureService=fermetureService;
+        this.servicesService = servicesService;
+        this.parkingService = parkingService;
+        this.fermetureService = fermetureService;
         this.addressService = addressService;
         this.salleService = salleService;
-        this.societeService =societeService;
+        this.societeService = societeService;
         this.personService = personService;
         this.formuleService = formuleService;
-        this.imageService =imageService;
+        this.imageService = imageService;
         this.userService = userService;
-        this.mediaService=mediaService;
-        this.musiqueService=musiqueService;
-        this.makeUpAndHairService=makeUpAndHairService;
-        this.serviceTraiteurService=serviceTraiteurService;
-        this.traiteurService=traiteurService;
-        this.reservationService=reservationService;
+        this.mediaService = mediaService;
+        this.musiqueService = musiqueService;
+        this.makeUpAndHairService = makeUpAndHairService;
+        this.serviceTraiteurService = serviceTraiteurService;
+        this.traiteurService = traiteurService;
+        this.reservationService = reservationService;
     }
 
     @Override
     public void run(String... args) throws Exception {
 
-        UserRegistrationFormDTO urf = new UserRegistrationFormDTO(
-                "Abdellah","Elachhab","Belgique","Bruxelles","1070","Boulevard Prince de Liege",
-                "44","4","0484732465","tamere@tamer.tame","SalutLesBronzé","par eamil"
-        );
 
-        Person person = RegistrationUserMapper.INSTANCE.dtotomodel(urf);
 
-        System.out.println(person);
 
-        PersonEntity personEntity =  PersonMapper.INSTANCE.modelToEntity(person);
-        System.out.println(personEntity);
 
-        personService.save(personEntity);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//        UserRegistrationFormDTO urf = new UserRegistrationFormDTO(
+//                "Abdellah","Elachhab","Belgique","Bruxelles","1070","Boulevard Prince de Liege",
+//                "44","4","0484732465","tamere@tamer.tame","SalutLesBronzé","par eamil"
+//        );
+//
+//        Person person = RegistrationUserMapper.INSTANCE.dtotomodel(urf);
+//
+//        System.out.println(person);
+//
+//        PersonEntity personEntity =  PersonMapper.INSTANCE.modelToEntity(person);
+//        System.out.println(personEntity);
+//
+//        personService.save(personEntity);
+//
+//
+
+        Faker faker = new Faker((new Locale("fr_BE")));
+
+
+        /**
+         * CREATION UTILISATEUR
+         * */
+//        Address address = createAddress(faker);
+//        User user = createUser(faker,Role.ROLE_ADMIN);
+//        Person person = createPerson(faker);
+//
+//        person.setUser(user);
+//        person.setLocalisation(address);
+//
+//        UserEntity u = UserMapper.INSTANCE.modelToEntity(user);
+//
+//        personService.save(person);
+//
+
+        /**
+         * CREATION SOCIETE Musique
+         * */
+//
+        Address address = createAddress(faker);
+
+        User user = createUser(faker,Role.ROLE_ADMIN);
+
+        Person person = createPerson(faker);
+        person.setLocalisation(address);
+        person.setUser(user);
+
+        Societe societe = createSociete(faker);
+        societe.setLocalisation(createAddress(faker));
+        societe.setOwner(person);
+        societeService.save(societe);
+
+        /**
+         * CREATION SERVICE --> SAVE VIA SOCIETE
+         * */
+
+        Societe societe1 = societeService.findByID(1L);
+        LOG.info(societe1.toString());
+
+        Musique musique = createMusique(faker);
+        musique.setAddress(societe1.getLocalisation());
+        LOG.info(societe1.getLocalisation().toString());
+
+        LOG.info(musique.toString());
+        societe1.setService(musique);
+        societeService.save(societe1);
+//
+
+
+        /**
+         * AJOUT FERMETURE --> SAVE VIA SERVICE
+         * */
+       Musique musique1 =  musiqueService.findByID(1L);
+       musique1.setFermetures(Arrays.asList (createFermeture(faker),createFermeture(faker),createFermeture(faker)));
+       musiqueService.save(musique1);
+
+
+        /**
+         * SUPRESSION FERMETURE (MANY TO MANY)--> SAVE VIA SERVICE
+         * ETAPE :
+         *          1    RECUPERER LE SERVICE
+         *          2    RETOUVER CELUI QU'ON VEUT SUPPRIMER DE LA LISTE
+         *          2bis RECUPERER L'ID DE LA FERMETURE
+         *          2bis SUPPRIMER DE LA LISTE
+         *          3    FAIRE UN SAVE DU SERVICE AVEC LA LISTE MODIFIER
+         *          4    FAIRE UN DELETE DE LA FERMETURE CIBLER GRACE A L'ID
+         * */
+
+//       Musique musique1 =  musiqueService.findByID(1L);
+//        List<Fermeture> list= (List<Fermeture>) musique1.getFermetures();
+//        list.forEach(System.out::println);
+//        list.remove(1);
+//        list.forEach(System.out::println);
+//        musique1.setFermetures(list);
+//        musiqueService.save(musique1);
+//        fermetureService.deleteById(1L);
+//        fermetureService.deleteById(2L);
+
+
+        System.out.println(servicesService.findByID(1L) );
+
+
+        /**
+         * CREATION SOCIETE SALLE
+         * */
+
+        Address addressSalle = createAddress(faker);
+
+        User userSalle = createUser(faker,Role.ROLE_ADMIN);
+
+        Person personSalle = createPerson(faker);
+        personSalle.setLocalisation(addressSalle);
+        personSalle.setUser(userSalle);
+
+        Societe societeSalle = createSociete(faker);
+        societeSalle.setLocalisation(createAddress(faker));
+        societeSalle.setOwner(personSalle);
+
+
+
+
+        Salle salle = createSalle(faker);
+        salle.setAddress(addressService.findByID(1L));
+        societeSalle.setService(salle);
+
+        salle.setFermetures(Arrays.asList (createFermeture(faker),createFermeture(faker),createFermeture(faker)));
+//        salleService.save(salle);
+
+        societeService.save(societeSalle);
+
+
+
+
+
+
+
+
+//        Societe s = societeService.findByID(1L);
+
+//        Salle salle = createSalle(faker);
+//        salle.setFormules((Arrays.asList(createFormule(faker))));
+//
+//        Address address1 = createAddress(faker);
+////        addressService.save(address1);
+//        LOG.info(address1.toString());
+//        salle.setAddress(address1);
+//
+//        salle.setParking(createParking(faker));
+//        salle.setImage(createImage(faker));
+//
+//        LOG.info(salle.toString());
+//
+//        salleService.save(salle);
+
+//        musiqueService.save(createMusique(faker));
+
+
+
+
+//        societeService.save(societeService.findByID(1L).setService(createMusique(faker)));
+
+
+
+//        addressService.save(address);
+
 
 
 //        Faker faker = new Faker((new Locale("fr_BE")));
 //
-//        AddressEntity addressEntity = createAddress(faker);
-//        addressService.save(addressEntity);
+//        Address addressEntity = createAddress(faker);
+//        Address addressEntity2 = createAddress(faker);
 //
-//        UserEntity  userEntity = createUser(faker, Role.CLIENT);
-//        PersonEntity personEntity = createPerson(faker);
-//
-//        SocieteEntity societeEntity = createSociete(faker);
-//        societeEntity.setOwner(personEntity);
+////        addressService.save(addressEntity);
+////
+//        UserEntity userEntity = createUser(faker, Role.ROLE_USER);
+//        Person ps = createPerson(faker);
+////
+//        Societe societeEntity = createSociete(faker);
+//        societeEntity.setOwner(ps);
+//        societeEntity.setLocalisation(addressEntity);
 //        societeService.save(societeEntity);
-
-//
-//        SalleEntity salleEntity = createSalle(faker);
-//        salleEntity.setServiceAdress(addressEntity);
+////
+////
+//        Salle salleEntity = createSalle(faker);
+//        salleEntity.setAdress(addressEntity2);
 //        salleEntity.setSociete(societeEntity);
-//        salleEntity.setServiceAdress(addressEntity);
-//
-//
-//       FormuleEntity formuleEntity =  createFormule(faker);
-//        ImageEntity image = createImage(faker);
-//        image.setFormule(formuleEntity);
+////
+////
+//        Formule formuleEntity = createFormule(faker);
+//        System.out.println(formuleEntity);
+//        Image image = createImage(faker);
 //        formuleEntity.setImages(Arrays.asList(image));
-//        salleEntity.setFormuleEntities(Arrays.asList(formuleEntity));
-//        formuleEntity.setServiceEntity(salleEntity);
-//
+//        salleEntity.setFormules(Arrays.asList(formuleEntity));
+////        formuleEntity.setServiceEntity(salleEntity);
+////
 //        salleService.save(salleEntity);
+//
+//
+//        Address addressEntity3 = createAddress(faker);
+//        Address addressEntity4 = createAddress(faker);
+//
+////        addressService.save(addressEntity);
+////
+//        Person ps1 = createPerson(faker);
+//
+//        Societe societeEntity1 = createSociete(faker);
+//        societeEntity1.setOwner(ps1);
+//        societeEntity1.setLocalisation(addressEntity3);
+//        societeService.save(societeEntity1);
+//
+//
+//        Musique musiqueEntity = createMusique(faker);
+//        musiqueEntity.setAdress(addressEntity4);
+//        musiqueEntity.setSociete(societeEntity1);
+//        Image image3 = createImage(faker);
+//        musiqueEntity.setImage(image3);
+////        musiqueEntity.setFormuleEntities(Arrays.asList(formuleEntity1));
+////        formuleEntity.setServiceEntity(musiqueEntity);
+////
+//        musiqueService.save(musiqueEntity);
+//
+//
+//        Formule formuleEntity1 = createFormule(faker);
+//        Image image1 = createImage(faker);
+////        image.setFormule(formuleEntity);
+//        formuleEntity1.setImages(Arrays.asList(image1));
+//        formuleEntity1.setService(musiqueEntity);
+//        formuleService.save(formuleEntity1);
+//
+////        musiqueEntity.setFormuleEntities(Arrays.asList(formuleEntity1));
+////        musiqueService.save(musiqueEntity);
 
 
     }
 
-        private AddressEntity createAddress(Faker faker) throws Exception{
+    private Address createAddress(Faker faker) throws Exception {
 
-            /**ADRESSE**/
-            AddressEntity adress = new AddressEntity();
-//        addressEntity.setAdressID(1L);
-
-            adress.setBox(faker.address().streetAddressNumber());
-            adress.setCodePostal(faker.number().numberBetween(1000, 2000));
-            adress.setNumero(String.valueOf(faker.number().numberBetween(1, 200)));
-            adress.setPays("Belgique");
-            adress.setRue(faker.address().streetName());
-            adress.setVille(faker.address().cityName());
-
-            return adress;
-        }
+        Address adress = new Address();
+        adress.setBox(faker.address().streetAddressNumber());
+        adress.setCodePostal(faker.number().numberBetween(1000, 2000));
+        adress.setNumero(String.valueOf(faker.number().numberBetween(1, 200)));
+        adress.setPays("Belgique");
+        adress.setRue(faker.address().streetName());
+        adress.setVille(faker.address().cityName());
+        return adress;
+    }
 
 
-    private PersonEntity createPerson(Faker faker) throws Exception{
-        /**Person1**/
-        PersonEntity person = new PersonEntity();
+    private Person createPerson(Faker faker) throws Exception {
+        Person person = new Person();
         person.setFirstName(faker.name().firstName());
         person.setLastName(faker.name().lastName());
         person.setPhoneNbr(Long.parseLong((0 + "" + faker.number().numberBetween(470000000, 490000000))));
@@ -147,1373 +361,113 @@ public class MyRunner implements CommandLineRunner {
         return person;
     }
 
-        private UserEntity createUser(Faker faker, Role role) throws Exception{
-            /**Person1**/
-            UserEntity client = new UserEntity();
-            client.setEmail(faker.internet().emailAddress());
-            client.setPassword(faker.internet().password());
-            client.setRole(role);
+    private Musique createMusique(Faker faker) throws Exception {
+        Musique me = new Musique();
+        me.setNom("DJ SNACK");
+        me.setMusiqueType(MusiqueType.DJ);
+        return me;
+    }
 
-            return client;
-        }
+    private User createUser(Faker faker, Role role) throws Exception {
+        User client = new User();
+        client.setEmail(faker.internet().emailAddress());
+        client.setPassword(faker.internet().password());
+        client.setRole(role);
 
-        private SocieteEntity createSociete(Faker faker) throws Exception {
-            SocieteEntity societe = new SocieteEntity();
-            Long tel = Long.parseLong(0 + "" + faker.number().numberBetween(470000000, 490000000));
-            societe.setNTVA(Long.parseLong(faker.number().numberBetween(0, 1) + "" + faker.number().numberBetween(1000000000, 999999999)));
-            societe.setEmail(faker.internet().safeEmailAddress());
-            societe.setNEntreprise(faker.number().numberBetween(30000L, 5000L));
-            societe.setNom(faker.company().name());
-            societe.setNTel(tel);
-            return societe;
-        }
+        return client;
+    }
 
-        private ParkingEntity createParking(Faker faker) throws Exception {
+    private Societe createSociete(Faker faker) throws Exception {
+        Societe societe = new Societe();
+        Long tel = Long.parseLong(0 + "" + faker.number().numberBetween(470000000, 490000000));
+        societe.setNTVA(Long.parseLong(faker.number().numberBetween(0, 1) + "" + faker.number().numberBetween(1000000000, 999999999)));
+        societe.setEmail(faker.internet().safeEmailAddress());
+        societe.setNEntreprise(faker.number().numberBetween(30000L, 5000L));
+        societe.setNom(faker.company().name());
+        societe.setNTel(tel);
 
-        ParkingEntity parkingEntity = new ParkingEntity();
-        parkingEntity.setCapacity(faker.number().numberBetween(3, 50));
-        parkingEntity.setVoiturier(faker.bool().bool());
-//        parkingService.save(parkingEntity);
-//            parkingEntity.setSalleEntity(salleEntity);
-//            parkingService.save(parkingEntity);
+        return societe;
+    }
 
-        return parkingEntity;
+    private Parking createParking(Faker faker) throws Exception {
+
+        Parking parking = new Parking();
+        parking.setCapacity(faker.number().numberBetween(3, 50));
+        parking.setVoiturier(faker.bool().bool());
+
+
+        return parking;
 
     }
 
-        private SalleEntity createSalle(Faker faker ) throws Exception {
-            /**Salle**/
+    private Salle createSalle(Faker faker) throws Exception {
+        /**Salle**/
 
-            int capacity = faker.number().numberBetween(50, 200);
-            SalleEntity salleEntity = new SalleEntity();
-            salleEntity.setNom(faker.company().name());
-            salleEntity.setCapaciteTotal(capacity);
-            salleEntity.setCuisine(faker.bool().bool());
-            salleEntity.setDecoration(faker.bool().bool());
-            salleEntity.setMaterielMusique(faker.bool().bool());
-            salleEntity.setPisteDance(faker.bool().bool());
-            salleEntity.setPlaceAssise(capacity - 20 < 0 ? 13 : capacity - 20);
-            salleEntity.setTraiteur(faker.bool().bool());
-            salleEntity.setHaveParking(faker.bool().bool());
-                salleEntity.setHallTypeEntity(HallType.RandomHallType());
-                salleEntity.setIsExternal(faker.bool().bool());
+        int capacity = faker.number().numberBetween(50, 200);
+        Salle salle = new Salle();
+        salle.setNom(faker.company().name());
+        salle.setCapaciteTotal(capacity);
+        salle.setCuisine(faker.bool().bool());
+        salle.setDecoration(faker.bool().bool());
+        salle.setMaterielMusique(faker.bool().bool());
+        salle.setPisteDance(faker.bool().bool());
+        salle.setPlaceAssise(capacity - 20 < 0 ? 13 : capacity - 20);
+        salle.setTraiteur(faker.bool().bool());
+        salle.setHaveParking(faker.bool().bool());
+        salle.setHallTypeEntity(HallType.RandomHallType());
+        salle.setIsExternal(faker.bool().bool());
 
-            return salleEntity;
-        }
+        return salle;
+    }
 
-        private ImageEntity createImage(Faker faker) throws Exception {
+    private Image createImage(Faker faker) throws Exception {
 
-            ImageEntity imageEntity = new ImageEntity();
-            imageEntity.setPhoto(faker.internet().image().getBytes());
+        Image image = new Image();
+        image.setPhoto(faker.internet().image().getBytes());
 
-            return imageEntity;
-        }
+        return image;
+    }
 
-    private FormuleEntity createFormule(Faker faker) throws Exception{
+    private Formule createFormule(Faker faker) throws Exception {
         /**Formule**/
 
-        FormuleEntity formuleEntity = new FormuleEntity();
-        formuleEntity.setNom(faker.book().title());
-        formuleEntity.setPrix(faker.number().numberBetween(50, 150));
-//        formuleEntity.setImages(imageEntities);
-
-        formuleEntity.setDescription(faker.lorem().sentence());
+        Formule formule = new Formule();
+        formule.setNom(faker.book().title());
+        formule.setPrix(faker.number().numberBetween(50, 150));
+        formule.setDescription(faker.lorem().sentence());
         Boolean isUnique = faker.bool().bool();
-        formuleEntity.setIsUniquePrix(isUnique);
+        formule.setIsUniquePrix(isUnique);
 
         if (!isUnique) {
-            formuleEntity.setSupDimanche(faker.number().numberBetween(10, 50));
-            formuleEntity.setSupVeilleFerier(faker.number().numberBetween(10, 50));
-            formuleEntity.setCodePostal(faker.number().numberBetween(10, 50));
-            formuleEntity.setSupFerrier(faker.number().numberBetween(10, 50));
-            formuleEntity.setSupvendredi(faker.number().numberBetween(10, 50));
+            formule.setSupDimanche(faker.number().numberBetween(10, 50));
+            formule.setSupVeilleFerier(faker.number().numberBetween(10, 50));
+            formule.setCodePostal(faker.number().numberBetween(10, 50));
+            formule.setSupFerrier(faker.number().numberBetween(10, 50));
+            formule.setSupvendredi(faker.number().numberBetween(10, 50));
         } else {
-            formuleEntity.setSupDimanche(0);
-            formuleEntity.setSupVeilleFerier(0);
-            formuleEntity.setCodePostal(0);
-            formuleEntity.setSupFerrier(0);
-            formuleEntity.setSupvendredi(0);
+            formule.setSupDimanche(0);
+            formule.setSupVeilleFerier(0);
+            formule.setCodePostal(0);
+            formule.setSupFerrier(0);
+            formule.setSupvendredi(0);
         }
 
-//        formuleService.save(formuleEntity);
-//
-//        for (ImageEntity ie: imageEntities) {
-//            ie.setFormule(formuleEntity);
-//            imageService.save(ie);
-//
-//        }
-
-
-        return formuleEntity;
+        return formule;
     }
 
-    private FermetureEntity createFermeture (Faker faker) throws FermetureDatabaseException {
-            /**Fermeture**/
-            FermetureEntity fermetureEntity = new FermetureEntity();
-            fermetureEntity.setDate(new java.sql.Date (faker.date().future(5,TimeUnit.DAYS).getTime()));
-            fermetureService.save(fermetureEntity);
+    private Fermeture createFermeture(Faker faker) throws FermetureDatabaseException {
+        /**Fermeture**/
+        Fermeture fermeture = new Fermeture();
+        fermeture.setDate(new java.sql.Date(faker.date().future(5, TimeUnit.DAYS).getTime()));
 
-            return fermetureEntity;
-        }
-
-        private ReservationEntity createreservation(Faker faker)throws Exception{
-
-        ReservationEntity reservationEntity = new ReservationEntity();
-        reservationEntity.setTicket(String.valueOf(reservationEntity.hashCode()));
-        reservationEntity.setReservationDate(new Date(java.util.Date.from(Instant.now()).getTime()));
-        return reservationEntity;
+        return fermeture;
     }
-//    /**************************Salle******************************/
-//    private void insertSalle (Faker faker) throws Exception {
-//
-////        for(int i = 0; i < 20; i++) {
-//
-//
-//            /**ADRESSE**/
-//        AddressEntity addressEntity = new AddressEntity();
-////        addressEntity.setAdressID(1L);
-//
-//        addressEntity.setBox(faker.address().streetAddressNumber());
-//        addressEntity.setCodePostal(faker.number().numberBetween(1000, 2000));
-//        addressEntity.setNumero(String.valueOf(faker.number().numberBetween(1, 200)));
-//        addressEntity.setPays("Belgique");
-//        addressEntity.setRue(faker.address().streetName());
-//        addressEntity.setVille(faker.address().cityName());
-//        addressService.save(addressEntity);
-//
-//        /**Societe**/
-//
-//        SocieteEntity societeEntity = new SocieteEntity();
-//        Long tel = Long.parseLong(0 + "" + faker.number().numberBetween(470000000, 490000000));
-//        societeEntity.setnTVA(Long.parseLong(faker.number().numberBetween(0, 1) + "" + faker.number().numberBetween(1000000000, 999999999)));
-//        societeEntity.setEmail(faker.internet().safeEmailAddress());
-//        societeEntity.setLocalisation(addressEntity);
-//        societeEntity.setnEntreprise(faker.number().numberBetween(30000L, 5000L));
-//        societeEntity.setNom(faker.company().name());
-//        societeEntity.setnTel(tel);
-//        societeService.save(societeEntity);
-//
-//
-//        /**Person**/
-//
-//        UserEntity personEntity = new UserEntity();
-//        personEntity.setNom(faker.name().lastName());
-//        personEntity.setPrenom(faker.name().firstName());
-//        personEntity.setEmail(faker.internet().safeEmailAddress());
-//        personEntity.setLocalisation(addressEntity);
-//        personEntity.setnTel(tel);
-//        personEntity.setSocieteEntity(societeEntity);
-//        personEntity.setLogin(faker.name().username());
-//        personEntity.setMdp(faker.internet().password());
-//        personEntity.setRole(Role.PRESTATAIRE);
-//        userService.save(personEntity);
-//
-//        /**Parking**/
-//
-//        ParkingEntity parkingEntity = new ParkingEntity();
-//        parkingEntity.setCapacity(faker.number().numberBetween(3, 50));
-//        parkingEntity.setVoiturier(faker.bool().bool());
-//        parkingService.save(parkingEntity);
-//
-//
-//        /**Image**/
-//
-//        ImageEntity imageEntity = new ImageEntity();
-//        imageEntity.setPhoto(faker.internet().image().getBytes());
-//        imageService.save(imageEntity);
-//
-//
-//        /**Salle**/
-//
-//        int capacity = faker.number().numberBetween(50, 200);
-//        SalleEntity salleEntity = new SalleEntity();
-//        salleEntity.setServiceAdress(addressEntity);
-//        salleEntity.setNom(faker.company().name());
-//        salleEntity.setCapaciteTotal(capacity);
-//        salleEntity.setCuisine(faker.bool().bool());
-//        salleEntity.setSociete(societeEntity);
-//        salleEntity.setDecoration(faker.bool().bool());
-//        salleEntity.setMaterielMusique(faker.bool().bool());
-//        salleEntity.setPisteDance(faker.bool().bool());
-//        salleEntity.setPlaceAssise(capacity - 20 < 0 ? 13 : capacity - 20);
-//        salleEntity.setTraiteur(faker.bool().bool());
-//
-////        salleEntity.setParkingEntity(parkingEntity);
-//        salleEntity.setServiceAdress(addressEntity);
-//        salleEntity.setHallTypeEntity(HallTypeEntity.RandomHallType());
-//        salleEntity.setExternal(faker.bool().bool());
-////                salleEntity.setFermetures(fermetureSet);
-////        List<ServiceEntity> salleEntities = new ArrayList<>();
-////        salleEntities.add(salleEntity);
-//        salleService.save(salleEntity);
 
+    private Reservation createreservation(Faker faker) throws Exception {
 
-//        /**Fermeture**/
-//        FermetureEntity fermetureEntity = new FermetureEntity();
-//        fermetureEntity.setDate(new java.sql.Date(faker.date().future(5, TimeUnit.DAYS).getTime()));
-//        fermetureService.save(fermetureEntity);
-//
-//        fermetureEntity.setServiceEntity(salleEntities);
-//        fermetureService.save(fermetureEntity);
-//
-//
-//        FermetureEntity fermetureEntity2 = new FermetureEntity();
-//        fermetureEntity2.setDate(new java.sql.Date(faker.date().future(5, TimeUnit.DAYS).getTime()));
-//        fermetureService.save(fermetureEntity2);
-//
-//        fermetureEntity2.setServiceEntity(salleEntities);
-//        fermetureService.save(fermetureEntity2);
-
-//
-//                FermetureEntity fermetureEntity3 = new FermetureEntity();
-//                fermetureEntity3.setDate(new java.sql.Date (faker.date().future(5,TimeUnit.DAYS).getTime()));
-//                fermetureEntity3.setServiceEntity(salleEntities);
-//                fermetureService.save(fermetureEntity3);
-
-//                Set<FermetureEntity> fermetureSet = new HashSet<>();
-//                fermetureSet.add(fermetureEntity);
-//                fermetureSet.add(fermetureEntity2);
-//                fermetureSet.add(fermetureEntity3);
-
-
-//        /**Formule**/
-//
-//        FormuleEntity formuleEntity = new FormuleEntity();
-//        formuleEntity.setNom(faker.book().title());
-//        formuleEntity.setPrix(faker.number().numberBetween(50, 150));
-////            formuleEntity.setImages(imageEntities);
-//
-//        formuleEntity.setDescription(faker.lorem().sentence());
-//        Boolean isUnique = faker.bool().bool();
-//        formuleEntity.setUniquePrix(isUnique);
-//        formuleEntity.setServiceEntity(salleEntity);
-//
-//        if (!isUnique) {
-//            formuleEntity.setSupDimanche(faker.number().numberBetween(10, 50));
-//            formuleEntity.setSupVeilleFerier(faker.number().numberBetween(10, 50));
-//            formuleEntity.setCodePostal(faker.number().numberBetween(10, 50));
-//            formuleEntity.setSupFerrier(faker.number().numberBetween(10, 50));
-//            formuleEntity.setSupvendredi(faker.number().numberBetween(10, 50));
-//        } else {
-//            formuleEntity.setSupDimanche(0);
-//            formuleEntity.setSupVeilleFerier(0);
-//            formuleEntity.setCodePostal(0);
-//            formuleEntity.setSupFerrier(0);
-//            formuleEntity.setSupvendredi(0);
-//        }
-//        formuleService.save(formuleEntity);
-//
-//
-//        FormuleEntity formuleEntity2 = new FormuleEntity();
-//        formuleEntity2.setNom(faker.food().dish());
-//        formuleEntity2.setPrix(faker.number().numberBetween(50, 150));
-////            formuleEntity2.setImages(imageEntities);
-//
-//        formuleEntity2.setDescription(faker.lorem().sentence());
-//        Boolean isUnique2 = faker.bool().bool();
-//        formuleEntity2.setUniquePrix(isUnique2);
-//        formuleEntity2.setServiceEntity(salleEntity);
-//
-//
-//        if (!isUnique2) {
-//            formuleEntity2.setSupDimanche(faker.number().numberBetween(10, 50));
-//            formuleEntity2.setSupVeilleFerier(faker.number().numberBetween(10, 50));
-//            formuleEntity2.setCodePostal(faker.number().numberBetween(10, 50));
-//            formuleEntity2.setSupFerrier(faker.number().numberBetween(10, 50));
-//            formuleEntity2.setSupvendredi(faker.number().numberBetween(10, 50));
-//        } else {
-//            formuleEntity2.setSupDimanche(0);
-//            formuleEntity2.setSupVeilleFerier(0);
-//            formuleEntity2.setCodePostal(0);
-//            formuleEntity2.setSupFerrier(0);
-//            formuleEntity2.setSupvendredi(0);
-//        }
-//        formuleService.save(formuleEntity2);
-//
-//        List<FormuleEntity> formuleSet = new ArrayList<>();
-//        formuleSet.add(formuleEntity);
-//        formuleSet.add(formuleEntity2);
-//
-//
-//        ImageEntity imageEntity2 = new ImageEntity();
-//        imageEntity2.setPhoto(faker.internet().image().getBytes());
-//        imageEntity2.setFormule(formuleEntity);
-//        imageService.save(imageEntity2);
-//
-//        ImageEntity imageEntity3 = new ImageEntity();
-//        imageEntity3.setPhoto(faker.internet().image().getBytes());
-//        imageEntity3.setFormule(formuleEntity2);
-//
-//        imageService.save(imageEntity3);
-//
-//        List<ImageEntity> imageEntities = new ArrayList<>();
-//        imageEntities.add(imageEntity2);
-//        imageEntities.add(imageEntity3);
-//
-//        /**ADRESSE**/
-//        AddressEntity addressEntity1 = new AddressEntity();
-////        addressEntity.setAdressID(1L);
-//
-//        addressEntity1.setBox(faker.address().streetAddressNumber());
-//        addressEntity1.setCodePostal(faker.number().numberBetween(1000, 2000));
-//        addressEntity1.setNumero(String.valueOf(faker.number().numberBetween(1, 200)));
-//        addressEntity1.setPays("Belgique");
-//        addressEntity1.setRue(faker.address().streetName());
-//        addressEntity1.setVille(faker.address().cityName());
-//        addressService.save(addressEntity1);
-//
-//
-//        /**Person1**/
-//        UserEntity personEntity1 = new UserEntity();
-//        personEntity1.setNom(faker.name().lastName());
-//        personEntity1.setPrenom(faker.name().firstName());
-//        personEntity1.setEmail(faker.internet().emailAddress());
-//        personEntity1.setLocalisation(addressEntity1);
-//        personEntity1.setnTel(Long.parseLong((0 + "" + faker.number().numberBetween(470000000, 490000000))));
-//        personEntity1.setSocieteEntity(null);
-//        personEntity1.setLogin(faker.name().username());
-//        personEntity1.setMdp(faker.internet().password());
-//        personEntity1.setRole(Role.CLIENT);
-//        userService.save(personEntity1);
-//
-
-//        /**Reservation**/
-//
-//        ReservationEntity reservationEntity = new ReservationEntity();
-//        reservationEntity.setReservationDate(new java.sql.Date(faker.date().future(100, TimeUnit.DAYS).getTime()));
-//        reservationEntity.setServiceEntity(salleEntity);
-//        reservationEntity.setTicket(faker.random().hex());
-//        reservationEntity.setUserEntity(personEntity1);
-//        reservationService.save(reservationEntity);
-//    }
-            }
-
-
-
-
-//    /**************************Musique******************************/
-//
-//    private void insertMusique (Faker faker) throws Exception {
-//
-//        for(int i = 0; i < 20; i++) {
-//
-//
-//            /**ADRESSE**/
-//            AddressEntity addressEntity = new AddressEntity();
-////        addressEntity.setAdressID(1L);
-//
-//            addressEntity.setBox(faker.address().streetAddressNumber());
-//            addressEntity.setCodePostal(faker.number().numberBetween(1000,2000));
-//            addressEntity.setNumero(String.valueOf(faker.number().numberBetween(1,200)));
-//            addressEntity.setPays("Belgique");
-//            addressEntity.setRue(faker.address().streetName());
-//            addressEntity.setVille(faker.address().cityName());
-//            addressService.save(addressEntity);
-//
-//            /**Societe**/
-//
-//            SocieteEntity societeEntity =new SocieteEntity();
-//            Long tel =Long.parseLong( 0+""+faker.number().numberBetween(470000000,490000000));
-//            societeEntity.setnTVA(Long.parseLong(faker.number().numberBetween(0,1)+""+faker.number().numberBetween(1000000000,999999999)));
-//            societeEntity.setEmail(faker.internet().safeEmailAddress());
-//            societeEntity.setLocalisation(addressEntity);
-//            societeEntity.setnEntreprise(faker.number().numberBetween(30000L,5000L));
-//            societeEntity.setNom(faker.company().name());
-//            societeEntity.setnTel(tel);
-//            societeService.save(societeEntity);
-//
-//
-//            /**Person**/
-//
-//            UserEntity personEntity = new UserEntity();
-//            personEntity.setNom(faker.name().lastName());
-//            personEntity.setPrenom(faker.name().firstName());
-//            personEntity.setEmail(faker.internet().safeEmailAddress());
-//            personEntity.setLocalisation(addressEntity);
-//            personEntity.setnTel(tel);
-//            personEntity.setSocieteEntity(societeEntity);
-//            personEntity.setLogin(faker.name().username());
-//            personEntity.setMdp(faker.internet().password());
-//            personEntity.setRole(Role.PRESTATAIRE);
-//            userService.save(personEntity);
-//
-//
-//            /**Fermeture**/
-//            FermetureEntity fermetureEntity = new FermetureEntity();
-//            fermetureEntity.setDate(new java.sql.Date (faker.date().future(5,TimeUnit.DAYS).getTime()));
-//            fermetureEntity.setId((long) i);
-//            fermetureService.save(fermetureEntity);
-//
-//            FermetureEntity fermetureEntity2 = new FermetureEntity();
-//            fermetureEntity2.setId((long) (50 + i));
-//            fermetureEntity2.setDate(new java.sql.Date (faker.date().future(5,TimeUnit.DAYS).getTime()));
-//            fermetureService.save(fermetureEntity2);
-//
-//            FermetureEntity fermetureEntity3 = new FermetureEntity();
-//            fermetureEntity.setId((long) 100+i);
-//            fermetureEntity3.setDate(new java.sql.Date (faker.date().future(5,TimeUnit.DAYS).getTime()));
-//            fermetureService.save(fermetureEntity3);
-//
-//            Set<FermetureEntity> fermetureSet = new HashSet<>();
-//            fermetureSet.add(fermetureEntity);
-//            fermetureSet.add(fermetureEntity2);
-//            fermetureSet.add(fermetureEntity3);
-//
-//            /**Image**/
-//
-//            ImageEntity imageEntity = new ImageEntity();
-//            imageEntity.setPhoto(faker.internet().image().getBytes());
-//            imageService.save(imageEntity);
-//
-//
-//
-//            /**Musique**/
-//
-//            MusiqueEntity musiqueEntity = new MusiqueEntity();
-//            musiqueEntity.setMusiqueType(MusiqueType.musiqueType());
-//            musiqueEntity.setFermetures(fermetureSet);
-////            musiqueEntity.setFormuleEntities();
-//            musiqueEntity.setImage(imageEntity);
-//            musiqueEntity.setNom(faker.company().name());
-//            musiqueEntity.setServiceAdress(addressEntity);
-//            musiqueEntity.setSociete(societeEntity);
-//            musiqueService.save(musiqueEntity);
-//
-//
-//
-//
-//            /**Formule**/
-//
-//            FormuleEntity formuleEntity = new FormuleEntity();
-//            formuleEntity.setNom(faker.food().dish());
-//            formuleEntity.setPrix(faker.number().numberBetween(50,150));
-////            formuleEntity.setImages(imageEntities);
-//
-//            formuleEntity.setDescription(faker.lorem().sentence());
-//            Boolean isUnique = faker.bool().bool();
-//            formuleEntity.setUniquePrix(isUnique);
-//            formuleEntity.setServiceEntity(musiqueEntity);
-//
-//            if (!isUnique) {
-//                formuleEntity.setSupDimanche(faker.number().numberBetween(10,50));
-//                formuleEntity.setSupVeilleFerier(faker.number().numberBetween(10,50));
-//                formuleEntity.setCodePostal(faker.number().numberBetween(10,50));
-//                formuleEntity.setSupFerrier(faker.number().numberBetween(10,50));
-//                formuleEntity.setSupvendredi(faker.number().numberBetween(10,50));
-//            }else
-//            {   formuleEntity.setSupDimanche(0);
-//                formuleEntity.setSupVeilleFerier(0);
-//                formuleEntity.setCodePostal(0);
-//                formuleEntity.setSupFerrier(0);
-//                formuleEntity.setSupvendredi(0);}
-//            formuleService.save(formuleEntity);
-//
-//
-//            FormuleEntity formuleEntity2 = new FormuleEntity();
-//            formuleEntity2.setNom(faker.food().dish());
-//            formuleEntity2.setPrix(faker.number().numberBetween(50,150));
-////            formuleEntity2.setImages(imageEntities);
-//
-//            formuleEntity2.setDescription(faker.lorem().sentence());
-//            Boolean isUnique2 = faker.bool().bool();
-//            formuleEntity2.setUniquePrix(isUnique2);
-//            formuleEntity2.setServiceEntity(musiqueEntity);
-//
-//
-//            if (!isUnique2) {
-//                formuleEntity2.setSupDimanche(faker.number().numberBetween(10,50));
-//                formuleEntity2.setSupVeilleFerier(faker.number().numberBetween(10,50));
-//                formuleEntity2.setCodePostal(faker.number().numberBetween(10,50));
-//                formuleEntity2.setSupFerrier(faker.number().numberBetween(10,50));
-//                formuleEntity2.setSupvendredi(faker.number().numberBetween(10,50));
-//            }
-//            else
-//            {   formuleEntity2.setSupDimanche(0);
-//                formuleEntity2.setSupVeilleFerier(0);
-//                formuleEntity2.setCodePostal(0);
-//                formuleEntity2.setSupFerrier(0);
-//                formuleEntity2.setSupvendredi(0);}
-//            formuleService.save(formuleEntity2);
-//
-//            List<FormuleEntity> formuleSet = new ArrayList<>();
-//            formuleSet.add(formuleEntity);
-//            formuleSet.add(formuleEntity2);
-//
-//
-//
-//            ImageEntity imageEntity2 = new ImageEntity();
-//            imageEntity2.setPhoto(faker.internet().image().getBytes());
-//            imageEntity2.setFormule(formuleEntity);
-//            imageService.save(imageEntity2);
-//
-//            ImageEntity imageEntity3 = new ImageEntity();
-//            imageEntity3.setPhoto(faker.internet().image().getBytes());
-//            imageEntity3.setFormule(formuleEntity2);
-//
-//            imageService.save(imageEntity3);
-//
-//            List<ImageEntity> imageEntities = new ArrayList<>();
-//            imageEntities.add(imageEntity2);
-//            imageEntities.add(imageEntity3);
-//
-//            /**ADRESSE**/
-//            AddressEntity addressEntity1 = new AddressEntity();
-////        addressEntity.setAdressID(1L);
-//
-//            addressEntity1.setBox(faker.address().streetAddressNumber());
-//            addressEntity1.setCodePostal(faker.number().numberBetween(1000, 2000));
-//            addressEntity1.setNumero(String.valueOf(faker.number().numberBetween(1, 200)));
-//            addressEntity1.setPays("Belgique");
-//            addressEntity1.setRue(faker.address().streetName());
-//            addressEntity1.setVille(faker.address().cityName());
-//            addressService.save(addressEntity1);
-//
-//
-//            /**Person1**/
-//            UserEntity personEntity1 = new UserEntity();
-//            personEntity1.setNom(faker.name().lastName());
-//            personEntity1.setPrenom(faker.name().firstName());
-//            personEntity1.setEmail(faker.internet().emailAddress());
-//            personEntity1.setLocalisation(addressEntity1);
-//            personEntity1.setnTel(Long.parseLong((0 + "" + faker.number().numberBetween(470000000, 490000000))));
-//            personEntity1.setSocieteEntity(null);
-//            personEntity1.setLogin(faker.name().username());
-//            personEntity1.setMdp(faker.internet().password());
-//            personEntity1.setRole(Role.CLIENT);
-//            userService.save(personEntity1);
-//
-//
-//            /**Reservation**/
-//
-//            ReservationEntity reservationEntity = new ReservationEntity();
-//            reservationEntity.setReservationDate(new java.sql.Date (faker.date().future(100,TimeUnit.DAYS).getTime()));
-//            reservationEntity.setServiceEntity(musiqueEntity);
-//            reservationEntity.setTicket(faker.random().hex());
-//            reservationEntity.setUserEntity(personEntity1);
-//            reservationService.save(reservationEntity);
-//
-//        }
-//    }
-//    /**************************Media******************************/
-//
-//    private void insertMedia(Faker faker) throws Exception {
-//
-//        for(int i = 0; i < 20; i++) {
-//
-//
-//            /**ADRESSE**/
-//            AddressEntity addressEntity = new AddressEntity();
-////        addressEntity.setAdressID(1L);
-//
-//            addressEntity.setBox(faker.address().streetAddressNumber());
-//            addressEntity.setCodePostal(faker.number().numberBetween(1000,2000));
-//            addressEntity.setNumero(String.valueOf(faker.number().numberBetween(1,200)));
-//            addressEntity.setPays("Belgique");
-//            addressEntity.setRue(faker.address().streetName());
-//            addressEntity.setVille(faker.address().cityName());
-//            addressService.save(addressEntity);
-//
-//            /**Societe**/
-//
-//            SocieteEntity societeEntity =new SocieteEntity();
-//            Long tel =Long.parseLong( 0+""+faker.number().numberBetween(470000000,490000000));
-//            societeEntity.setnTVA(Long.parseLong(faker.number().numberBetween(0,1)+""+faker.number().numberBetween(1000000000,999999999)));
-//            societeEntity.setEmail(faker.internet().safeEmailAddress());
-//            societeEntity.setLocalisation(addressEntity);
-//            societeEntity.setnEntreprise(faker.number().numberBetween(30000L,5000L));
-//            societeEntity.setNom(faker.company().name());
-//            societeEntity.setnTel(tel);
-//            societeService.save(societeEntity);
-//
-//
-//            /**Person**/
-//
-//            UserEntity personEntity = new UserEntity();
-//            personEntity.setNom(faker.name().lastName());
-//            personEntity.setPrenom(faker.name().firstName());
-//            personEntity.setEmail(faker.internet().safeEmailAddress());
-//            personEntity.setLocalisation(addressEntity);
-//            personEntity.setnTel(tel);
-//            personEntity.setSocieteEntity(societeEntity);
-//            personEntity.setLogin(faker.name().username());
-//            personEntity.setMdp(faker.internet().password());
-//            personEntity.setRole(Role.PRESTATAIRE);
-//            userService.save(personEntity);
-//
-//
-//            /**Fermeture**/
-//            FermetureEntity fermetureEntity = new FermetureEntity();
-//            fermetureEntity.setDate(new java.sql.Date (faker.date().future(5,TimeUnit.DAYS).getTime()));
-//            fermetureEntity.setId((long) i);
-//            fermetureService.save(fermetureEntity);
-//
-//            FermetureEntity fermetureEntity2 = new FermetureEntity();
-//            fermetureEntity2.setId((long) (50 + i));
-//            fermetureEntity2.setDate(new java.sql.Date (faker.date().future(5,TimeUnit.DAYS).getTime()));
-//            fermetureService.save(fermetureEntity2);
-//
-//            FermetureEntity fermetureEntity3 = new FermetureEntity();
-//            fermetureEntity.setId((long) 100+i);
-//            fermetureEntity3.setDate(new java.sql.Date (faker.date().future(5,TimeUnit.DAYS).getTime()));
-//            fermetureService.save(fermetureEntity3);
-//
-//            Set<FermetureEntity> fermetureSet = new HashSet<>();
-//            fermetureSet.add(fermetureEntity);
-//            fermetureSet.add(fermetureEntity2);
-//            fermetureSet.add(fermetureEntity3);
-//
-//            /**Image**/
-//
-//            ImageEntity imageEntity = new ImageEntity();
-//            imageEntity.setPhoto(faker.internet().image().getBytes());
-//            imageService.save(imageEntity);
-//
-//
-//
-//            /**Media**/
-//
-//            MediaEntity mediaEntity = new MediaEntity();
-//            mediaEntity.setDoAlbum(faker.bool().bool());
-//            mediaEntity.setDoSouvenir(faker.bool().bool());
-//            mediaEntity.setPhoto(faker.bool().bool());
-//            mediaEntity.setVideo(faker.bool().bool());
-//            mediaEntity.setFermetures(fermetureSet);
-////            mediaEntity.setFormuleEntities();
-//            mediaEntity.setImage(imageEntity);
-//            mediaEntity.setNom(faker.company().name());
-//            mediaEntity.setServiceAdress(addressEntity);
-//            mediaEntity.setSociete(societeEntity);
-//            mediaService.save(mediaEntity);
-//
-//
-//            /**Formule**/
-//
-//            FormuleEntity formuleEntity = new FormuleEntity();
-//            formuleEntity.setNom(faker.food().dish());
-//            formuleEntity.setPrix(faker.number().numberBetween(50,150));
-////            formuleEntity.setImages(imageEntities);
-//
-//            formuleEntity.setDescription(faker.lorem().sentence());
-//            Boolean isUnique = faker.bool().bool();
-//            formuleEntity.setUniquePrix(isUnique);
-//            formuleEntity.setServiceEntity(mediaEntity);
-//
-//            if (!isUnique) {
-//                formuleEntity.setSupDimanche(faker.number().numberBetween(10,50));
-//                formuleEntity.setSupVeilleFerier(faker.number().numberBetween(10,50));
-//                formuleEntity.setCodePostal(faker.number().numberBetween(10,50));
-//                formuleEntity.setSupFerrier(faker.number().numberBetween(10,50));
-//                formuleEntity.setSupvendredi(faker.number().numberBetween(10,50));
-//            }else
-//            {   formuleEntity.setSupDimanche(0);
-//                formuleEntity.setSupVeilleFerier(0);
-//                formuleEntity.setCodePostal(0);
-//                formuleEntity.setSupFerrier(0);
-//                formuleEntity.setSupvendredi(0);}
-//            formuleService.save(formuleEntity);
-//
-//
-//            FormuleEntity formuleEntity2 = new FormuleEntity();
-//            formuleEntity2.setNom(faker.food().dish());
-//            formuleEntity2.setPrix(faker.number().numberBetween(50,150));
-////            formuleEntity2.setImages(imageEntities);
-//
-//            formuleEntity2.setDescription(faker.lorem().sentence());
-//            Boolean isUnique2 = faker.bool().bool();
-//            formuleEntity2.setUniquePrix(isUnique2);
-//            formuleEntity2.setServiceEntity(mediaEntity);
-//
-//
-//            if (!isUnique2) {
-//                formuleEntity2.setSupDimanche(faker.number().numberBetween(10,50));
-//                formuleEntity2.setSupVeilleFerier(faker.number().numberBetween(10,50));
-//                formuleEntity2.setCodePostal(faker.number().numberBetween(10,50));
-//                formuleEntity2.setSupFerrier(faker.number().numberBetween(10,50));
-//                formuleEntity2.setSupvendredi(faker.number().numberBetween(10,50));
-//            }
-//            else
-//            {   formuleEntity2.setSupDimanche(0);
-//                formuleEntity2.setSupVeilleFerier(0);
-//                formuleEntity2.setCodePostal(0);
-//                formuleEntity2.setSupFerrier(0);
-//                formuleEntity2.setSupvendredi(0);}
-//            formuleService.save(formuleEntity2);
-//
-//            List<FormuleEntity> formuleSet = new ArrayList<>();
-//            formuleSet.add(formuleEntity);
-//            formuleSet.add(formuleEntity2);
-//
-//
-//
-//            ImageEntity imageEntity2 = new ImageEntity();
-//            imageEntity2.setPhoto(faker.internet().image().getBytes());
-//            imageEntity2.setFormule(formuleEntity);
-//            imageService.save(imageEntity2);
-//
-//            ImageEntity imageEntity3 = new ImageEntity();
-//            imageEntity3.setPhoto(faker.internet().image().getBytes());
-//            imageEntity3.setFormule(formuleEntity2);
-//
-//            imageService.save(imageEntity3);
-//
-//            List<ImageEntity> imageEntities = new ArrayList<>();
-//            imageEntities.add(imageEntity2);
-//            imageEntities.add(imageEntity3);
-//
-//            /**ADRESSE**/
-//            AddressEntity addressEntity1 = new AddressEntity();
-////        addressEntity.setAdressID(1L);
-//
-//            addressEntity1.setBox(faker.address().streetAddressNumber());
-//            addressEntity1.setCodePostal(faker.number().numberBetween(1000, 2000));
-//            addressEntity1.setNumero(String.valueOf(faker.number().numberBetween(1, 200)));
-//            addressEntity1.setPays("Belgique");
-//            addressEntity1.setRue(faker.address().streetName());
-//            addressEntity1.setVille(faker.address().cityName());
-//            addressService.save(addressEntity1);
-//
-//
-//            /**Person1**/
-//            UserEntity personEntity1 = new UserEntity();
-//            personEntity1.setNom(faker.name().lastName());
-//            personEntity1.setPrenom(faker.name().firstName());
-//            personEntity1.setEmail(faker.internet().emailAddress());
-//            personEntity1.setLocalisation(addressEntity1);
-//            personEntity1.setnTel(Long.parseLong((0 + "" + faker.number().numberBetween(470000000, 490000000))));
-//            personEntity1.setSocieteEntity(null);
-//            personEntity1.setLogin(faker.name().username());
-//            personEntity1.setMdp(faker.internet().password());
-//            personEntity1.setRole(Role.CLIENT);
-//            userService.save(personEntity1);
-//
-//
-//            /**Reservation**/
-//
-//            ReservationEntity reservationEntity = new ReservationEntity();
-//            reservationEntity.setReservationDate(new java.sql.Date (faker.date().future(100,TimeUnit.DAYS).getTime()));
-//            reservationEntity.setServiceEntity(mediaEntity);
-//            reservationEntity.setTicket(faker.random().hex());
-//            reservationEntity.setUserEntity(personEntity1);
-//            reservationService.save(reservationEntity);
-//
-//
-//        }
-//    }
-//
-//    /**************************MAKEUP******************************/
-//
-//    private void insertMakeUp (Faker faker) throws Exception {
-//
-//
-//        for(int i = 0; i < 20; i++) {
-//
-//
-//            /**ADRESSE**/
-//            AddressEntity addressEntity = new AddressEntity();
-////        addressEntity.setAdressID(1L);
-//
-//            addressEntity.setBox(faker.address().streetAddressNumber());
-//            addressEntity.setCodePostal(faker.number().numberBetween(1000,2000));
-//            addressEntity.setNumero(String.valueOf(faker.number().numberBetween(1,200)));
-//            addressEntity.setPays("Belgique");
-//            addressEntity.setRue(faker.address().streetName());
-//            addressEntity.setVille(faker.address().cityName());
-//            addressService.save(addressEntity);
-//
-//            /**Societe**/
-//
-//            SocieteEntity societeEntity =new SocieteEntity();
-//            Long tel =Long.parseLong( 0+""+faker.number().numberBetween(470000000,490000000));
-//            societeEntity.setnTVA(Long.parseLong(faker.number().numberBetween(0,1)+""+faker.number().numberBetween(1000000000,999999999)));
-//            societeEntity.setEmail(faker.internet().safeEmailAddress());
-//            societeEntity.setLocalisation(addressEntity);
-//            societeEntity.setnEntreprise(faker.number().numberBetween(30000L,5000L));
-//            societeEntity.setNom(faker.company().name());
-//            societeEntity.setnTel(tel);
-//            societeService.save(societeEntity);
-//
-//
-//            /**Person**/
-//
-//            UserEntity personEntity = new UserEntity();
-//            personEntity.setNom(faker.name().lastName());
-//            personEntity.setPrenom(faker.name().firstName());
-//            personEntity.setEmail(faker.internet().safeEmailAddress());
-//            personEntity.setLocalisation(addressEntity);
-//            personEntity.setnTel(tel);
-//            personEntity.setSocieteEntity(societeEntity);
-//            personEntity.setLogin(faker.name().username());
-//            personEntity.setMdp(faker.internet().password());
-//            personEntity.setRole(Role.PRESTATAIRE);
-//            userService.save(personEntity);
-//
-//
-//            /**Fermeture**/
-//            FermetureEntity fermetureEntity = new FermetureEntity();
-//            fermetureEntity.setDate(new java.sql.Date (faker.date().future(5,TimeUnit.DAYS).getTime()));
-//            fermetureEntity.setId((long) i);
-//            fermetureService.save(fermetureEntity);
-//
-//            FermetureEntity fermetureEntity2 = new FermetureEntity();
-//            fermetureEntity2.setId((long) (50 + i));
-//            fermetureEntity2.setDate(new java.sql.Date (faker.date().future(5,TimeUnit.DAYS).getTime()));
-//            fermetureService.save(fermetureEntity2);
-//
-//            FermetureEntity fermetureEntity3 = new FermetureEntity();
-//            fermetureEntity.setId((long) 100+i);
-//            fermetureEntity3.setDate(new java.sql.Date (faker.date().future(5,TimeUnit.DAYS).getTime()));
-//            fermetureService.save(fermetureEntity3);
-//
-//            Set<FermetureEntity> fermetureSet = new HashSet<>();
-//            fermetureSet.add(fermetureEntity);
-//            fermetureSet.add(fermetureEntity2);
-//            fermetureSet.add(fermetureEntity3);
-//
-//            /**Image**/
-//
-//            ImageEntity imageEntity = new ImageEntity();
-//            imageEntity.setPhoto(faker.internet().image().getBytes());
-//            imageService.save(imageEntity);
-//
-//
-//
-//            /**Media**/
-//
-//            MakeUpAndHairEntity makeUpAndHairEntity = new MakeUpAndHairEntity();
-//            makeUpAndHairEntity.setDoHair(faker.bool().bool());
-//            makeUpAndHairEntity.setDoMakeUp(faker.bool().bool());
-//            makeUpAndHairEntity.setDoMan(faker.bool().bool());
-//            makeUpAndHairEntity.setDoWoman(faker.bool().bool());
-//            makeUpAndHairEntity.setFermetures(fermetureSet);
-////            mediaEntity.setFormuleEntities();
-//            makeUpAndHairEntity.setImage(imageEntity);
-//            makeUpAndHairEntity.setNom(faker.company().name());
-//            makeUpAndHairEntity.setServiceAdress(addressEntity);
-//            makeUpAndHairEntity.setSociete(societeEntity);
-//            makeUpAndHairService.save(makeUpAndHairEntity);
-//
-//
-//            /**Formule**/
-//
-//            FormuleEntity formuleEntity = new FormuleEntity();
-//            formuleEntity.setNom(faker.food().dish());
-//            formuleEntity.setPrix(faker.number().numberBetween(50,150));
-////            formuleEntity.setImages(imageEntities);
-//
-//            formuleEntity.setDescription(faker.lorem().sentence());
-//            Boolean isUnique = faker.bool().bool();
-//            formuleEntity.setUniquePrix(isUnique);
-//            formuleEntity.setServiceEntity(makeUpAndHairEntity);
-//
-//            if (!isUnique) {
-//                formuleEntity.setSupDimanche(faker.number().numberBetween(10,50));
-//                formuleEntity.setSupVeilleFerier(faker.number().numberBetween(10,50));
-//                formuleEntity.setCodePostal(faker.number().numberBetween(10,50));
-//                formuleEntity.setSupFerrier(faker.number().numberBetween(10,50));
-//                formuleEntity.setSupvendredi(faker.number().numberBetween(10,50));
-//            }else
-//            {   formuleEntity.setSupDimanche(0);
-//                formuleEntity.setSupVeilleFerier(0);
-//                formuleEntity.setCodePostal(0);
-//                formuleEntity.setSupFerrier(0);
-//                formuleEntity.setSupvendredi(0);}
-//            formuleService.save(formuleEntity);
-//
-//
-//            FormuleEntity formuleEntity2 = new FormuleEntity();
-//            formuleEntity2.setNom(faker.food().dish());
-//            formuleEntity2.setPrix(faker.number().numberBetween(50,150));
-////            formuleEntity2.setImages(imageEntities);
-//
-//            formuleEntity2.setDescription(faker.lorem().sentence());
-//            Boolean isUnique2 = faker.bool().bool();
-//            formuleEntity2.setUniquePrix(isUnique2);
-//            formuleEntity2.setServiceEntity(makeUpAndHairEntity);
-//
-//
-//            if (!isUnique2) {
-//                formuleEntity2.setSupDimanche(faker.number().numberBetween(10,50));
-//                formuleEntity2.setSupVeilleFerier(faker.number().numberBetween(10,50));
-//                formuleEntity2.setCodePostal(faker.number().numberBetween(10,50));
-//                formuleEntity2.setSupFerrier(faker.number().numberBetween(10,50));
-//                formuleEntity2.setSupvendredi(faker.number().numberBetween(10,50));
-//            }
-//            else
-//            {   formuleEntity2.setSupDimanche(0);
-//                formuleEntity2.setSupVeilleFerier(0);
-//                formuleEntity2.setCodePostal(0);
-//                formuleEntity2.setSupFerrier(0);
-//                formuleEntity2.setSupvendredi(0);}
-//            formuleService.save(formuleEntity2);
-//
-//            List<FormuleEntity> formuleSet = new ArrayList<>();
-//            formuleSet.add(formuleEntity);
-//            formuleSet.add(formuleEntity2);
-//
-//
-//
-//            ImageEntity imageEntity2 = new ImageEntity();
-//            imageEntity2.setPhoto(faker.internet().image().getBytes());
-//            imageEntity2.setFormule(formuleEntity);
-//            imageService.save(imageEntity2);
-//
-//            ImageEntity imageEntity3 = new ImageEntity();
-//            imageEntity3.setPhoto(faker.internet().image().getBytes());
-//            imageEntity3.setFormule(formuleEntity2);
-//
-//            imageService.save(imageEntity3);
-//
-//            List<ImageEntity> imageEntities = new ArrayList<>();
-//            imageEntities.add(imageEntity2);
-//            imageEntities.add(imageEntity3);
-//
-//            /**ADRESSE**/
-//            AddressEntity addressEntity1 = new AddressEntity();
-////        addressEntity.setAdressID(1L);
-//
-//            addressEntity1.setBox(faker.address().streetAddressNumber());
-//            addressEntity1.setCodePostal(faker.number().numberBetween(1000, 2000));
-//            addressEntity1.setNumero(String.valueOf(faker.number().numberBetween(1, 200)));
-//            addressEntity1.setPays("Belgique");
-//            addressEntity1.setRue(faker.address().streetName());
-//            addressEntity1.setVille(faker.address().cityName());
-//            addressService.save(addressEntity1);
-//
-//
-//            /**Person1**/
-//            UserEntity personEntity1 = new UserEntity();
-//            personEntity1.setNom(faker.name().lastName());
-//            personEntity1.setPrenom(faker.name().firstName());
-//            personEntity1.setEmail(faker.internet().emailAddress());
-//            personEntity1.setLocalisation(addressEntity1);
-//            personEntity1.setnTel(Long.parseLong((0 + "" + faker.number().numberBetween(470000000, 490000000))));
-//            personEntity1.setSocieteEntity(null);
-//            personEntity1.setLogin(faker.name().username());
-//            personEntity1.setMdp(faker.internet().password());
-//            personEntity1.setRole(Role.CLIENT);
-//            userService.save(personEntity1);
-//
-//
-//            /**Reservation**/
-//
-//            ReservationEntity reservationEntity = new ReservationEntity();
-//            reservationEntity.setReservationDate(new java.sql.Date (faker.date().future(100,TimeUnit.DAYS).getTime()));
-//            reservationEntity.setServiceEntity(makeUpAndHairEntity);
-//            reservationEntity.setTicket(faker.random().hex());
-//            reservationEntity.setUserEntity(personEntity1);
-//            reservationService.save(reservationEntity);
-//
-//        }
-//
-//    }
-//
-//    /**************************Traiteur******************************/
-//
-//    private void insertTraiteur(Faker faker) throws Exception {
-//
-//        for(int i = 0; i < 20; i++) {
-//
-//            /**ADRESSE**/
-//            AddressEntity addressEntity = new AddressEntity();
-////        addressEntity.setAdressID(1L);
-//
-//            addressEntity.setBox(faker.address().streetAddressNumber());
-//            addressEntity.setCodePostal(faker.number().numberBetween(1000,2000));
-//            addressEntity.setNumero(String.valueOf(faker.number().numberBetween(1,200)));
-//            addressEntity.setPays("Belgique");
-//            addressEntity.setRue(faker.address().streetName());
-//            addressEntity.setVille(faker.address().cityName());
-//            addressService.save(addressEntity);
-//
-//            /**Societe**/
-//
-//            SocieteEntity societeEntity =new SocieteEntity();
-//            Long tel =Long.parseLong( 0+""+faker.number().numberBetween(470000000,490000000));
-//            societeEntity.setnTVA(Long.parseLong(faker.number().numberBetween(0,1)+""+faker.number().numberBetween(1000000000,999999999)));
-//            societeEntity.setEmail(faker.internet().safeEmailAddress());
-//            societeEntity.setLocalisation(addressEntity);
-//            societeEntity.setnEntreprise(faker.number().numberBetween(30000L,5000L));
-//            societeEntity.setNom(faker.company().name());
-//            societeEntity.setnTel(tel);
-//            societeService.save(societeEntity);
-//
-//
-//            /**Person**/
-//
-//            UserEntity personEntity = new UserEntity();
-//            personEntity.setNom(faker.name().lastName());
-//            personEntity.setPrenom(faker.name().firstName());
-//            personEntity.setEmail(faker.internet().safeEmailAddress());
-//            personEntity.setLocalisation(addressEntity);
-//            personEntity.setnTel(tel);
-//            personEntity.setSocieteEntity(societeEntity);
-//            personEntity.setLogin(faker.name().username());
-//            personEntity.setMdp(faker.internet().password());
-//            personEntity.setRole(Role.PRESTATAIRE);
-//            userService.save(personEntity);
-//
-//
-//            /**Fermeture**/
-//            FermetureEntity fermetureEntity = new FermetureEntity();
-//            fermetureEntity.setDate(new java.sql.Date (faker.date().future(5,TimeUnit.DAYS).getTime()));
-//            fermetureEntity.setId((long) i);
-//            fermetureService.save(fermetureEntity);
-//
-//            FermetureEntity fermetureEntity2 = new FermetureEntity();
-//            fermetureEntity2.setId((long) (50 + i));
-//            fermetureEntity2.setDate(new java.sql.Date (faker.date().future(5,TimeUnit.DAYS).getTime()));
-//            fermetureService.save(fermetureEntity2);
-//
-//            FermetureEntity fermetureEntity3 = new FermetureEntity();
-//            fermetureEntity.setId((long) 100+i);
-//            fermetureEntity3.setDate(new java.sql.Date (faker.date().future(5,TimeUnit.DAYS).getTime()));
-//            fermetureService.save(fermetureEntity3);
-//
-//            Set<FermetureEntity> fermetureSet = new HashSet<>();
-//            fermetureSet.add(fermetureEntity);
-//            fermetureSet.add(fermetureEntity2);
-//            fermetureSet.add(fermetureEntity3);
-//
-//            /**Image**/
-//
-//            ImageEntity imageEntity = new ImageEntity();
-//            imageEntity.setPhoto(faker.internet().image().getBytes());
-//            imageService.save(imageEntity);
-//
-//
-//
-//            /**Traiteur**/
-//
-//            TraiteurEntity traiteurEntity = new TraiteurEntity();
-//            traiteurEntity.setDoFish(faker.bool().bool());
-//            traiteurEntity.setDoMeat(faker.bool().bool());
-//            traiteurEntity.setDoVegan(faker.bool().bool());
-//            traiteurEntity.setDoVegetarian(faker.bool().bool());
-//            traiteurEntity.setFermetures(fermetureSet);
-////            mediaEntity.setFormuleEntities();
-//            traiteurEntity.setImage(imageEntity);
-//            traiteurEntity.setNom(faker.food().dish());
-//            traiteurEntity.setServiceAdress(addressEntity);
-//            traiteurEntity.setSociete(societeEntity);
-//            traiteurService.save(traiteurEntity);
-//
-//
-//            /**Formule**/
-//
-//            FormuleEntity formuleEntity = new FormuleEntity();
-//            formuleEntity.setNom(faker.food().dish());
-//            formuleEntity.setPrix(faker.number().numberBetween(50,150));
-////            formuleEntity.setImages(imageEntities);
-//
-//            formuleEntity.setDescription(faker.lorem().sentence());
-//            Boolean isUnique = faker.bool().bool();
-//            formuleEntity.setUniquePrix(isUnique);
-//            formuleEntity.setServiceEntity(traiteurEntity);
-//
-//            if (!isUnique) {
-//                formuleEntity.setSupDimanche(faker.number().numberBetween(10,50));
-//                formuleEntity.setSupVeilleFerier(faker.number().numberBetween(10,50));
-//                formuleEntity.setCodePostal(faker.number().numberBetween(10,50));
-//                formuleEntity.setSupFerrier(faker.number().numberBetween(10,50));
-//                formuleEntity.setSupvendredi(faker.number().numberBetween(10,50));
-//            }else
-//            {   formuleEntity.setSupDimanche(0);
-//                formuleEntity.setSupVeilleFerier(0);
-//                formuleEntity.setCodePostal(0);
-//                formuleEntity.setSupFerrier(0);
-//                formuleEntity.setSupvendredi(0);}
-//            formuleService.save(formuleEntity);
-//
-//
-//            FormuleEntity formuleEntity2 = new FormuleEntity();
-//            formuleEntity2.setNom(faker.food().dish());
-//            formuleEntity2.setPrix(faker.number().numberBetween(50,150));
-////            formuleEntity2.setImages(imageEntities);
-//
-//            formuleEntity2.setDescription(faker.lorem().sentence());
-//            Boolean isUnique2 = faker.bool().bool();
-//            formuleEntity2.setUniquePrix(isUnique2);
-//            formuleEntity2.setServiceEntity(traiteurEntity);
-//
-//
-//            if (!isUnique2) {
-//                formuleEntity2.setSupDimanche(faker.number().numberBetween(10,50));
-//                formuleEntity2.setSupVeilleFerier(faker.number().numberBetween(10,50));
-//                formuleEntity2.setCodePostal(faker.number().numberBetween(10,50));
-//                formuleEntity2.setSupFerrier(faker.number().numberBetween(10,50));
-//                formuleEntity2.setSupvendredi(faker.number().numberBetween(10,50));
-//            }
-//            else
-//            {   formuleEntity2.setSupDimanche(0);
-//                formuleEntity2.setSupVeilleFerier(0);
-//                formuleEntity2.setCodePostal(0);
-//                formuleEntity2.setSupFerrier(0);
-//                formuleEntity2.setSupvendredi(0);}
-//            formuleService.save(formuleEntity2);
-//
-//            List<FormuleEntity> formuleSet = new ArrayList<>();
-//            formuleSet.add(formuleEntity);
-//            formuleSet.add(formuleEntity2);
-//
-//
-//
-//            ImageEntity imageEntity2 = new ImageEntity();
-//            imageEntity2.setPhoto(faker.internet().image().getBytes());
-//            imageEntity2.setFormule(formuleEntity);
-//            imageService.save(imageEntity2);
-//
-//            ImageEntity imageEntity3 = new ImageEntity();
-//            imageEntity3.setPhoto(faker.internet().image().getBytes());
-//            imageEntity3.setFormule(formuleEntity2);
-//
-//            imageService.save(imageEntity3);
-//
-//            List<ImageEntity> imageEntities = new ArrayList<>();
-//            imageEntities.add(imageEntity2);
-//            imageEntities.add(imageEntity3);
-//
-//            /**ADRESSE**/
-//            AddressEntity addressEntity1 = new AddressEntity();
-////        addressEntity.setAdressID(1L);
-//
-//            addressEntity1.setBox(faker.address().streetAddressNumber());
-//            addressEntity1.setCodePostal(faker.number().numberBetween(1000, 2000));
-//            addressEntity1.setNumero(String.valueOf(faker.number().numberBetween(1, 200)));
-//            addressEntity1.setPays("Belgique");
-//            addressEntity1.setRue(faker.address().streetName());
-//            addressEntity1.setVille(faker.address().cityName());
-//            addressService.save(addressEntity1);
-//
-//
-//            /**Person1**/
-//            UserEntity personEntity1 = new UserEntity();
-//            personEntity1.setNom(faker.name().lastName());
-//            personEntity1.setPrenom(faker.name().firstName());
-//            personEntity1.setEmail(faker.internet().emailAddress());
-//            personEntity1.setLocalisation(addressEntity1);
-//            personEntity1.setnTel(Long.parseLong((0 + "" + faker.number().numberBetween(470000000, 490000000))));
-//            personEntity1.setSocieteEntity(null);
-//            personEntity1.setLogin(faker.name().username());
-//            personEntity1.setMdp(faker.internet().password());
-//            personEntity1.setRole(Role.CLIENT);
-//            userService.save(personEntity1);
-//
-//
-//            /**Reservation**/
-//
-//            ReservationEntity reservationEntity = new ReservationEntity();
-//            reservationEntity.setReservationDate(new java.sql.Date (faker.date().future(100,TimeUnit.DAYS).getTime()));
-//            reservationEntity.setServiceEntity(traiteurEntity);
-//            reservationEntity.setTicket(faker.random().hex());
-//            reservationEntity.setUserEntity(personEntity1);
-//            reservationService.save(reservationEntity);
-//
-//
-//        }
-//    }
-//
-//    /**************************ServiceTraiteur******************************/
-//    private void insertTraiteurService(Faker faker) throws Exception {
-//
-//        for(int i = 0; i < 20; i++) {
-//
-//            /**ADRESSE**/
-//            AddressEntity addressEntity = new AddressEntity();
-////        addressEntity.setAdressID(1L);
-//
-//            addressEntity.setBox(faker.address().streetAddressNumber());
-//            addressEntity.setCodePostal(faker.number().numberBetween(1000,2000));
-//            addressEntity.setNumero(String.valueOf(faker.number().numberBetween(1,200)));
-//            addressEntity.setPays("Belgique");
-//            addressEntity.setRue(faker.address().streetName());
-//            addressEntity.setVille(faker.address().cityName());
-//            addressService.save(addressEntity);
-//
-//            /**Societe**/
-//
-//            SocieteEntity societeEntity =new SocieteEntity();
-//            Long tel =Long.parseLong( 0+""+faker.number().numberBetween(470000000,490000000));
-//            societeEntity.setnTVA(Long.parseLong(faker.number().numberBetween(0,1)+""+faker.number().numberBetween(1000000000,999999999)));
-//            societeEntity.setEmail(faker.internet().safeEmailAddress());
-//            societeEntity.setLocalisation(addressEntity);
-//            societeEntity.setnEntreprise(faker.number().numberBetween(30000L,5000L));
-//            societeEntity.setNom(faker.company().name());
-//            societeEntity.setnTel(tel);
-//            societeService.save(societeEntity);
-//
-//
-//            /**Person**/
-//
-//            UserEntity personEntity = new UserEntity();
-//            personEntity.setNom(faker.name().lastName());
-//            personEntity.setPrenom(faker.name().firstName());
-//            personEntity.setEmail(faker.internet().safeEmailAddress());
-//            personEntity.setLocalisation(addressEntity);
-//            personEntity.setnTel(tel);
-//            personEntity.setSocieteEntity(societeEntity);
-//            personEntity.setLogin(faker.name().username());
-//            personEntity.setMdp(faker.internet().password());
-//            personEntity.setRole(Role.PRESTATAIRE);
-//            userService.save(personEntity);
-//
-//
-//            /**Fermeture**/
-//            FermetureEntity fermetureEntity = new FermetureEntity();
-//            fermetureEntity.setDate(new java.sql.Date (faker.date().future(5,TimeUnit.DAYS).getTime()));
-//            fermetureEntity.setId((long) i);
-//            fermetureService.save(fermetureEntity);
-//
-//            FermetureEntity fermetureEntity2 = new FermetureEntity();
-//            fermetureEntity2.setId((long) (50 + i));
-//            fermetureEntity2.setDate(new java.sql.Date (faker.date().future(5,TimeUnit.DAYS).getTime()));
-//            fermetureService.save(fermetureEntity2);
-//
-//            FermetureEntity fermetureEntity3 = new FermetureEntity();
-//            fermetureEntity.setId((long) 100+i);
-//            fermetureEntity3.setDate(new java.sql.Date (faker.date().future(5,TimeUnit.DAYS).getTime()));
-//            fermetureService.save(fermetureEntity3);
-//
-//            Set<FermetureEntity> fermetureSet = new HashSet<>();
-//            fermetureSet.add(fermetureEntity);
-//            fermetureSet.add(fermetureEntity2);
-//            fermetureSet.add(fermetureEntity3);
-//
-//            /**Image**/
-//
-//            ImageEntity imageEntity = new ImageEntity();
-//            imageEntity.setPhoto(faker.internet().image().getBytes());
-//            imageService.save(imageEntity);
-//
-//
-//
-//            /**ServiceTraiteur**/
-//
-//            ServiceTraiteurEntity traiteurEntity = new ServiceTraiteurEntity();
-//            traiteurEntity.setWomanOnly(faker.bool().bool());
-//            traiteurEntity.setManOnly(faker.bool().bool());
-//
-//            traiteurEntity.setFermetures(fermetureSet);
-////            mediaEntity.setFormuleEntities();
-//            traiteurEntity.setImage(imageEntity);
-//            traiteurEntity.setNom(faker.food().dish());
-//            traiteurEntity.setServiceAdress(addressEntity);
-//            traiteurEntity.setSociete(societeEntity);
-//            serviceTraiteurService.save(traiteurEntity);
-//
-//
-//            /**Formule**/
-//
-//            FormuleEntity formuleEntity = new FormuleEntity();
-//            formuleEntity.setNom(faker.food().dish());
-//            formuleEntity.setPrix(faker.number().numberBetween(50,150));
-////            formuleEntity.setImages(imageEntities);
-//
-//            formuleEntity.setDescription(faker.lorem().sentence());
-//            Boolean isUnique = faker.bool().bool();
-//            formuleEntity.setUniquePrix(isUnique);
-//            formuleEntity.setServiceEntity(traiteurEntity);
-//
-//            if (!isUnique) {
-//                formuleEntity.setSupDimanche(faker.number().numberBetween(10,50));
-//                formuleEntity.setSupVeilleFerier(faker.number().numberBetween(10,50));
-//                formuleEntity.setCodePostal(faker.number().numberBetween(10,50));
-//                formuleEntity.setSupFerrier(faker.number().numberBetween(10,50));
-//                formuleEntity.setSupvendredi(faker.number().numberBetween(10,50));
-//            }else
-//            {   formuleEntity.setSupDimanche(0);
-//                formuleEntity.setSupVeilleFerier(0);
-//                formuleEntity.setCodePostal(0);
-//                formuleEntity.setSupFerrier(0);
-//                formuleEntity.setSupvendredi(0);}
-//            formuleService.save(formuleEntity);
-//
-//
-//            FormuleEntity formuleEntity2 = new FormuleEntity();
-//            formuleEntity2.setNom(faker.food().dish());
-//            formuleEntity2.setPrix(faker.number().numberBetween(50,150));
-////            formuleEntity2.setImages(imageEntities);
-//
-//            formuleEntity2.setDescription(faker.lorem().sentence());
-//            Boolean isUnique2 = faker.bool().bool();
-//            formuleEntity2.setUniquePrix(isUnique2);
-//            formuleEntity2.setServiceEntity(traiteurEntity);
-//
-//
-//            if (!isUnique2) {
-//                formuleEntity2.setSupDimanche(faker.number().numberBetween(10,50));
-//                formuleEntity2.setSupVeilleFerier(faker.number().numberBetween(10,50));
-//                formuleEntity2.setCodePostal(faker.number().numberBetween(10,50));
-//                formuleEntity2.setSupFerrier(faker.number().numberBetween(10,50));
-//                formuleEntity2.setSupvendredi(faker.number().numberBetween(10,50));
-//            }
-//            else
-//            {   formuleEntity2.setSupDimanche(0);
-//                formuleEntity2.setSupVeilleFerier(0);
-//                formuleEntity2.setCodePostal(0);
-//                formuleEntity2.setSupFerrier(0);
-//                formuleEntity2.setSupvendredi(0);}
-//            formuleService.save(formuleEntity2);
-//
-//            List<FormuleEntity> formuleSet = new ArrayList<>();
-//            formuleSet.add(formuleEntity);
-//            formuleSet.add(formuleEntity2);
-//
-//
-//
-//            ImageEntity imageEntity2 = new ImageEntity();
-//            imageEntity2.setPhoto(faker.internet().image().getBytes());
-//            imageEntity2.setFormule(formuleEntity);
-//            imageService.save(imageEntity2);
-//
-//            ImageEntity imageEntity3 = new ImageEntity();
-//            imageEntity3.setPhoto(faker.internet().image().getBytes());
-//            imageEntity3.setFormule(formuleEntity2);
-//
-//            imageService.save(imageEntity3);
-//
-//            List<ImageEntity> imageEntities = new ArrayList<>();
-//            imageEntities.add(imageEntity2);
-//            imageEntities.add(imageEntity3);
-//
-//
-//
-//            /**ADRESSE**/
-//            AddressEntity addressEntity1 = new AddressEntity();
-////        addressEntity.setAdressID(1L);
-//
-//            addressEntity1.setBox(faker.address().streetAddressNumber());
-//            addressEntity1.setCodePostal(faker.number().numberBetween(1000, 2000));
-//            addressEntity1.setNumero(String.valueOf(faker.number().numberBetween(1, 200)));
-//            addressEntity1.setPays("Belgique");
-//            addressEntity1.setRue(faker.address().streetName());
-//            addressEntity1.setVille(faker.address().cityName());
-//            addressService.save(addressEntity1);
-//
-//
-//            /**Person1**/
-//            UserEntity personEntity1 = new UserEntity();
-//            personEntity1.setNom(faker.name().lastName());
-//            personEntity1.setPrenom(faker.name().firstName());
-//            personEntity1.setEmail(faker.internet().emailAddress());
-//            personEntity1.setLocalisation(addressEntity1);
-//            personEntity1.setnTel(Long.parseLong((0 + "" + faker.number().numberBetween(470000000, 490000000))));
-//            personEntity1.setSocieteEntity(null);
-//            personEntity1.setLogin(faker.name().username());
-//            personEntity1.setMdp(faker.internet().password());
-//            personEntity1.setRole(Role.CLIENT);
-//            userService.save(personEntity1);
-//
-//
-//            /**Reservation**/
-//
-//            ReservationEntity reservationEntity = new ReservationEntity();
-//            reservationEntity.setReservationDate(new java.sql.Date (faker.date().future(100,TimeUnit.DAYS).getTime()));
-//            reservationEntity.setServiceEntity(traiteurEntity);
-//            reservationEntity.setTicket(faker.random().hex());
-//            reservationEntity.setUserEntity(personEntity1);
-//            reservationService.save(reservationEntity);
-//        }
-//    }
-//
-
-//}
+        Reservation reservation = new Reservation();
+        reservation.setTicket(String.valueOf(reservation.hashCode()));
+        reservation.setReservationDate(new Date(java.util.Date.from(Instant.now()).getTime()));
+        return reservation;
+    }
+}

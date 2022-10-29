@@ -6,28 +6,13 @@ import javax.annotation.processing.Generated;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2022-10-15T21:42:42+0200",
+    date = "2022-10-29T04:26:57+0200",
     comments = "version: 1.5.2.Final, compiler: javac, environment: Java 11.0.8 (Oracle Corporation)"
 )
 public class ParkingMapperImpl implements ParkingMapper {
 
     @Override
-    public ParkingEntity entityToModel(Parking parking) {
-        if ( parking == null ) {
-            return null;
-        }
-
-        ParkingEntity parkingEntity = new ParkingEntity();
-
-        parkingEntity.setParkingID( parking.getParkingID() );
-        parkingEntity.setCapacity( parking.getCapacity() );
-        parkingEntity.setVoiturier( parking.getVoiturier() );
-
-        return parkingEntity;
-    }
-
-    @Override
-    public Parking modelToEntity(ParkingEntity parkingEntity) {
+    public Parking entityToModel(ParkingEntity parkingEntity) {
         if ( parkingEntity == null ) {
             return null;
         }
@@ -39,5 +24,20 @@ public class ParkingMapperImpl implements ParkingMapper {
         parking.setVoiturier( parkingEntity.getVoiturier() );
 
         return parking;
+    }
+
+    @Override
+    public ParkingEntity modelToEntity(Parking parking) {
+        if ( parking == null ) {
+            return null;
+        }
+
+        ParkingEntity parkingEntity = new ParkingEntity();
+
+        parkingEntity.setParkingID( parking.getParkingID() );
+        parkingEntity.setCapacity( parking.getCapacity() );
+        parkingEntity.setVoiturier( parking.getVoiturier() );
+
+        return parkingEntity;
     }
 }

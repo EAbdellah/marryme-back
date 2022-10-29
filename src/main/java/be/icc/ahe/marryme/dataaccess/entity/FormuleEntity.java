@@ -1,5 +1,8 @@
 package be.icc.ahe.marryme.dataaccess.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -14,6 +17,7 @@ import java.util.Objects;
 @NoArgsConstructor
 @Setter
 @Getter
+@Data
 public class FormuleEntity implements Serializable {
 
     @Id
@@ -39,10 +43,12 @@ public class FormuleEntity implements Serializable {
     @Column(name = "supVeilleFerier", nullable = true)
     private Integer supVeilleFerier;
 
+    @JsonManagedReference
     @OneToMany(mappedBy="formule",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     private List<ImageEntity> images;
 
-    @ManyToOne( targetEntity = ServiceEntity.class, fetch = FetchType.LAZY,optional = false)
+    @JsonBackReference
+    @ManyToOne( targetEntity = ServiceEntity.class, fetch = FetchType.LAZY)
     @JoinColumn(name="service_id")
     private ServiceEntity serviceEntity;
 

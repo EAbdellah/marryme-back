@@ -9,7 +9,7 @@ import org.mapstruct.factory.Mappers;
 public interface ReservationMapper {
     ReservationMapper INSTANCE = Mappers.getMapper( ReservationMapper.class );
 
-    ReservationEntity entityToModel(Reservation reservation);
-    Reservation modelToEntity(ReservationEntity reservationEntity);
+    Reservation entityToModel(ReservationEntity reservationEntity);
+    ReservationEntity modelToEntity(Reservation reservation);
 
 }

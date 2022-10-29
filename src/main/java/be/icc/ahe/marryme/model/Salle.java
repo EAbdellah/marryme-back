@@ -3,10 +3,12 @@ import be.icc.ahe.marryme.dataaccess.entity.enumeration.HallType;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 @Getter
 @Setter
 @NoArgsConstructor
+@ToString
 public class Salle extends Service {
     private Integer capaciteTotal;
     private Integer placeAssise;

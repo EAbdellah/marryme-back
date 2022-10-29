@@ -95,9 +95,6 @@ public class UserController {
         VerificationTokenEntity verificationToken = userService.getVerificationToken(token);
 
         if (verificationToken == null) {
-//            String message = messages.getMessage("auth.message.invalidToken", null, locale);
-//            model.addAttribute("message", message);
-//            return "redirect:/badUser.html?lang=" + locale.getLanguage();
             throw new EmailExistException(VERIFIACTION_TOKEN_EXPIRED);
         }
 
@@ -105,13 +102,7 @@ public class UserController {
 
         Calendar cal = Calendar.getInstance();
         if ((verificationToken.getExpiryDate().getTime() - cal.getTime().getTime()) <= 15) {
-
-//            String messageValue = messages.getMessage("auth.message.expired", null, locale);
-//            model.addAttribute("message", messageValue);
-//            return "redirect:/badUser.html?lang=" + locale.getLanguage();
             throw new EmailExistException(VERIFIACTION_TOKEN_EXPIRED);
-//            return ResponseEntity.("Hello");
-
         }
 
         user.setActive(true);

@@ -11,7 +11,6 @@ import org.mapstruct.factory.Mappers;
 public interface ServiceTraiteurMapper {
     ServiceTraiteurMapper INSTANCE = Mappers.getMapper( ServiceTraiteurMapper.class );
 
-    ServiceTraiteurEntity entityToModel(ServiceTraiteur serviceTraiteur);
-    ServiceTraiteur modelToEntity(ServiceTraiteurEntity serviceEntity);
-
+    ServiceTraiteur entityToModel(ServiceTraiteurEntity serviceTraiteurEntity);
+    ServiceTraiteurEntity modelToEntity(ServiceTraiteur serviceTraiteur);
 }

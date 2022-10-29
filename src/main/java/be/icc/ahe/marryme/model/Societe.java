@@ -5,10 +5,12 @@ import be.icc.ahe.marryme.dataaccess.entity.PersonEntity;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 import javax.persistence.*;
 
 @NoArgsConstructor @Getter @Setter
+@ToString
 public class Societe {
 
     private Long societeID;
@@ -19,6 +21,7 @@ public class Societe {
     private Long nTel;
     private Address localisation;
     private Person owner;
+    private Service service;
 
 
 

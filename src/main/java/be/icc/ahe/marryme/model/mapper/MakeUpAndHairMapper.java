@@ -8,7 +8,7 @@ import org.mapstruct.factory.Mappers;
 public interface MakeUpAndHairMapper {
     MakeUpAndHairMapper INSTANCE = Mappers.getMapper( MakeUpAndHairMapper.class );
 
-    MakeUpAndHairEntity entityToModel(MakeUpAndHair makeUpAndHair);
-    MakeUpAndHair modelToEntity(MakeUpAndHairEntity makeUpAndHairEntity);
+    MakeUpAndHair entityToModel(MakeUpAndHairEntity makeUpAndHairEntity);
+    MakeUpAndHairEntity modelToEntity(MakeUpAndHair makeUpAndHair);
 
 }

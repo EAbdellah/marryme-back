@@ -1,9 +1,12 @@
 package be.icc.ahe.marryme.service;
 
+import be.icc.ahe.marryme.dataaccess.entity.ReservationEntity;
 import be.icc.ahe.marryme.dataaccess.entity.UserEntity;
 import be.icc.ahe.marryme.dataaccess.entity.VerificationTokenEntity;
 import be.icc.ahe.marryme.exception.EmailExistException;
 import be.icc.ahe.marryme.exception.UserNotFoundException;
+import be.icc.ahe.marryme.exception.sqlexception.ReservationDatabaseException;
+import be.icc.ahe.marryme.exception.sqlexception.UserDatabaseException;
 import be.icc.ahe.marryme.model.User;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -12,7 +15,7 @@ import java.io.IOException;
 
 @Service
 public interface UserService {
-    void save(UserEntity userEntity) throws Exception;
+    User save(UserEntity userEntity) throws Exception;
     User validateNewEmail(String currentEmail, String newEmail) throws UserNotFoundException, EmailExistException;
 
     String encodePassword(String password);
@@ -28,5 +31,8 @@ public interface UserService {
     void deleteUser(String email) throws IOException;
 
 
-//    String getTemporaryProfileImageUrl(String username)
-}
+    UserEntity findByID(Long id) throws UserDatabaseException;
+
+//    UserEntity update(Long id) throws UserDatabaseException;
+
+    void deleteById(Long id) throws UserDatabaseException;}

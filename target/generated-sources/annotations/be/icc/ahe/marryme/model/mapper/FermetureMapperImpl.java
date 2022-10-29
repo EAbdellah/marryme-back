@@ -6,27 +6,13 @@ import javax.annotation.processing.Generated;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2022-10-15T21:42:42+0200",
+    date = "2022-10-29T04:26:58+0200",
     comments = "version: 1.5.2.Final, compiler: javac, environment: Java 11.0.8 (Oracle Corporation)"
 )
 public class FermetureMapperImpl implements FermetureMapper {
 
     @Override
-    public FermetureEntity entityToModel(Fermeture fermeture) {
-        if ( fermeture == null ) {
-            return null;
-        }
-
-        FermetureEntity fermetureEntity = new FermetureEntity();
-
-        fermetureEntity.setId( fermeture.getId() );
-        fermetureEntity.setDate( fermeture.getDate() );
-
-        return fermetureEntity;
-    }
-
-    @Override
-    public Fermeture modelToEntity(FermetureEntity fermetureEntity) {
+    public Fermeture entityToModel(FermetureEntity fermetureEntity) {
         if ( fermetureEntity == null ) {
             return null;
         }
@@ -37,5 +23,19 @@ public class FermetureMapperImpl implements FermetureMapper {
         fermeture.setDate( fermetureEntity.getDate() );
 
         return fermeture;
+    }
+
+    @Override
+    public FermetureEntity modelToEntity(Fermeture fermeture) {
+        if ( fermeture == null ) {
+            return null;
+        }
+
+        FermetureEntity fermetureEntity = new FermetureEntity();
+
+        fermetureEntity.setId( fermeture.getId() );
+        fermetureEntity.setDate( fermeture.getDate() );
+
+        return fermetureEntity;
     }
 }
