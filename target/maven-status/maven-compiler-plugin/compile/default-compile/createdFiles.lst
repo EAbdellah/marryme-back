@@ -15,6 +15,7 @@ be\icc\ahe\marryme\exception\sqlexception\FormuleDatabaseException.class
 be\icc\ahe\marryme\model\MakeUpAndHair.class
 be\icc\ahe\marryme\dataaccess\repository\ParkingRepo.class
 be\icc\ahe\marryme\service\implementation\AddressServiceImpl.class
+be\icc\ahe\marryme\model\mapper\dtomapper\CycleAvoidingMappingContext.class
 be\icc\ahe\marryme\exception\sqlexception\ParkingDatabaseException.class
 be\icc\ahe\marryme\service\AddressService.class
 be\icc\ahe\marryme\dataaccess\dao\MusiqueDAO.class
@@ -82,6 +83,7 @@ be\icc\ahe\marryme\exception\NotAnImageFileException.class
 be\icc\ahe\marryme\model\Traiteur.class
 be\icc\ahe\marryme\event\OnRegistrationCompleteEvent.class
 be\icc\ahe\marryme\security\filter\JwtAccessDeniedHandler.class
+be\icc\ahe\marryme\model\mapper\dtomapper\ServiceViewMapper.class
 be\icc\ahe\marryme\model\Person.class
 be\icc\ahe\marryme\model\Societe.class
 be\icc\ahe\marryme\dataaccess\repository\MediaRepo.class
@@ -110,6 +112,7 @@ be\icc\ahe\marryme\model\mapper\MakeUpAndHairMapper.class
 be\icc\ahe\marryme\model\mapper\FormuleMapperImpl.class
 be\icc\ahe\marryme\dataaccess\dao\ReservationDAO.class
 be\icc\ahe\marryme\model\mapper\AddressMapper.class
+be\icc\ahe\marryme\model\mapper\dtomapper\ServiceViewMapperImpl.class
 be\icc\ahe\marryme\dataaccess\repository\ServicesRepo.class
 be\icc\ahe\marryme\model\Service.class
 be\icc\ahe\marryme\dataaccess\entity\AddressEntity.class
@@ -128,6 +131,7 @@ be\icc\ahe\marryme\model\mapper\MakeUpAndHairMapperImpl.class
 be\icc\ahe\marryme\model\mapper\MusiqueMapper.class
 be\icc\ahe\marryme\model\mapper\ReservationMapper.class
 be\icc\ahe\marryme\dataaccess\entity\MusiqueEntity.class
+be\icc\ahe\marryme\model\dto\SingleServiceViewDTO.class
 be\icc\ahe\marryme\model\Musique.class
 be\icc\ahe\marryme\dataaccess\entity\ServiceEntity.class
 be\icc\ahe\marryme\exception\sqlexception\MediaDatabaseException.class

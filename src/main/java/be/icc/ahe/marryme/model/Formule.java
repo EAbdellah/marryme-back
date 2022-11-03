@@ -2,6 +2,7 @@ package be.icc.ahe.marryme.model;
 
 import be.icc.ahe.marryme.dataaccess.entity.ImageEntity;
 import be.icc.ahe.marryme.dataaccess.entity.ServiceEntity;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -26,6 +27,7 @@ public class Formule {
     private Integer codePostal;
     private Integer supDimanche;
     private Integer supVeilleFerier;
+    @JsonManagedReference
     private List<Image> images;
     private Service service;
 

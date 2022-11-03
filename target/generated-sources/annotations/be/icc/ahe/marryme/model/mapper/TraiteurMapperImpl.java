@@ -18,7 +18,7 @@ import javax.annotation.processing.Generated;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2022-10-29T04:26:56+0200",
+    date = "2022-11-02T03:33:42+0100",
     comments = "version: 1.5.2.Final, compiler: javac, environment: Java 11.0.8 (Oracle Corporation)"
 )
 public class TraiteurMapperImpl implements TraiteurMapper {
@@ -34,6 +34,7 @@ public class TraiteurMapperImpl implements TraiteurMapper {
         traiteur.setServiceID( traiteurEntity.getServiceID() );
         traiteur.setNom( traiteurEntity.getNom() );
         traiteur.setAddress( addressEntityToAddress( traiteurEntity.getAddress() ) );
+        traiteur.setFormules( formuleEntityListToFormuleList( traiteurEntity.getFormules() ) );
         traiteur.setFermetures( fermetureEntityCollectionToFermetureCollection( traiteurEntity.getFermetures() ) );
         traiteur.setImage( imageEntityToImage( traiteurEntity.getImage() ) );
         traiteur.setDoMeat( traiteurEntity.getDoMeat() );
@@ -55,6 +56,7 @@ public class TraiteurMapperImpl implements TraiteurMapper {
         traiteurEntity.setServiceID( traiteur.getServiceID() );
         traiteurEntity.setNom( traiteur.getNom() );
         traiteurEntity.setAddress( addressToAddressEntity( traiteur.getAddress() ) );
+        traiteurEntity.setFormules( formuleListToFormuleEntityList( traiteur.getFormules() ) );
         traiteurEntity.setFermetures( fermetureCollectionToFermetureEntityCollection( traiteur.getFermetures() ) );
         traiteurEntity.setImage( imageToImageEntity( traiteur.getImage() ) );
         traiteurEntity.setDoMeat( traiteur.getDoMeat() );
@@ -83,30 +85,21 @@ public class TraiteurMapperImpl implements TraiteurMapper {
         return address;
     }
 
-    protected Fermeture fermetureEntityToFermeture(FermetureEntity fermetureEntity) {
-        if ( fermetureEntity == null ) {
+    protected Image imageEntityToImage(ImageEntity imageEntity) {
+        if ( imageEntity == null ) {
             return null;
         }
 
-        Fermeture fermeture = new Fermeture();
+        Image image = new Image();
 
-        fermeture.setId( fermetureEntity.getId() );
-        fermeture.setDate( fermetureEntity.getDate() );
-
-        return fermeture;
-    }
-
-    protected Collection<Fermeture> fermetureEntityCollectionToFermetureCollection(Collection<FermetureEntity> collection) {
-        if ( collection == null ) {
-            return null;
+        image.setImageID( imageEntity.getImageID() );
+        byte[] photo = imageEntity.getPhoto();
+        if ( photo != null ) {
+            image.setPhoto( Arrays.copyOf( photo, photo.length ) );
         }
+        image.setFormule( formuleEntityToFormule( imageEntity.getFormule() ) );
 
-        Collection<Fermeture> collection1 = new ArrayList<Fermeture>( collection.size() );
-        for ( FermetureEntity fermetureEntity : collection ) {
-            collection1.add( fermetureEntityToFermeture( fermetureEntity ) );
-        }
-
-        return collection1;
+        return image;
     }
 
     protected List<Image> imageEntityListToImageList(List<ImageEntity> list) {
@@ -136,7 +129,6 @@ public class TraiteurMapperImpl implements TraiteurMapper {
         formule.setIsUniquePrix( formuleEntity.getIsUniquePrix() );
         formule.setSupFerrier( formuleEntity.getSupFerrier() );
         formule.setSupvendredi( formuleEntity.getSupvendredi() );
-        formule.setCodePostal( formuleEntity.getCodePostal() );
         formule.setSupDimanche( formuleEntity.getSupDimanche() );
         formule.setSupVeilleFerier( formuleEntity.getSupVeilleFerier() );
         formule.setImages( imageEntityListToImageList( formuleEntity.getImages() ) );
@@ -144,21 +136,43 @@ public class TraiteurMapperImpl implements TraiteurMapper {
         return formule;
     }
 
-    protected Image imageEntityToImage(ImageEntity imageEntity) {
-        if ( imageEntity == null ) {
+    protected List<Formule> formuleEntityListToFormuleList(List<FormuleEntity> list) {
+        if ( list == null ) {
             return null;
         }
 
-        Image image = new Image();
-
-        image.setImageID( imageEntity.getImageID() );
-        byte[] photo = imageEntity.getPhoto();
-        if ( photo != null ) {
-            image.setPhoto( Arrays.copyOf( photo, photo.length ) );
+        List<Formule> list1 = new ArrayList<Formule>( list.size() );
+        for ( FormuleEntity formuleEntity : list ) {
+            list1.add( formuleEntityToFormule( formuleEntity ) );
         }
-        image.setFormule( formuleEntityToFormule( imageEntity.getFormule() ) );
 
-        return image;
+        return list1;
+    }
+
+    protected Fermeture fermetureEntityToFermeture(FermetureEntity fermetureEntity) {
+        if ( fermetureEntity == null ) {
+            return null;
+        }
+
+        Fermeture fermeture = new Fermeture();
+
+        fermeture.setId( fermetureEntity.getId() );
+        fermeture.setDate( fermetureEntity.getDate() );
+
+        return fermeture;
+    }
+
+    protected Collection<Fermeture> fermetureEntityCollectionToFermetureCollection(Collection<FermetureEntity> collection) {
+        if ( collection == null ) {
+            return null;
+        }
+
+        Collection<Fermeture> collection1 = new ArrayList<Fermeture>( collection.size() );
+        for ( FermetureEntity fermetureEntity : collection ) {
+            collection1.add( fermetureEntityToFermeture( fermetureEntity ) );
+        }
+
+        return collection1;
     }
 
     protected AddressEntity addressToAddressEntity(Address address) {
@@ -179,30 +193,21 @@ public class TraiteurMapperImpl implements TraiteurMapper {
         return addressEntity;
     }
 
-    protected FermetureEntity fermetureToFermetureEntity(Fermeture fermeture) {
-        if ( fermeture == null ) {
+    protected ImageEntity imageToImageEntity(Image image) {
+        if ( image == null ) {
             return null;
         }
 
-        FermetureEntity fermetureEntity = new FermetureEntity();
+        ImageEntity imageEntity = new ImageEntity();
 
-        fermetureEntity.setId( fermeture.getId() );
-        fermetureEntity.setDate( fermeture.getDate() );
-
-        return fermetureEntity;
-    }
-
-    protected Collection<FermetureEntity> fermetureCollectionToFermetureEntityCollection(Collection<Fermeture> collection) {
-        if ( collection == null ) {
-            return null;
+        imageEntity.setImageID( image.getImageID() );
+        byte[] photo = image.getPhoto();
+        if ( photo != null ) {
+            imageEntity.setPhoto( Arrays.copyOf( photo, photo.length ) );
         }
+        imageEntity.setFormule( formuleToFormuleEntity( image.getFormule() ) );
 
-        Collection<FermetureEntity> collection1 = new ArrayList<FermetureEntity>( collection.size() );
-        for ( Fermeture fermeture : collection ) {
-            collection1.add( fermetureToFermetureEntity( fermeture ) );
-        }
-
-        return collection1;
+        return imageEntity;
     }
 
     protected List<ImageEntity> imageListToImageEntityList(List<Image> list) {
@@ -232,7 +237,6 @@ public class TraiteurMapperImpl implements TraiteurMapper {
         formuleEntity.setIsUniquePrix( formule.getIsUniquePrix() );
         formuleEntity.setSupFerrier( formule.getSupFerrier() );
         formuleEntity.setSupvendredi( formule.getSupvendredi() );
-        formuleEntity.setCodePostal( formule.getCodePostal() );
         formuleEntity.setSupDimanche( formule.getSupDimanche() );
         formuleEntity.setSupVeilleFerier( formule.getSupVeilleFerier() );
         formuleEntity.setImages( imageListToImageEntityList( formule.getImages() ) );
@@ -240,20 +244,42 @@ public class TraiteurMapperImpl implements TraiteurMapper {
         return formuleEntity;
     }
 
-    protected ImageEntity imageToImageEntity(Image image) {
-        if ( image == null ) {
+    protected List<FormuleEntity> formuleListToFormuleEntityList(List<Formule> list) {
+        if ( list == null ) {
             return null;
         }
 
-        ImageEntity imageEntity = new ImageEntity();
-
-        imageEntity.setImageID( image.getImageID() );
-        byte[] photo = image.getPhoto();
-        if ( photo != null ) {
-            imageEntity.setPhoto( Arrays.copyOf( photo, photo.length ) );
+        List<FormuleEntity> list1 = new ArrayList<FormuleEntity>( list.size() );
+        for ( Formule formule : list ) {
+            list1.add( formuleToFormuleEntity( formule ) );
         }
-        imageEntity.setFormule( formuleToFormuleEntity( image.getFormule() ) );
 
-        return imageEntity;
+        return list1;
+    }
+
+    protected FermetureEntity fermetureToFermetureEntity(Fermeture fermeture) {
+        if ( fermeture == null ) {
+            return null;
+        }
+
+        FermetureEntity fermetureEntity = new FermetureEntity();
+
+        fermetureEntity.setId( fermeture.getId() );
+        fermetureEntity.setDate( fermeture.getDate() );
+
+        return fermetureEntity;
+    }
+
+    protected Collection<FermetureEntity> fermetureCollectionToFermetureEntityCollection(Collection<Fermeture> collection) {
+        if ( collection == null ) {
+            return null;
+        }
+
+        Collection<FermetureEntity> collection1 = new ArrayList<FermetureEntity>( collection.size() );
+        for ( Fermeture fermeture : collection ) {
+            collection1.add( fermetureToFermetureEntity( fermeture ) );
+        }
+
+        return collection1;
     }
 }

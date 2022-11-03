@@ -1,10 +1,7 @@
 package be.icc.ahe.marryme.model;
 
 import be.icc.ahe.marryme.dataaccess.entity.*;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -12,10 +9,8 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 
-@Getter
-@Setter
+@Data
 @NoArgsConstructor
-@ToString
 public abstract class Service {
 
 

@@ -1283,6 +1283,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/be/icc/ahe/marryme/model/dto/SingleServiceViewDTO.java">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/src/main/java/be/icc/ahe/marryme/model/dto/UserRegistrationFormDTO.java">
           <value>
             <set />
@@ -1383,7 +1388,17 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/be/icc/ahe/marryme/model/mapper/dtomapper/CycleAvoidingMappingContext.java">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/src/main/java/be/icc/ahe/marryme/model/mapper/dtomapper/RegistrationUserMapper.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/be/icc/ahe/marryme/model/mapper/dtomapper/ServiceViewMapper.java">
           <value>
             <set />
           </value>
@@ -1638,6 +1653,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/target/generated-sources/annotations/be/icc/ahe/marryme/model/mapper/dtomapper/ServiceViewMapperImpl.java">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/../marryme-front/src/app/app-routing.module.ts">
           <value>
             <set />
@@ -1693,12 +1713,42 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/../marryme-front/src/app/shared/igx.module.ts">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/../marryme-front/src/app/shared/material.module.ts">
           <value>
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/../marryme-front/src/app/shared/pipes/filter-service.pipe.ts">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/../marryme-front/src/app/shared/shared.module.ts">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../marryme-front/src/app/user/components/all-services-list/all-services-list.component.css">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../marryme-front/src/app/user/components/all-services-list/all-services-list.component.html">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../marryme-front/src/app/user/components/all-services-list/all-services-list.component.scss">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../marryme-front/src/app/user/components/all-services-list/all-services-list.component.ts">
           <value>
             <set />
           </value>
@@ -1723,6 +1773,26 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/../marryme-front/src/app/user/components/provider-service/provider-service.component.css">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../marryme-front/src/app/user/components/provider-service/provider-service.component.html">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../marryme-front/src/app/user/components/provider-service/provider-service.component.scss">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../marryme-front/src/app/user/components/provider-service/provider-service.component.ts">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/../marryme-front/src/app/user/components/register-form/register-form.component.css">
           <value>
             <set />
@@ -1738,6 +1808,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/../marryme-front/src/app/user/models/all-services.model.ts">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/../marryme-front/src/app/user/models/register-form-dto.model.ts">
           <value>
             <set />
@@ -1749,6 +1824,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/../marryme-front/src/app/user/models/register-form.ts">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../marryme-front/src/app/user/models/single-service.model.ts">
           <value>
             <set />
           </value>

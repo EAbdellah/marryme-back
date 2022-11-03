@@ -96,6 +96,7 @@ import java.util.*;
 
 
 
+
 @AllArgsConstructor
 public abstract class ServiceEntity implements Serializable {
 
@@ -130,9 +131,11 @@ public abstract class ServiceEntity implements Serializable {
 //    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 //    private SocieteEntity societe;
 
-    @JsonManagedReference
-    @OneToMany(mappedBy = "serviceEntity"/*,cascade = CascadeType.ALL*/, fetch = FetchType.LAZY)
-    private List<FormuleEntity> formuleEntities = new ArrayList<>();
+//    @JsonManagedReference
+//    @OneToMany(mappedBy = "serviceEntity", fetch = FetchType.LAZY,cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(targetEntity = FormuleEntity.class, fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+    @JoinColumn(name="service_id")
+    private List<FormuleEntity> formules ;
 
     @OneToMany(mappedBy = "serviceEntity", fetch = FetchType.LAZY, orphanRemoval = true)
     private List<ReservationEntity> reservationEntities = new ArrayList<>();

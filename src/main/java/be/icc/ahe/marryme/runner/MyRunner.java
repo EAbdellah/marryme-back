@@ -20,11 +20,9 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 import java.sql.Date;
+import java.text.Normalizer;
 import java.time.Instant;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.List;
-import java.util.Locale;
+import java.util.*;
 import java.util.concurrent.TimeUnit;
 
 @Component
@@ -207,6 +205,7 @@ public class MyRunner implements CommandLineRunner {
 
         /**
          * CREATION SOCIETE SALLE
+         * SA MERE LA P*** IL FAUT SAVE D'BORD LE SERVICE AVANT DE SAVE LA FORMULES
          * */
 
         Address addressSalle = createAddress(faker);
@@ -226,17 +225,46 @@ public class MyRunner implements CommandLineRunner {
 
         Salle salle = createSalle(faker);
         salle.setAddress(addressService.findByID(1L));
-        societeSalle.setService(salle);
+
 
         salle.setFermetures(Arrays.asList (createFermeture(faker),createFermeture(faker),createFermeture(faker)));
 //        salleService.save(salle);
+
+
+//        salle.setFormules(Arrays.asList( createFormule(faker), createFormule(faker), createFormule(faker)));
+
+        societeSalle.setService(salle);
+
+
+        salle.getFormules().forEach(System.out::println);
 
         societeService.save(societeSalle);
 
 
 
+        Salle salle3 = createSalle(faker);
+        salle3.setAddress(addressService.findByID(1L));
+        salle3.setFermetures(Arrays.asList (createFermeture(faker),createFermeture(faker),createFermeture(faker)));
+
+        salle3.setReservations(Collections.singletonList(createreservation(faker)));
+        salle3.getFormules().forEach(System.out::println);
+
+        salleService.save(salle3);
+
+        Salle s4 = salleService.findByID(3L);
+        Formule formule = createFormule(faker);
+
+        formule.setImages(Arrays.asList(createImage(faker),createImage(faker),createImage(faker)));
 
 
+        s4 .setFormules(Arrays.asList(formule,createFormule(faker),createFormule(faker)));
+        salleService.save(s4);
+
+        Formule f = formuleService.findByID(3L);
+        f.setImages(Arrays.asList(createImage(faker),createImage(faker),createImage(faker)));
+        formuleService.save(f);
+
+        System.out.println(fermetureService.findByID(1L));
 
 
 
@@ -441,13 +469,11 @@ public class MyRunner implements CommandLineRunner {
         if (!isUnique) {
             formule.setSupDimanche(faker.number().numberBetween(10, 50));
             formule.setSupVeilleFerier(faker.number().numberBetween(10, 50));
-            formule.setCodePostal(faker.number().numberBetween(10, 50));
             formule.setSupFerrier(faker.number().numberBetween(10, 50));
             formule.setSupvendredi(faker.number().numberBetween(10, 50));
         } else {
             formule.setSupDimanche(0);
             formule.setSupVeilleFerier(0);
-            formule.setCodePostal(0);
             formule.setSupFerrier(0);
             formule.setSupvendredi(0);
         }

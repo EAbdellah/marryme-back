@@ -11,7 +11,7 @@ import javax.annotation.processing.Generated;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2022-10-29T04:26:57+0200",
+    date = "2022-11-02T03:33:41+0100",
     comments = "version: 1.5.2.Final, compiler: javac, environment: Java 11.0.8 (Oracle Corporation)"
 )
 public class FormuleMapperImpl implements FormuleMapper {
@@ -31,7 +31,6 @@ public class FormuleMapperImpl implements FormuleMapper {
         formule.setIsUniquePrix( formuleEntity.getIsUniquePrix() );
         formule.setSupFerrier( formuleEntity.getSupFerrier() );
         formule.setSupvendredi( formuleEntity.getSupvendredi() );
-        formule.setCodePostal( formuleEntity.getCodePostal() );
         formule.setSupDimanche( formuleEntity.getSupDimanche() );
         formule.setSupVeilleFerier( formuleEntity.getSupVeilleFerier() );
         formule.setImages( imageEntityListToImageList( formuleEntity.getImages() ) );
@@ -54,7 +53,6 @@ public class FormuleMapperImpl implements FormuleMapper {
         formuleEntity.setIsUniquePrix( formule.getIsUniquePrix() );
         formuleEntity.setSupFerrier( formule.getSupFerrier() );
         formuleEntity.setSupvendredi( formule.getSupvendredi() );
-        formuleEntity.setCodePostal( formule.getCodePostal() );
         formuleEntity.setSupDimanche( formule.getSupDimanche() );
         formuleEntity.setSupVeilleFerier( formule.getSupVeilleFerier() );
         formuleEntity.setImages( imageListToImageEntityList( formule.getImages() ) );

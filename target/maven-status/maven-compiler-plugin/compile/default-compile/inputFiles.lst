@@ -2,6 +2,7 @@ C:\Users\abdellah.elachhab\Desktop\MarryMe Project\marryme-back\src\main\java\be
 C:\Users\abdellah.elachhab\Desktop\MarryMe Project\marryme-back\src\main\java\be\icc\ahe\marryme\runner\MyRunner.java
 C:\Users\abdellah.elachhab\Desktop\MarryMe Project\marryme-back\src\main\java\be\icc\ahe\marryme\service\EmailService.java
 C:\Users\abdellah.elachhab\Desktop\MarryMe Project\marryme-back\src\main\java\be\icc\ahe\marryme\model\mapper\ReservationMapper.java
+C:\Users\abdellah.elachhab\Desktop\MarryMe Project\marryme-back\src\main\java\be\icc\ahe\marryme\model\dto\SingleServiceViewDTO.java
 C:\Users\abdellah.elachhab\Desktop\MarryMe Project\marryme-back\src\main\java\be\icc\ahe\marryme\security\filter\JwtAuthorizationFilter.java
 C:\Users\abdellah.elachhab\Desktop\MarryMe Project\marryme-back\src\main\java\be\icc\ahe\marryme\dataaccess\dao\ImageDAO.java
 C:\Users\abdellah.elachhab\Desktop\MarryMe Project\marryme-back\src\main\java\be\icc\ahe\marryme\dataaccess\entity\MakeUpAndHairEntity.java
@@ -33,6 +34,7 @@ C:\Users\abdellah.elachhab\Desktop\MarryMe Project\marryme-back\src\main\java\be
 C:\Users\abdellah.elachhab\Desktop\MarryMe Project\marryme-back\src\main\java\be\icc\ahe\marryme\model\mapper\PersonMapper.java
 C:\Users\abdellah.elachhab\Desktop\MarryMe Project\marryme-back\src\main\java\be\icc\ahe\marryme\exception\UsernameExistException.java
 C:\Users\abdellah.elachhab\Desktop\MarryMe Project\marryme-back\src\main\java\be\icc\ahe\marryme\dataaccess\repository\MusiqueRepo.java
+C:\Users\abdellah.elachhab\Desktop\MarryMe Project\marryme-back\src\main\java\be\icc\ahe\marryme\model\mapper\dtomapper\CycleAvoidingMappingContext.java
 C:\Users\abdellah.elachhab\Desktop\MarryMe Project\marryme-back\src\main\java\be\icc\ahe\marryme\service\implementation\FermetureServiceImpl.java
 C:\Users\abdellah.elachhab\Desktop\MarryMe Project\marryme-back\src\main\java\be\icc\ahe\marryme\listerner\AuthenticationSuccessListener.java
 C:\Users\abdellah.elachhab\Desktop\MarryMe Project\marryme-back\src\main\java\be\icc\ahe\marryme\service\TraiteurService.java
@@ -67,6 +69,7 @@ C:\Users\abdellah.elachhab\Desktop\MarryMe Project\marryme-back\src\main\java\be
 C:\Users\abdellah.elachhab\Desktop\MarryMe Project\marryme-back\src\main\java\be\icc\ahe\marryme\model\mapper\ServiceMapper.java
 C:\Users\abdellah.elachhab\Desktop\MarryMe Project\marryme-back\src\main\java\be\icc\ahe\marryme\service\SalleService.java
 C:\Users\abdellah.elachhab\Desktop\MarryMe Project\marryme-back\src\main\java\be\icc\ahe\marryme\controller\UserController.java
+C:\Users\abdellah.elachhab\Desktop\MarryMe Project\marryme-back\src\main\java\be\icc\ahe\marryme\model\mapper\dtomapper\ServiceViewMapper.java
 C:\Users\abdellah.elachhab\Desktop\MarryMe Project\marryme-back\src\main\java\be\icc\ahe\marryme\dataaccess\repository\TraiteurRepo.java
 C:\Users\abdellah.elachhab\Desktop\MarryMe Project\marryme-back\src\main\java\be\icc\ahe\marryme\dataaccess\dao\ServiceTraiteurDAO.java
 C:\Users\abdellah.elachhab\Desktop\MarryMe Project\marryme-back\src\main\java\be\icc\ahe\marryme\exception\EmailNotFoundException.java

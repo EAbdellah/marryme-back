@@ -3,16 +3,16 @@ package be.icc.ahe.marryme.controller;
 import be.icc.ahe.marryme.dataaccess.dao.ServiceDAO;
 import be.icc.ahe.marryme.dataaccess.entity.ServiceEntity;
 import be.icc.ahe.marryme.dataaccess.repository.ServicesRepo;
+import be.icc.ahe.marryme.exception.sqlexception.ServiceDatabaseException;
 import be.icc.ahe.marryme.model.User;
 import be.icc.ahe.marryme.model.dto.AllServicesDTO;
+import be.icc.ahe.marryme.model.dto.SingleServiceViewDTO;
+import be.icc.ahe.marryme.model.mapper.dtomapper.CycleAvoidingMappingContext;
 import be.icc.ahe.marryme.service.ServicesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -46,6 +46,13 @@ public class ProviderController {
 //
 //        }
         return new ResponseEntity( list, HttpStatus.OK);
+    }
+
+    @GetMapping("/getService/{serviceId}") // TODO: patch mapping
+    public ResponseEntity getService(@PathVariable Long serviceId) throws ServiceDatabaseException {
+        ServiceEntity serviceEntity = servicesService.findByID(serviceId);
+        SingleServiceViewDTO ssvdto = servicesService.mapServiceToSingleViewDTO(serviceEntity);
+        return new ResponseEntity<>(ssvdto, HttpStatus.OK);
     }
 
 

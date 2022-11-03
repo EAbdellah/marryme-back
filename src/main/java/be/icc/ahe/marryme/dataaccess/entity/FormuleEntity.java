@@ -15,8 +15,6 @@ import java.util.Objects;
 @Entity
 @Table(name = "formule")
 @NoArgsConstructor
-@Setter
-@Getter
 @Data
 public class FormuleEntity implements Serializable {
 
@@ -37,18 +35,19 @@ public class FormuleEntity implements Serializable {
     @Column(name = "supvendredi", nullable = true)
     private Integer supvendredi;
     @Column(name = "supSamedi", nullable = true)
-    private Integer codePostal;
+    private Integer supSamedi;
     @Column(name = "supDimanche", nullable = true)
     private Integer supDimanche;
     @Column(name = "supVeilleFerier", nullable = true)
     private Integer supVeilleFerier;
 
     @JsonManagedReference
-    @OneToMany(mappedBy="formule",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+    @JoinColumn(name="formule_id")
     private List<ImageEntity> images;
 
     @JsonBackReference
-    @ManyToOne( targetEntity = ServiceEntity.class, fetch = FetchType.LAZY)
+    @ManyToOne( fetch = FetchType.LAZY)
     @JoinColumn(name="service_id")
     private ServiceEntity serviceEntity;
 
