@@ -1,18 +1,20 @@
 package be.icc.ahe.marryme.dataaccess.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.io.File;
 import java.io.Serializable;
 import java.sql.Date;
 
 @Entity
 @Table(name = "reservation")
 @NoArgsConstructor
-@Setter
-@Getter
+@Data
 
 public class ReservationEntity  implements Serializable {
     @Id
@@ -29,6 +31,30 @@ public class ReservationEntity  implements Serializable {
     private ServiceEntity serviceEntity;
 
     @ManyToOne
-    @JoinColumn(name="person_id", nullable=false)
-    private UserEntity userEntity;
+    @JoinColumn(name="user_id", nullable=false)
+    private UserEntity user;
+
+    @ManyToOne
+    @JoinColumn(name="formule_id", nullable=false)
+    private FormuleEntity formule;
+
+    @Column(name = "price", nullable = false, length = 128)
+    private Integer price;
+
+    @Column(name = "status", nullable = false, length = 128)
+    private String status;
+
+    @Column(name = "payementId")
+    private String payementId;
+
+    @Column(name = "token")
+    private String token;
+
+    @Column(name = "contract")
+    private File contract;
+
+    @Column(name = "inceptionDate", nullable = false)
+    private Date inceptionDate;
+
+
 }

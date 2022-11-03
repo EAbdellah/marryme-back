@@ -5,6 +5,7 @@ import be.icc.ahe.marryme.dataaccess.entity.FormuleEntity;
 import be.icc.ahe.marryme.exception.sqlexception.FormuleDatabaseException;
 import be.icc.ahe.marryme.model.Formule;
 import be.icc.ahe.marryme.model.mapper.FormuleMapper;
+import be.icc.ahe.marryme.model.mapper.dtomapper.CycleAvoidingMappingContext;
 import be.icc.ahe.marryme.service.FormuleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,12 +28,12 @@ public class FormuleServiceImpl implements FormuleService {
         Optional.ofNullable(formule)
                 .orElseThrow(() -> new FormuleDatabaseException("Can not persist null formule: " + formule));
 
-        FormuleEntity persistedFormuleEntity = formuleDAO.save(FormuleMapper.INSTANCE.modelToEntity(formule));
+        FormuleEntity persistedFormuleEntity = formuleDAO.save(FormuleMapper.INSTANCE.modelToEntity(formule,new CycleAvoidingMappingContext()));
 
         Optional.ofNullable(persistedFormuleEntity)
                 .orElseThrow(() -> new FormuleDatabaseException("Persisted formule is null: " + persistedFormuleEntity));
 
-        return FormuleMapper.INSTANCE.entityToModel(persistedFormuleEntity);
+        return FormuleMapper.INSTANCE.entityToModel(persistedFormuleEntity,new CycleAvoidingMappingContext());
 
     }
 
@@ -43,7 +44,7 @@ public class FormuleServiceImpl implements FormuleService {
         FormuleEntity formuleEntity = this.formuleDAO.findByID(id)
                 .orElseThrow(() -> new FormuleDatabaseException("None formule found at id:" + id));
 
-        return  FormuleMapper.INSTANCE.entityToModel(formuleEntity);
+        return  FormuleMapper.INSTANCE.entityToModel(formuleEntity,new CycleAvoidingMappingContext());
 
     }
 
@@ -57,13 +58,13 @@ public class FormuleServiceImpl implements FormuleService {
             throw new FormuleDatabaseException("Try to update into data base a formule that does not exist: " + formule);
         }
 
-        FormuleEntity peristedformuleEntity = formuleDAO.save(FormuleMapper.INSTANCE.modelToEntity(formule));
+        FormuleEntity peristedformuleEntity = formuleDAO.save(FormuleMapper.INSTANCE.modelToEntity(formule,new CycleAvoidingMappingContext()));
 
 
         Optional.ofNullable(peristedformuleEntity)
                 .orElseThrow(() -> new FormuleDatabaseException("Persisted formule is null: " + peristedformuleEntity));
 
-        return FormuleMapper.INSTANCE.entityToModel(peristedformuleEntity);
+        return FormuleMapper.INSTANCE.entityToModel(peristedformuleEntity,new CycleAvoidingMappingContext());
     }
 
     @Override

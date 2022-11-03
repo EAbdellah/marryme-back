@@ -1283,12 +1283,22 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/be/icc/ahe/marryme/model/dto/ReservationRequestDTO.java">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/src/main/java/be/icc/ahe/marryme/model/dto/SingleServiceViewDTO.java">
           <value>
             <set />
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/src/main/java/be/icc/ahe/marryme/model/dto/UserRegistrationFormDTO.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/be/icc/ahe/marryme/model/dto/reservationRequestDTO.java">
           <value>
             <set />
           </value>
@@ -1394,6 +1404,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/src/main/java/be/icc/ahe/marryme/model/mapper/dtomapper/RegistrationUserMapper.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/be/icc/ahe/marryme/model/mapper/dtomapper/ReservationRequestMapper.java">
           <value>
             <set />
           </value>
@@ -1638,7 +1653,17 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/target/generated-sources/annotations/be/icc/ahe/marryme/model/mapper/FormuleMapperImpl.java">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/target/generated-sources/annotations/be/icc/ahe/marryme/model/mapper/PersonMapperImpl.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/target/generated-sources/annotations/be/icc/ahe/marryme/model/mapper/ReservationMapperImpl.java">
           <value>
             <set />
           </value>

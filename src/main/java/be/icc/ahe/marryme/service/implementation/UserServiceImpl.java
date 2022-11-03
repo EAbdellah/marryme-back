@@ -131,7 +131,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     public void deleteUser(String email) throws IOException {
         UserEntity userEntity = userDAO.findUserByEmail(email);
 
-        System.out.println(        personDAO.findPersonByUser(userEntity));
+        System.out.println(personDAO.findPersonByUser(userEntity));
 
 
 //        userDAO.deleteById(userEntity.getUserID());

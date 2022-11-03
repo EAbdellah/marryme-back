@@ -1,0 +1,28 @@
+package be.icc.ahe.marryme.model.mapper.dtomapper;
+
+import be.icc.ahe.marryme.model.Reservation;
+import be.icc.ahe.marryme.model.dto.ReservationRequestDTO;
+import javax.annotation.processing.Generated;
+
+@Generated(
+    value = "org.mapstruct.ap.MappingProcessor",
+    date = "2022-11-06T05:16:17+0100",
+    comments = "version: 1.5.2.Final, compiler: javac, environment: Java 11.0.8 (Oracle Corporation)"
+)
+public class ReservationRequestMapperImpl implements ReservationRequestMapper {
+
+    @Override
+    public Reservation dtotomodel(ReservationRequestDTO reservationRequestDTO) {
+        if ( reservationRequestDTO == null ) {
+            return null;
+        }
+
+        Reservation reservation = new Reservation();
+
+        reservation.setReservationDate( reservationRequestDTO.getReservationDate() );
+        reservation.setPrice( reservationRequestDTO.getPrice() );
+        reservation.setContract( reservationRequestDTO.getContract() );
+
+        return reservation;
+    }
+}

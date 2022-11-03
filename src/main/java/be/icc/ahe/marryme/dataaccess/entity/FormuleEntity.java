@@ -1,5 +1,6 @@
 package be.icc.ahe.marryme.dataaccess.entity;
 
+import be.icc.ahe.marryme.model.Reservation;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Data;
@@ -50,6 +51,13 @@ public class FormuleEntity implements Serializable {
     @ManyToOne( fetch = FetchType.LAZY)
     @JoinColumn(name="service_id")
     private ServiceEntity serviceEntity;
+
+    @JsonManagedReference
+    @OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+    @JoinColumn(name="reservation_id")
+    private List<ReservationEntity> reservation;
+
+
 
 
 }

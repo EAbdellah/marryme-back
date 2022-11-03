@@ -3,18 +3,13 @@ package be.icc.ahe.marryme.model;
 import be.icc.ahe.marryme.dataaccess.entity.ImageEntity;
 import be.icc.ahe.marryme.dataaccess.entity.ServiceEntity;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.List;
 
-@Getter
-@Setter
+@Data
 @NoArgsConstructor
-@ToString
 public class Formule {
 
     private Long formuleID;
@@ -30,6 +25,7 @@ public class Formule {
     @JsonManagedReference
     private List<Image> images;
     private Service service;
+    private List<Reservation> reservation;
 
 
 

@@ -2,6 +2,7 @@ package be.icc.ahe.marryme.runner;
 
 
 import be.icc.ahe.marryme.dataaccess.entity.MusiqueEntity;
+import be.icc.ahe.marryme.dataaccess.entity.PersonEntity;
 import be.icc.ahe.marryme.dataaccess.entity.SocieteEntity;
 import be.icc.ahe.marryme.dataaccess.entity.UserEntity;
 import be.icc.ahe.marryme.dataaccess.entity.enumeration.HallType;
@@ -9,8 +10,11 @@ import be.icc.ahe.marryme.dataaccess.entity.enumeration.MusiqueType;
 import be.icc.ahe.marryme.dataaccess.entity.enumeration.Role;
 import be.icc.ahe.marryme.exception.sqlexception.FermetureDatabaseException;
 import be.icc.ahe.marryme.model.*;
+import be.icc.ahe.marryme.model.dto.UserRegistrationFormDTO;
+import be.icc.ahe.marryme.model.mapper.PersonMapper;
 import be.icc.ahe.marryme.model.mapper.SocieteMapper;
 import be.icc.ahe.marryme.model.mapper.UserMapper;
+import be.icc.ahe.marryme.model.mapper.dtomapper.RegistrationUserMapper;
 import be.icc.ahe.marryme.service.*;
 import com.github.javafaker.Faker;
 import org.slf4j.Logger;
@@ -19,6 +23,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
+import java.io.File;
 import java.sql.Date;
 import java.text.Normalizer;
 import java.time.Instant;
@@ -102,21 +107,21 @@ public class MyRunner implements CommandLineRunner {
 
 
 
-//        UserRegistrationFormDTO urf = new UserRegistrationFormDTO(
-//                "Abdellah","Elachhab","Belgique","Bruxelles","1070","Boulevard Prince de Liege",
-//                "44","4","0484732465","tamere@tamer.tame","SalutLesBronzé","par eamil"
-//        );
-//
-//        Person person = RegistrationUserMapper.INSTANCE.dtotomodel(urf);
-//
-//        System.out.println(person);
-//
+        UserRegistrationFormDTO urf = new UserRegistrationFormDTO(
+                "Abdellah","Elachhab","Belgique","Bruxelles","1070","Boulevard Prince de Liege",
+                "44","4","0484732465","tamere@tamer.tame","SalutLesBronzé","par eamil"
+        );
+
+        Person person2 = RegistrationUserMapper.INSTANCE.dtotomodel(urf);
+
+        System.out.println(person2);
+
 //        PersonEntity personEntity =  PersonMapper.INSTANCE.modelToEntity(person);
 //        System.out.println(personEntity);
-//
-//        personService.save(personEntity);
-//
-//
+
+        personService.save(person2);
+
+
 
         Faker faker = new Faker((new Locale("fr_BE")));
 
@@ -265,6 +270,14 @@ public class MyRunner implements CommandLineRunner {
         formuleService.save(f);
 
         System.out.println(fermetureService.findByID(1L));
+
+        UserEntity user1 = userService.findByID(1L);
+
+        Reservation reservation = createreservation(faker);
+        reservation.setFormule(f);
+        reservation.setUser(UserMapper.INSTANCE.entityToModel(user1));
+
+        reservationService.save(reservation);
 
 
 
@@ -494,6 +507,12 @@ public class MyRunner implements CommandLineRunner {
         Reservation reservation = new Reservation();
         reservation.setTicket(String.valueOf(reservation.hashCode()));
         reservation.setReservationDate(new Date(java.util.Date.from(Instant.now()).getTime()));
+        reservation.setContract(new File("C:\\Users\\abdellah.elachhab\\Desktop\\MarryMe Project\\marryme-back\\src\\main\\resources\\Contract"));
+        reservation.setPayementId(faker.crypto().md5());
+        reservation.setStatus("waiting");
+        reservation.setToken(faker.crypto().sha1());
+        reservation.setPrice(50);
+        reservation.setInceptionDate( new Date(java.util.Date.from(Instant.now()).getTime()));
         return reservation;
     }
 }

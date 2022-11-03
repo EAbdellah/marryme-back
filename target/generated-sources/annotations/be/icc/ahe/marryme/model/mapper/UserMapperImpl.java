@@ -1,13 +1,21 @@
 package be.icc.ahe.marryme.model.mapper;
 
+import be.icc.ahe.marryme.dataaccess.entity.FormuleEntity;
+import be.icc.ahe.marryme.dataaccess.entity.ImageEntity;
+import be.icc.ahe.marryme.dataaccess.entity.ReservationEntity;
 import be.icc.ahe.marryme.dataaccess.entity.UserEntity;
+import be.icc.ahe.marryme.model.Formule;
+import be.icc.ahe.marryme.model.Image;
+import be.icc.ahe.marryme.model.Reservation;
 import be.icc.ahe.marryme.model.User;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import javax.annotation.processing.Generated;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2022-11-02T03:33:41+0100",
+    date = "2022-11-06T05:16:18+0100",
     comments = "version: 1.5.2.Final, compiler: javac, environment: Java 11.0.8 (Oracle Corporation)"
 )
 public class UserMapperImpl implements UserMapper {
@@ -30,6 +38,7 @@ public class UserMapperImpl implements UserMapper {
         }
         userEntity.setActive( user.isActive() );
         userEntity.setNotLocked( user.isNotLocked() );
+        userEntity.setReservations( reservationListToReservationEntityList( user.getReservations() ) );
         userEntity.setProfileImageUrl( user.getProfileImageUrl() );
         userEntity.setLastLoginDate( user.getLastLoginDate() );
         userEntity.setLastLoginDateDisplay( user.getLastLoginDateDisplay() );
@@ -56,11 +65,186 @@ public class UserMapperImpl implements UserMapper {
         if ( authorities != null ) {
             user.setAuthorities( Arrays.copyOf( authorities, authorities.length ) );
         }
+        user.setReservations( reservationEntityListToReservationList( userEntity.getReservations() ) );
         user.setProfileImageUrl( userEntity.getProfileImageUrl() );
         user.setLastLoginDate( userEntity.getLastLoginDate() );
         user.setLastLoginDateDisplay( userEntity.getLastLoginDateDisplay() );
         user.setJoinDate( userEntity.getJoinDate() );
 
         return user;
+    }
+
+    protected ImageEntity imageToImageEntity(Image image) {
+        if ( image == null ) {
+            return null;
+        }
+
+        ImageEntity imageEntity = new ImageEntity();
+
+        imageEntity.setImageID( image.getImageID() );
+        byte[] photo = image.getPhoto();
+        if ( photo != null ) {
+            imageEntity.setPhoto( Arrays.copyOf( photo, photo.length ) );
+        }
+        imageEntity.setFormule( formuleToFormuleEntity( image.getFormule() ) );
+
+        return imageEntity;
+    }
+
+    protected List<ImageEntity> imageListToImageEntityList(List<Image> list) {
+        if ( list == null ) {
+            return null;
+        }
+
+        List<ImageEntity> list1 = new ArrayList<ImageEntity>( list.size() );
+        for ( Image image : list ) {
+            list1.add( imageToImageEntity( image ) );
+        }
+
+        return list1;
+    }
+
+    protected List<ReservationEntity> reservationListToReservationEntityList(List<Reservation> list) {
+        if ( list == null ) {
+            return null;
+        }
+
+        List<ReservationEntity> list1 = new ArrayList<ReservationEntity>( list.size() );
+        for ( Reservation reservation : list ) {
+            list1.add( reservationToReservationEntity( reservation ) );
+        }
+
+        return list1;
+    }
+
+    protected FormuleEntity formuleToFormuleEntity(Formule formule) {
+        if ( formule == null ) {
+            return null;
+        }
+
+        FormuleEntity formuleEntity = new FormuleEntity();
+
+        formuleEntity.setFormuleID( formule.getFormuleID() );
+        formuleEntity.setNom( formule.getNom() );
+        formuleEntity.setPrix( formule.getPrix() );
+        formuleEntity.setDescription( formule.getDescription() );
+        formuleEntity.setIsUniquePrix( formule.getIsUniquePrix() );
+        formuleEntity.setSupFerrier( formule.getSupFerrier() );
+        formuleEntity.setSupvendredi( formule.getSupvendredi() );
+        formuleEntity.setSupDimanche( formule.getSupDimanche() );
+        formuleEntity.setSupVeilleFerier( formule.getSupVeilleFerier() );
+        formuleEntity.setImages( imageListToImageEntityList( formule.getImages() ) );
+        formuleEntity.setReservation( reservationListToReservationEntityList( formule.getReservation() ) );
+
+        return formuleEntity;
+    }
+
+    protected ReservationEntity reservationToReservationEntity(Reservation reservation) {
+        if ( reservation == null ) {
+            return null;
+        }
+
+        ReservationEntity reservationEntity = new ReservationEntity();
+
+        reservationEntity.setReservationID( reservation.getReservationID() );
+        reservationEntity.setReservationDate( reservation.getReservationDate() );
+        reservationEntity.setTicket( reservation.getTicket() );
+        reservationEntity.setUser( modelToEntity( reservation.getUser() ) );
+        reservationEntity.setFormule( formuleToFormuleEntity( reservation.getFormule() ) );
+        reservationEntity.setPrice( reservation.getPrice() );
+        reservationEntity.setStatus( reservation.getStatus() );
+        reservationEntity.setPayementId( reservation.getPayementId() );
+        reservationEntity.setToken( reservation.getToken() );
+        reservationEntity.setContract( reservation.getContract() );
+        reservationEntity.setInceptionDate( reservation.getInceptionDate() );
+
+        return reservationEntity;
+    }
+
+    protected Image imageEntityToImage(ImageEntity imageEntity) {
+        if ( imageEntity == null ) {
+            return null;
+        }
+
+        Image image = new Image();
+
+        image.setImageID( imageEntity.getImageID() );
+        byte[] photo = imageEntity.getPhoto();
+        if ( photo != null ) {
+            image.setPhoto( Arrays.copyOf( photo, photo.length ) );
+        }
+        image.setFormule( formuleEntityToFormule( imageEntity.getFormule() ) );
+
+        return image;
+    }
+
+    protected List<Image> imageEntityListToImageList(List<ImageEntity> list) {
+        if ( list == null ) {
+            return null;
+        }
+
+        List<Image> list1 = new ArrayList<Image>( list.size() );
+        for ( ImageEntity imageEntity : list ) {
+            list1.add( imageEntityToImage( imageEntity ) );
+        }
+
+        return list1;
+    }
+
+    protected List<Reservation> reservationEntityListToReservationList(List<ReservationEntity> list) {
+        if ( list == null ) {
+            return null;
+        }
+
+        List<Reservation> list1 = new ArrayList<Reservation>( list.size() );
+        for ( ReservationEntity reservationEntity : list ) {
+            list1.add( reservationEntityToReservation( reservationEntity ) );
+        }
+
+        return list1;
+    }
+
+    protected Formule formuleEntityToFormule(FormuleEntity formuleEntity) {
+        if ( formuleEntity == null ) {
+            return null;
+        }
+
+        Formule formule = new Formule();
+
+        formule.setFormuleID( formuleEntity.getFormuleID() );
+        formule.setNom( formuleEntity.getNom() );
+        formule.setPrix( formuleEntity.getPrix() );
+        formule.setDescription( formuleEntity.getDescription() );
+        formule.setIsUniquePrix( formuleEntity.getIsUniquePrix() );
+        formule.setSupFerrier( formuleEntity.getSupFerrier() );
+        formule.setSupvendredi( formuleEntity.getSupvendredi() );
+        formule.setSupDimanche( formuleEntity.getSupDimanche() );
+        formule.setSupVeilleFerier( formuleEntity.getSupVeilleFerier() );
+        formule.setImages( imageEntityListToImageList( formuleEntity.getImages() ) );
+        formule.setReservation( reservationEntityListToReservationList( formuleEntity.getReservation() ) );
+
+        return formule;
+    }
+
+    protected Reservation reservationEntityToReservation(ReservationEntity reservationEntity) {
+        if ( reservationEntity == null ) {
+            return null;
+        }
+
+        Reservation reservation = new Reservation();
+
+        reservation.setReservationID( reservationEntity.getReservationID() );
+        reservation.setReservationDate( reservationEntity.getReservationDate() );
+        reservation.setTicket( reservationEntity.getTicket() );
+        reservation.setUser( entityToModel( reservationEntity.getUser() ) );
+        reservation.setFormule( formuleEntityToFormule( reservationEntity.getFormule() ) );
+        reservation.setPrice( reservationEntity.getPrice() );
+        reservation.setStatus( reservationEntity.getStatus() );
+        reservation.setPayementId( reservationEntity.getPayementId() );
+        reservation.setToken( reservationEntity.getToken() );
+        reservation.setContract( reservationEntity.getContract() );
+        reservation.setInceptionDate( reservationEntity.getInceptionDate() );
+
+        return reservation;
     }
 }

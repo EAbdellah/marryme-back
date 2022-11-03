@@ -72,6 +72,7 @@ be\icc\ahe\marryme\model\dto\UserRegistrationFormDTO.class
 be\icc\ahe\marryme\dataaccess\repository\FormuleRepo.class
 be\icc\ahe\marryme\service\ImageService.class
 be\icc\ahe\marryme\exception\sqlexception\AddressDatabaseException.class
+be\icc\ahe\marryme\model\dto\ReservationRequestDTO.class
 be\icc\ahe\marryme\service\implementation\SocieteServiceImpl.class
 be\icc\ahe\marryme\dataaccess\entity\enumeration\Role.class
 be\icc\ahe\marryme\model\mapper\ImageMapperImpl.class
@@ -96,6 +97,7 @@ be\icc\ahe\marryme\controller\UserController.class
 be\icc\ahe\marryme\service\ReservationService.class
 be\icc\ahe\marryme\constant\UserImplConstant.class
 be\icc\ahe\marryme\dataaccess\entity\TraiteurEntity.class
+be\icc\ahe\marryme\model\mapper\dtomapper\ReservationRequestMapper.class
 be\icc\ahe\marryme\listerner\AuthenticationSuccessListener.class
 be\icc\ahe\marryme\MarrymeBack.class
 be\icc\ahe\marryme\service\implementation\EmailServiceImpl.class
@@ -135,6 +137,7 @@ be\icc\ahe\marryme\model\dto\SingleServiceViewDTO.class
 be\icc\ahe\marryme\model\Musique.class
 be\icc\ahe\marryme\dataaccess\entity\ServiceEntity.class
 be\icc\ahe\marryme\exception\sqlexception\MediaDatabaseException.class
+be\icc\ahe\marryme\model\mapper\dtomapper\ReservationRequestMapperImpl.class
 be\icc\ahe\marryme\service\implementation\ParkingServiceImpl.class
 be\icc\ahe\marryme\dataaccess\entity\PersonEntity.class
 be\icc\ahe\marryme\security\utility\JWTTokenProvider.class

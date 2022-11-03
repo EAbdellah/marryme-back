@@ -36,9 +36,8 @@ public class UserEntity implements Serializable {
     private boolean isActive;
     @Column(name = "is_not_locked")
     private boolean isNotLocked;
-
-    @OneToMany(mappedBy="userEntity")
-    private List<ReservationEntity> reservationEntities;
+    @OneToMany(mappedBy="user")
+    private List<ReservationEntity> reservations;
     private String profileImageUrl;
     private Date lastLoginDate;
     private Date lastLoginDateDisplay;

@@ -1,6 +1,7 @@
 package be.icc.ahe.marryme.model;
 
 import be.icc.ahe.marryme.dataaccess.entity.enumeration.Role;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -21,6 +22,7 @@ public class User  {
     private boolean isActive;
     private boolean isNotLocked;
     private String[] authorities;
+    @JsonManagedReference
     private List<Reservation> reservations;
     private String profileImageUrl;
     private Date lastLoginDate;

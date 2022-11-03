@@ -2,9 +2,13 @@ package be.icc.ahe.marryme.service;
 
 import be.icc.ahe.marryme.dataaccess.entity.AddressEntity;
 import be.icc.ahe.marryme.dataaccess.entity.ReservationEntity;
+import be.icc.ahe.marryme.dataaccess.entity.UserEntity;
 import be.icc.ahe.marryme.exception.sqlexception.AddressDatabaseException;
+import be.icc.ahe.marryme.exception.sqlexception.FormuleDatabaseException;
 import be.icc.ahe.marryme.exception.sqlexception.ReservationDatabaseException;
 import be.icc.ahe.marryme.model.Reservation;
+import be.icc.ahe.marryme.model.User;
+import be.icc.ahe.marryme.model.dto.ReservationRequestDTO;
 import org.springframework.stereotype.Service;
 
 import java.sql.SQLDataException;
@@ -15,4 +19,5 @@ public interface ReservationService {
     Reservation findByID(Long id) throws ReservationDatabaseException;
     Reservation update(Reservation reservation) throws ReservationDatabaseException;
     void deleteById(Long id) throws ReservationDatabaseException;
+    Reservation saveReservationRequest(ReservationRequestDTO rrdto, User user) throws FormuleDatabaseException, ReservationDatabaseException;
 }
