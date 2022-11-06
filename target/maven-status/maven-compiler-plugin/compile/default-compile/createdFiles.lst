@@ -33,6 +33,7 @@ be\icc\ahe\marryme\model\mapper\MediaMapper.class
 be\icc\ahe\marryme\dataaccess\dao\ServiceTraiteurDAO.class
 be\icc\ahe\marryme\exception\sqlexception\ReservationDatabaseException.class
 be\icc\ahe\marryme\dataaccess\dao\MakeUpAndHairDAO.class
+be\icc\ahe\marryme\exception\ExceptionHandling.class
 be\icc\ahe\marryme\model\ServiceTraiteur.class
 be\icc\ahe\marryme\model\Media.class
 be\icc\ahe\marryme\service\ServiceTraiteurService.class

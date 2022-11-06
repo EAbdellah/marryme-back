@@ -13,6 +13,7 @@ import be.icc.ahe.marryme.model.Person;
 import be.icc.ahe.marryme.model.User;
 import be.icc.ahe.marryme.model.mapper.PersonMapper;
 import be.icc.ahe.marryme.model.mapper.UserMapper;
+import be.icc.ahe.marryme.model.mapper.dtomapper.CycleAvoidingMappingContext;
 import be.icc.ahe.marryme.security.domain.UserPrincipal;
 import be.icc.ahe.marryme.service.UserService;
 import org.apache.commons.lang3.StringUtils;
@@ -68,13 +69,13 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
     @Override
     public User save(UserEntity userEntity) throws Exception {
-        return UserMapper.INSTANCE.entityToModel(userDAO.save(userEntity));
+        return UserMapper.INSTANCE.entityToModel(userDAO.save(userEntity),new CycleAvoidingMappingContext());
     }
 
     public User findUserByEmail(String email){
 
         UserEntity userEntity =  userDAO.findUserByEmail(email);
-        User user = UserMapper.INSTANCE.entityToModel(userEntity);
+        User user = UserMapper.INSTANCE.entityToModel(userEntity,new CycleAvoidingMappingContext());
 
         if (user == null) {
             LOGGER.error(NO_USER_FOUND_BY_EMAIL + email);
@@ -87,7 +88,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
     @Override
     public void createVerificationToken(User user, String token) {
-        UserEntity userEntity = UserMapper.INSTANCE.modelToEntity(user);
+        UserEntity userEntity = UserMapper.INSTANCE.modelToEntity(user,new CycleAvoidingMappingContext());
         VerificationTokenEntity myToken = new VerificationTokenEntity(token, userEntity);
         myToken.setExpiryDate(20);
         tokenAccesDAO.save(myToken);
@@ -156,7 +157,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         UserEntity userEntity = userDAO.findUserByEmail(email);
-        User user = UserMapper.INSTANCE.entityToModel(userEntity);
+        User user = UserMapper.INSTANCE.entityToModel(userEntity,new CycleAvoidingMappingContext());
 
         if (user == null) {
             LOGGER.error(NO_USER_FOUND_BY_EMAIL + email);
@@ -165,7 +166,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
             validateLoginAttempt(user);
             user.setLastLoginDateDisplay(user.getLastLoginDate());
             user.setLastLoginDate(new Date());
-            userEntity = UserMapper.INSTANCE.modelToEntity(user);
+            userEntity = UserMapper.INSTANCE.modelToEntity(user,new CycleAvoidingMappingContext());
             userDAO.save(userEntity);
 
             UserPrincipal userPrincipal = new UserPrincipal(user);
@@ -190,12 +191,12 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     public User validateNewEmail(String currentEmail, String newEmail) throws UserNotFoundException, EmailExistException {
 
         UserEntity newUserEntity = userDAO.findUserByEmail(newEmail);
-        User userByNewEmail = UserMapper.INSTANCE.entityToModel(newUserEntity);
+        User userByNewEmail = UserMapper.INSTANCE.entityToModel(newUserEntity,new CycleAvoidingMappingContext());
 
         if(StringUtils.isNotBlank(currentEmail)) {
 
             UserEntity currentUserEntity = userDAO.findUserByEmail(currentEmail);
-            User currentUser = UserMapper.INSTANCE.entityToModel(currentUserEntity);
+            User currentUser = UserMapper.INSTANCE.entityToModel(currentUserEntity,new CycleAvoidingMappingContext());
 
             if(currentUser == null) {
                 throw new UserNotFoundException(NO_USER_FOUND_BY_EMAIL + currentEmail);

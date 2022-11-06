@@ -21,10 +21,12 @@ public class Formule {
     private Integer supvendredi;
     private Integer codePostal;
     private Integer supDimanche;
+    private Integer supSamedi;
     private Integer supVeilleFerier;
     @JsonManagedReference
     private List<Image> images;
     private Service service;
+    @JsonManagedReference
     private List<Reservation> reservation;
 
 

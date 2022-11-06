@@ -77,7 +77,7 @@ public class ProviderController {
     @PostMapping("/reservationRequest") // TODO: patch mapping
     public ResponseEntity reservationRequest(@RequestBody ReservationRequestDTO rrdto, WebRequest request) throws ServiceDatabaseException, EmailExistException, ReservationDatabaseException, FormuleDatabaseException {
 
-        System.out.println("je rentre");
+        System.out.println(rrdto);
 
         String email =  Objects.requireNonNull(request.getUserPrincipal()).getName();
         User user = userService.findUserByEmail(email);

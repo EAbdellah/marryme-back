@@ -15,6 +15,7 @@ import be.icc.ahe.marryme.model.dto.UserRegistrationFormDTO;
 import be.icc.ahe.marryme.model.mapper.PersonMapper;
 import be.icc.ahe.marryme.model.mapper.SocieteMapper;
 import be.icc.ahe.marryme.model.mapper.UserMapper;
+import be.icc.ahe.marryme.model.mapper.dtomapper.CycleAvoidingMappingContext;
 import be.icc.ahe.marryme.model.mapper.dtomapper.RegistrationUserMapper;
 import be.icc.ahe.marryme.service.*;
 import com.github.javafaker.Faker;
@@ -276,7 +277,7 @@ public class MyRunner implements CommandLineRunner {
 
         Reservation reservation = createreservation(faker);
         reservation.setFormule(f);
-        reservation.setUser(UserMapper.INSTANCE.entityToModel(user1));
+        reservation.setUser(UserMapper.INSTANCE.entityToModel(user1,new CycleAvoidingMappingContext()));
 
         reservationService.save(reservation);
 //

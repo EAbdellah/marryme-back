@@ -1,17 +1,20 @@
 package be.icc.ahe.marryme.model;
 
 import be.icc.ahe.marryme.dataaccess.entity.enumeration.Role;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import lombok.*;
 
 import java.util.Date;
 import java.util.List;
 
-@NoArgsConstructor @Setter @Getter @ToString
+@NoArgsConstructor
+@Data
+@JsonIdentityInfo(
+        generator = ObjectIdGenerators.PropertyGenerator.class,
+        property = "userID")
 public class User  {
 
     private Long userID;
@@ -22,7 +25,7 @@ public class User  {
     private boolean isActive;
     private boolean isNotLocked;
     private String[] authorities;
-    @JsonManagedReference
+//    @JsonManagedReference
     private List<Reservation> reservations;
     private String profileImageUrl;
     private Date lastLoginDate;

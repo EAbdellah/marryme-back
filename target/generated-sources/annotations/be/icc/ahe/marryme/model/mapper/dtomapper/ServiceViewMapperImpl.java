@@ -22,7 +22,7 @@ import javax.annotation.processing.Generated;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2022-11-06T05:44:12+0100",
+    date = "2022-11-06T22:45:37+0100",
     comments = "version: 1.5.2.Final, compiler: javac, environment: Java 11.0.8 (Oracle Corporation)"
 )
 public class ServiceViewMapperImpl implements ServiceViewMapper {
@@ -225,6 +225,7 @@ public class ServiceViewMapperImpl implements ServiceViewMapper {
         formule.setSupFerrier( formuleEntity.getSupFerrier() );
         formule.setSupvendredi( formuleEntity.getSupvendredi() );
         formule.setSupDimanche( formuleEntity.getSupDimanche() );
+        formule.setSupSamedi( formuleEntity.getSupSamedi() );
         formule.setSupVeilleFerier( formuleEntity.getSupVeilleFerier() );
         formule.setImages( imageEntityListToImageList( formuleEntity.getImages(), cycleAvoidingMappingContext ) );
         formule.setReservation( reservationEntityListToReservationList( formuleEntity.getReservation(), cycleAvoidingMappingContext ) );

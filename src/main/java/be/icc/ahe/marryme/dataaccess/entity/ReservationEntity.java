@@ -1,5 +1,6 @@
 package be.icc.ahe.marryme.dataaccess.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 import lombok.Getter;
@@ -34,6 +35,7 @@ public class ReservationEntity  implements Serializable {
     @JoinColumn(name="user_id", nullable=false)
     private UserEntity user;
 
+    @JsonBackReference
     @ManyToOne
     @JoinColumn(name="formule_id", nullable=false)
     private FormuleEntity formule;
