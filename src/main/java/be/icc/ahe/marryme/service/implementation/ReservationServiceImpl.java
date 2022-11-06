@@ -19,6 +19,7 @@ import be.icc.ahe.marryme.model.dto.UserRegistrationFormDTO;
 import be.icc.ahe.marryme.model.mapper.PersonMapper;
 import be.icc.ahe.marryme.model.mapper.ReservationMapper;
 import be.icc.ahe.marryme.model.mapper.UserMapperImpl;
+import be.icc.ahe.marryme.model.mapper.dtomapper.CycleAvoidingMappingContext;
 import be.icc.ahe.marryme.model.mapper.dtomapper.RegistrationUserMapper;
 import be.icc.ahe.marryme.model.mapper.dtomapper.ReservationRequestMapper;
 import be.icc.ahe.marryme.service.ReservationService;
@@ -56,12 +57,12 @@ public class ReservationServiceImpl implements ReservationService {
         Optional.ofNullable(reservation)
                 .orElseThrow(() -> new ReservationDatabaseException("Can not save null reservation: " + reservation));
 
-        ReservationEntity persistedReservationEntity = reservationDAO.save(ReservationMapper.INSTANCE.modelToEntity(reservation));
+        ReservationEntity persistedReservationEntity = reservationDAO.save(ReservationMapper.INSTANCE.modelToEntity(reservation,new CycleAvoidingMappingContext()));
 
         Optional.ofNullable(persistedReservationEntity)
                 .orElseThrow(() -> new ReservationDatabaseException("Persisted reservation is null: " + persistedReservationEntity));
 
-        return ReservationMapper.INSTANCE.entityToModel(persistedReservationEntity);
+        return ReservationMapper.INSTANCE.entityToModel(persistedReservationEntity,new CycleAvoidingMappingContext());
 
     }
 
@@ -71,7 +72,7 @@ public class ReservationServiceImpl implements ReservationService {
         ReservationEntity reservationEntity= this.reservationDAO.findByID(id)
                 .orElseThrow(() -> new ReservationDatabaseException("None reservation found at id:" + id));
 
-        return ReservationMapper.INSTANCE.entityToModel(reservationEntity);
+        return ReservationMapper.INSTANCE.entityToModel(reservationEntity,new CycleAvoidingMappingContext());
 
     }
 
@@ -85,13 +86,13 @@ public class ReservationServiceImpl implements ReservationService {
             throw new ReservationDatabaseException("Try to update into data base a reservation that does not exist: " + reservation);
         }
 
-        ReservationEntity reservationEntity = reservationDAO.save(ReservationMapper.INSTANCE.modelToEntity(reservation));
+        ReservationEntity reservationEntity = reservationDAO.save(ReservationMapper.INSTANCE.modelToEntity(reservation,new CycleAvoidingMappingContext()));
 
 
         Optional.ofNullable(reservationEntity)
                 .orElseThrow(() -> new ReservationDatabaseException("Persisted reservation is null: " + reservationEntity));
 
-        return ReservationMapper.INSTANCE.entityToModel(reservationEntity);
+        return ReservationMapper.INSTANCE.entityToModel(reservationEntity,new CycleAvoidingMappingContext());
     }
 
     @Override
@@ -113,7 +114,7 @@ public class ReservationServiceImpl implements ReservationService {
          *  TODO: 06/11/2022 Faire un controle
          * */
 
-        Reservation reservation = ReservationRequestMapper.INSTANCE.dtotomodel(rrdto);
+        Reservation reservation = ReservationRequestMapper.INSTANCE.dtotomodel(rrdto,new CycleAvoidingMappingContext());
         reservation.setInceptionDate( new java.sql.Date(java.util.Date.from(Instant.now()).getTime()));
         reservation.setTicket( UUID.randomUUID().toString());
         reservation.setStatus("Waiting");

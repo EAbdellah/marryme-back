@@ -1,6 +1,7 @@
 package be.icc.ahe.marryme.dataaccess.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -31,6 +32,7 @@ public class ImageEntity implements Serializable {
 //    private ServiceEntity serviceEntity;
 
     @JsonBackReference
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     @ManyToOne( targetEntity = FormuleEntity.class, fetch = FetchType.LAZY)
     @JoinColumn(name="formule_id")
     private FormuleEntity formule;

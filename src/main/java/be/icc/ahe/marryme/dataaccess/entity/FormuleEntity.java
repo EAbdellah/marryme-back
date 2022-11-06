@@ -2,6 +2,7 @@ package be.icc.ahe.marryme.dataaccess.entity;
 
 import be.icc.ahe.marryme.model.Reservation;
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Data;
 import lombok.Getter;
@@ -44,7 +45,8 @@ public class FormuleEntity implements Serializable {
 
     @JsonManagedReference
     @OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
-    @JoinColumn(name="formule_id")
+//    @JoinColumn(name="formule_id")
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private List<ImageEntity> images;
 
     @JsonBackReference

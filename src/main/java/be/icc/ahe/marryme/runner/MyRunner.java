@@ -10,6 +10,7 @@ import be.icc.ahe.marryme.dataaccess.entity.enumeration.MusiqueType;
 import be.icc.ahe.marryme.dataaccess.entity.enumeration.Role;
 import be.icc.ahe.marryme.exception.sqlexception.FermetureDatabaseException;
 import be.icc.ahe.marryme.model.*;
+import be.icc.ahe.marryme.model.dto.ReservationRequestDTO;
 import be.icc.ahe.marryme.model.dto.UserRegistrationFormDTO;
 import be.icc.ahe.marryme.model.mapper.PersonMapper;
 import be.icc.ahe.marryme.model.mapper.SocieteMapper;
@@ -278,6 +279,14 @@ public class MyRunner implements CommandLineRunner {
         reservation.setUser(UserMapper.INSTANCE.entityToModel(user1));
 
         reservationService.save(reservation);
+//
+//        ReservationRequestDTO rrdto = new ReservationRequestDTO();
+//                rrdto.setFormuleId("3");
+//        rrdto.setPrice(3000);
+//        rrdto.setReservationDate(new java.sql.Date(java.util.Date.from(Instant.now()).getTime()) );
+//
+//        reservationService.saveReservationRequest(rrdto,UserMapper.INSTANCE.entityToModel(user1));
+
 
 
 

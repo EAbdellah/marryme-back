@@ -15,7 +15,7 @@ import javax.annotation.processing.Generated;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2022-11-06T05:16:16+0100",
+    date = "2022-11-06T05:44:13+0100",
     comments = "version: 1.5.2.Final, compiler: javac, environment: Java 11.0.8 (Oracle Corporation)"
 )
 public class ImageMapperImpl implements ImageMapper {
