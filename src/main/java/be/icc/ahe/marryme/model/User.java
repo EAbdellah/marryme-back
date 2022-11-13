@@ -24,8 +24,9 @@ public class User  {
     private Role role;//ROLE_USER{ read, edit }, ROLE_ADMIN {delete}
     private boolean isActive;
     private boolean isNotLocked;
-    private String[] authorities;
 //    @JsonManagedReference
+    private String[] authorities;
+    @JsonManagedReference(value="user-reservation")
     private List<Reservation> reservations;
     private String profileImageUrl;
     private Date lastLoginDate;

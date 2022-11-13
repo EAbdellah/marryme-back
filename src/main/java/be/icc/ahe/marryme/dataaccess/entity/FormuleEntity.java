@@ -1,16 +1,12 @@
 package be.icc.ahe.marryme.dataaccess.entity;
 
 import be.icc.ahe.marryme.model.Reservation;
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-import lombok.Data;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import com.fasterxml.jackson.annotation.*;
+import lombok.*;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -18,6 +14,9 @@ import java.util.Objects;
 @Table(name = "formule")
 @NoArgsConstructor
 @Data
+@JsonIdentityInfo(
+        generator = ObjectIdGenerators.PropertyGenerator.class,
+        property = "formuleID")
 public class FormuleEntity implements Serializable {
 
     @Id
@@ -43,23 +42,22 @@ public class FormuleEntity implements Serializable {
     @Column(name = "supVeilleFerier", nullable = true)
     private Integer supVeilleFerier;
 
-    @JsonManagedReference
-    @OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
-//    @JoinColumn(name="formule_id")
-    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+
+    @OneToMany(fetch = FetchType.LAZY,cascade =CascadeType.ALL,mappedBy = "formule", orphanRemoval = true)
+//    @JoinColumn(name="image_id")
     private List<ImageEntity> images;
 
     @JsonBackReference
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     @ManyToOne( fetch = FetchType.LAZY)
     @JoinColumn(name="service_id")
     private ServiceEntity serviceEntity;
 
     @JsonManagedReference
-    @OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
-    @JoinColumn(name="reservation_id")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "formule", orphanRemoval = true)
+//    @JoinColumn(name="reservation_id")
+    @ToString.Exclude
     private List<ReservationEntity> reservation;
-
-
 
 
 }

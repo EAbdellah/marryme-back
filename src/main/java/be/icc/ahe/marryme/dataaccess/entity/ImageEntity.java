@@ -1,7 +1,9 @@
 package be.icc.ahe.marryme.dataaccess.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -13,28 +15,23 @@ import java.io.Serializable;
 @Entity
 @Table(name = "image")
 @NoArgsConstructor
-@Setter
-@Getter
 @Data
+@JsonIdentityInfo(
+        generator = ObjectIdGenerators.PropertyGenerator.class,
+        property = "imageID")
 public class ImageEntity implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "image_id", nullable = false)
     private Long imageID;
 
-//    @Lob
     @Column(name = "photo", nullable=false)
     private byte[] photo;
 
-//    @OneToOne(targetEntity = ServiceEntity.class,fetch = FetchType.LAZY)
-//    @OneToOne(targetEntity = ServiceEntity.class,cascade = CascadeType.ALL,fetch = FetchType.LAZY)
-//    @JoinColumn(name="service_id")
-//    private ServiceEntity serviceEntity;
 
-    @JsonBackReference
-    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-    @ManyToOne( targetEntity = FormuleEntity.class, fetch = FetchType.LAZY)
-    @JoinColumn(name="formule_id")
+//    @JsonBackReference
+//    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+    @ManyToOne
     private FormuleEntity formule;
 
  }

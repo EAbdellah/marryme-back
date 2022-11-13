@@ -35,7 +35,7 @@ spring:
     password: root
   jpa:
     database: mysql
-    hibernate.ddl-auto: create
+    hibernate.ddl-auto: update
     generate-ddl: true
     show-sql: true
     properties:

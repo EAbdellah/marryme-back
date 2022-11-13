@@ -22,9 +22,11 @@ public class Reservation {
     private Date reservationDate;
     private String ticket;
     private Service service;
-//    @JsonBackReference
-    private User user;
-    @JsonBackReference
+    @JsonBackReference(value="user-reservation")
+@ToString.Exclude
+private User user;
+    @JsonBackReference(value="formule-reservation")
+    @ToString.Exclude
     private Formule formule;
     private Integer price;
     private String status;

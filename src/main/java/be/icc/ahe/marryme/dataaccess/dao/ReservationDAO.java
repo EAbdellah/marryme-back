@@ -1,16 +1,16 @@
 package be.icc.ahe.marryme.dataaccess.dao;
 
-import be.icc.ahe.marryme.dataaccess.entity.ParkingEntity;
 import be.icc.ahe.marryme.dataaccess.entity.ReservationEntity;
+import be.icc.ahe.marryme.dataaccess.entity.UserEntity;
 import be.icc.ahe.marryme.dataaccess.repository.ReservationRepo;
 import be.icc.ahe.marryme.exception.sqlexception.ReservationDatabaseException;
-import lombok.SneakyThrows;
+import be.icc.ahe.marryme.model.dto.ReservationClientDTO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.sql.SQLDataException;
+import java.util.List;
 import java.util.Optional;
 
 @Component
@@ -25,6 +25,7 @@ public class ReservationDAO {
 
 
     public ReservationEntity save(ReservationEntity reservationEntity){
+        System.out.println(reservationEntity);
         return reservationRepo.save(reservationEntity);
     }
 
@@ -41,7 +42,17 @@ public class ReservationDAO {
         return reservationRepo.existsById(id);
     }
 
+    public List<ReservationEntity> findReservationByUser(UserEntity userEntity){
+        return reservationRepo.findAllByUser(userEntity);
+    }
 
+    public List<ReservationClientDTO> getAllReservationsByUser(Long userId){
+        return reservationRepo.getAllReservationsByUser(userId);
+    }
+
+    public Integer isTicketExist (String ticket){
+        return reservationRepo.countByTicket(ticket);
+    }
 
 
 }

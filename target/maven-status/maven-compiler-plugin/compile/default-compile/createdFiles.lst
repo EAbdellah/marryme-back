@@ -33,7 +33,6 @@ be\icc\ahe\marryme\model\mapper\MediaMapper.class
 be\icc\ahe\marryme\dataaccess\dao\ServiceTraiteurDAO.class
 be\icc\ahe\marryme\exception\sqlexception\ReservationDatabaseException.class
 be\icc\ahe\marryme\dataaccess\dao\MakeUpAndHairDAO.class
-be\icc\ahe\marryme\exception\ExceptionHandling.class
 be\icc\ahe\marryme\model\ServiceTraiteur.class
 be\icc\ahe\marryme\model\Media.class
 be\icc\ahe\marryme\service\ServiceTraiteurService.class
@@ -52,10 +51,12 @@ be\icc\ahe\marryme\service\implementation\FormuleServiceImpl.class
 be\icc\ahe\marryme\exception\EmailNotFoundException.class
 be\icc\ahe\marryme\model\mapper\TraiteurMapperImpl.class
 be\icc\ahe\marryme\service\UserService.class
+be\icc\ahe\marryme\model\dto\ReservationClientDTO.class
 be\icc\ahe\marryme\dataaccess\entity\ParkingEntity.class
 be\icc\ahe\marryme\dataaccess\entity\ImageEntity.class
 be\icc\ahe\marryme\service\ParkingService.class
 be\icc\ahe\marryme\model\dto\AllServicesDTO.class
+be\icc\ahe\marryme\model\dto\Status.class
 be\icc\ahe\marryme\model\mapper\PersonMapperImpl.class
 be\icc\ahe\marryme\runner\MyRunner.class
 be\icc\ahe\marryme\dataaccess\dao\FormuleDAO.class

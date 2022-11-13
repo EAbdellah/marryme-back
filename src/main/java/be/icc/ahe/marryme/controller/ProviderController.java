@@ -2,23 +2,20 @@ package be.icc.ahe.marryme.controller;
 
 import be.icc.ahe.marryme.dataaccess.dao.ServiceDAO;
 import be.icc.ahe.marryme.dataaccess.entity.ServiceEntity;
-import be.icc.ahe.marryme.dataaccess.entity.UserEntity;
-import be.icc.ahe.marryme.dataaccess.entity.VerificationTokenEntity;
-import be.icc.ahe.marryme.dataaccess.repository.ServicesRepo;
 import be.icc.ahe.marryme.exception.EmailExistException;
+import be.icc.ahe.marryme.exception.UserNotFoundException;
 import be.icc.ahe.marryme.exception.sqlexception.FormuleDatabaseException;
 import be.icc.ahe.marryme.exception.sqlexception.ReservationDatabaseException;
 import be.icc.ahe.marryme.exception.sqlexception.ServiceDatabaseException;
+import be.icc.ahe.marryme.exception.sqlexception.UserDatabaseException;
+import be.icc.ahe.marryme.model.dto.ReservationClientDTO;
 import be.icc.ahe.marryme.model.User;
 import be.icc.ahe.marryme.model.dto.AllServicesDTO;
 import be.icc.ahe.marryme.model.dto.ReservationRequestDTO;
 import be.icc.ahe.marryme.model.dto.SingleServiceViewDTO;
-import be.icc.ahe.marryme.model.dto.UserRegistrationFormDTO;
-import be.icc.ahe.marryme.model.mapper.dtomapper.CycleAvoidingMappingContext;
 import be.icc.ahe.marryme.service.ReservationService;
 import be.icc.ahe.marryme.service.ServicesService;
 import be.icc.ahe.marryme.service.UserService;
-import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -27,10 +24,6 @@ import org.springframework.web.context.request.WebRequest;
 
 import java.util.List;
 import java.util.Objects;
-
-import static be.icc.ahe.marryme.constant.SecurityConstant.TOKEN_PREFIX;
-import static be.icc.ahe.marryme.constant.UserImplConstant.VERIFIACTION_TOKEN_EXPIRED;
-import static org.springframework.http.HttpHeaders.AUTHORIZATION;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
@@ -77,25 +70,36 @@ public class ProviderController {
     @PostMapping("/reservationRequest") // TODO: patch mapping
     public ResponseEntity reservationRequest(@RequestBody ReservationRequestDTO rrdto, WebRequest request) throws ServiceDatabaseException, EmailExistException, ReservationDatabaseException, FormuleDatabaseException {
 
-        System.out.println(rrdto);
-
         String email =  Objects.requireNonNull(request.getUserPrincipal()).getName();
         User user = userService.findUserByEmail(email);
-
-
-
-
-
-//        String authorizationHeader = request.getHeader(AUTHORIZATION);
-//        String token = authorizationHeader.substring(TOKEN_PREFIX.length());
-//        String username = jwtTokenProvider.getSubject(token);
-//
-//        System.out.println(username);
-
         reservationService.saveReservationRequest(rrdto,user);
 
         return new ResponseEntity<>(rrdto, HttpStatus.OK);
     }
+
+//    @GetMapping("/getAllReservation")
+//    public ResponseEntity<List<Reservation>> getAllReservation(WebRequest request) throws UserDatabaseException, UserNotFoundException {
+//        String email =  Objects.requireNonNull(request.getUserPrincipal()).getName();
+//        User user = userService.findUserByEmail(email);
+//        List<Reservation> reservations = reservationService.findReservationByUser(user);
+//
+//        reservations.forEach(System.out::println);
+//
+//        return new ResponseEntity<List<Reservation>>(reservations, HttpStatus.OK);
+//    }
+
+    @GetMapping("/getAllReservation")
+    public ResponseEntity<List<ReservationClientDTO>> getAllReservation(WebRequest request) throws UserDatabaseException, UserNotFoundException {
+        String email =  Objects.requireNonNull(request.getUserPrincipal()).getName();
+        User user = userService.findUserByEmail(email);
+        List<ReservationClientDTO> reservations = reservationService.findReservationsByUser(user);
+
+        reservations.forEach(System.out::println);
+
+        return new ResponseEntity<List<ReservationClientDTO>>(reservations, HttpStatus.OK);
+    }
+
+    
 
 
 }

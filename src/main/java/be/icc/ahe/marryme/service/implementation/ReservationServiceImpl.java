@@ -1,51 +1,43 @@
 package be.icc.ahe.marryme.service.implementation;
 
 import be.icc.ahe.marryme.dataaccess.dao.ReservationDAO;
-import be.icc.ahe.marryme.dataaccess.entity.PersonEntity;
 import be.icc.ahe.marryme.dataaccess.entity.ReservationEntity;
 import be.icc.ahe.marryme.dataaccess.entity.UserEntity;
-import be.icc.ahe.marryme.exception.EmailExistException;
 import be.icc.ahe.marryme.exception.UserNotFoundException;
-import be.icc.ahe.marryme.exception.UsernameExistException;
-import be.icc.ahe.marryme.exception.sqlexception.FermetureDatabaseException;
-import be.icc.ahe.marryme.exception.sqlexception.FormuleDatabaseException;
-import be.icc.ahe.marryme.exception.sqlexception.PersonDatabaseException;
-import be.icc.ahe.marryme.exception.sqlexception.ReservationDatabaseException;
-import be.icc.ahe.marryme.model.Person;
+import be.icc.ahe.marryme.exception.sqlexception.*;
+import be.icc.ahe.marryme.model.Formule;
 import be.icc.ahe.marryme.model.Reservation;
+import be.icc.ahe.marryme.model.dto.ReservationClientDTO;
 import be.icc.ahe.marryme.model.User;
 import be.icc.ahe.marryme.model.dto.ReservationRequestDTO;
-import be.icc.ahe.marryme.model.dto.UserRegistrationFormDTO;
-import be.icc.ahe.marryme.model.mapper.PersonMapper;
 import be.icc.ahe.marryme.model.mapper.ReservationMapper;
-import be.icc.ahe.marryme.model.mapper.UserMapperImpl;
 import be.icc.ahe.marryme.model.mapper.dtomapper.CycleAvoidingMappingContext;
-import be.icc.ahe.marryme.model.mapper.dtomapper.RegistrationUserMapper;
 import be.icc.ahe.marryme.model.mapper.dtomapper.ReservationRequestMapper;
 import be.icc.ahe.marryme.service.ReservationService;
+import be.icc.ahe.marryme.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.mail.MessagingException;
 import java.time.Instant;
-import java.util.Date;
+import java.util.List;
 import java.util.Optional;
+import java.util.Random;
 import java.util.UUID;
-
-import static be.icc.ahe.marryme.dataaccess.entity.enumeration.Role.ROLE_USER;
-import static org.apache.commons.lang3.StringUtils.EMPTY;
+import java.util.stream.Collectors;
 
 @Service
 public class ReservationServiceImpl implements ReservationService {
+    private static final String ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
 
         private final ReservationDAO reservationDAO;
         private final FormuleServiceImpl formuleService;
+    private final UserService userService;
 
 
     @Autowired
-    public ReservationServiceImpl(ReservationDAO reservationDAO,FormuleServiceImpl formuleService ) {
+    public ReservationServiceImpl(ReservationDAO reservationDAO,FormuleServiceImpl formuleService,UserService userService ) {
         this.formuleService = formuleService;
-
+        this.userService = userService;
         this.reservationDAO = reservationDAO;
 
         }
@@ -57,7 +49,10 @@ public class ReservationServiceImpl implements ReservationService {
         Optional.ofNullable(reservation)
                 .orElseThrow(() -> new ReservationDatabaseException("Can not save null reservation: " + reservation));
 
+
+
         ReservationEntity persistedReservationEntity = reservationDAO.save(ReservationMapper.INSTANCE.modelToEntity(reservation,new CycleAvoidingMappingContext()));
+
 
         Optional.ofNullable(persistedReservationEntity)
                 .orElseThrow(() -> new ReservationDatabaseException("Persisted reservation is null: " + persistedReservationEntity));
@@ -116,17 +111,71 @@ public class ReservationServiceImpl implements ReservationService {
 
         Reservation reservation = ReservationRequestMapper.INSTANCE.dtotomodel(rrdto,new CycleAvoidingMappingContext());
         reservation.setInceptionDate( new java.sql.Date(java.util.Date.from(Instant.now()).getTime()));
-        reservation.setTicket( UUID.randomUUID().toString());
+//        reservation.setTicket( UUID.randomUUID().toString());
+
+        String ticket = "";
+        do {
+           ticket=  generateString(11);
+        }while (isTicketExist(ticket));
+
+        reservation.setTicket( ticket);
         reservation.setStatus("Waiting");
+
         try{
-            reservation.setFormule(formuleService.findByID(Long.valueOf(rrdto.getFormuleId())));
+            Formule f = formuleService.findByID(Long.valueOf(rrdto.getFormuleId()));
+            reservation.setFormule(f);
         }catch (FormuleDatabaseException e){
             e.getMessage();
         }
         reservation.setUser(user);
+
+
+
         return this.save(reservation);
 
     }
 
+    @Override
+    public List<Reservation> findReservationByUser(User user) throws UserNotFoundException, UserDatabaseException {
+        Optional.ofNullable(user)
+                .orElseThrow(() -> new UserNotFoundException("user can be null: " + user));
 
+        UserEntity userEntity = userService.findByID(user.getUserID());
+        List<ReservationEntity> reservations =reservationDAO.findReservationByUser(userEntity);
+        List<Reservation> reservationList = reservations.stream()
+                                                        .map(x->ReservationMapper.INSTANCE.entityToModel(x,new CycleAvoidingMappingContext()))
+                                                        .collect(Collectors.toList());
+        return reservationList;
+    }
+
+    @Override
+    public List<ReservationClientDTO> findReservationsByUser(User user) throws UserNotFoundException, UserDatabaseException {
+        Optional.ofNullable(user)
+                .orElseThrow(() -> new UserNotFoundException("user can be null: " + user));
+
+        UserEntity userEntity = userService.findByID(user.getUserID());
+
+        List<ReservationClientDTO> reservations =reservationDAO.getAllReservationsByUser(userEntity.getUserID());
+//        List<Reservation> reservationList = reservations.stream()
+//                .map(x->ReservationMapper.INSTANCE.entityToModel(x,new CycleAvoidingMappingContext()))
+//                .collect(Collectors.toList());
+        return reservations;
+    }
+
+    @Override
+    public boolean isTicketExist(String ticket) {
+        return reservationDAO.isTicketExist(ticket) > 0;
+    }
+
+
+    public String generateString(int length) {
+        Random random = new Random();
+        StringBuilder builder = new StringBuilder(length);
+
+        for (int i = 0; i < length; i++) {
+            builder.append(ALPHABET.charAt(random.nextInt(ALPHABET.length())));
+        }
+
+        return builder.toString();
+    }
 }

@@ -43,6 +43,7 @@ C:\Users\abdellah.elachhab\Desktop\MarryMe Project\marryme-back\src\main\java\be
 C:\Users\abdellah.elachhab\Desktop\MarryMe Project\marryme-back\src\main\java\be\icc\ahe\marryme\model\mapper\ParkingMapper.java
 C:\Users\abdellah.elachhab\Desktop\MarryMe Project\marryme-back\src\main\java\be\icc\ahe\marryme\dataaccess\dao\ParkingDAO.java
 C:\Users\abdellah.elachhab\Desktop\MarryMe Project\marryme-back\src\main\java\be\icc\ahe\marryme\service\UserService.java
+C:\Users\abdellah.elachhab\Desktop\MarryMe Project\marryme-back\src\main\java\be\icc\ahe\marryme\model\dto\ReservationClientDTO.java
 C:\Users\abdellah.elachhab\Desktop\MarryMe Project\marryme-back\src\main\java\be\icc\ahe\marryme\dataaccess\entity\ReservationEntity.java
 C:\Users\abdellah.elachhab\Desktop\MarryMe Project\marryme-back\src\main\java\be\icc\ahe\marryme\exception\sqlexception\SalleDatabaseException.java
 C:\Users\abdellah.elachhab\Desktop\MarryMe Project\marryme-back\src\main\java\be\icc\ahe\marryme\dataaccess\dao\ServiceDAO.java
@@ -56,6 +57,7 @@ C:\Users\abdellah.elachhab\Desktop\MarryMe Project\marryme-back\src\main\java\be
 C:\Users\abdellah.elachhab\Desktop\MarryMe Project\marryme-back\src\main\java\be\icc\ahe\marryme\dataaccess\entity\SocieteEntity.java
 C:\Users\abdellah.elachhab\Desktop\MarryMe Project\marryme-back\src\main\java\be\icc\ahe\marryme\service\implementation\MakeUpAndHairServiceImpl.java
 C:\Users\abdellah.elachhab\Desktop\MarryMe Project\marryme-back\src\main\java\be\icc\ahe\marryme\dataaccess\dao\TraiteurDAO.java
+C:\Users\abdellah.elachhab\Desktop\MarryMe Project\marryme-back\src\main\java\be\icc\ahe\marryme\model\dto\Status.java
 C:\Users\abdellah.elachhab\Desktop\MarryMe Project\marryme-back\src\main\java\be\icc\ahe\marryme\model\mapper\SalleMapper.java
 C:\Users\abdellah.elachhab\Desktop\MarryMe Project\marryme-back\src\main\java\be\icc\ahe\marryme\service\SocieteService.java
 C:\Users\abdellah.elachhab\Desktop\MarryMe Project\marryme-back\src\main\java\be\icc\ahe\marryme\dataaccess\dao\SalleDAO.java

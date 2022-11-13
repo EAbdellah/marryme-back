@@ -1,22 +1,58 @@
 package be.icc.ahe.marryme.dataaccess.entity;
 
+import be.icc.ahe.marryme.model.dto.ReservationClientDTO;
+import be.icc.ahe.marryme.model.dto.Status;
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import lombok.Data;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import lombok.*;
 
 import javax.persistence.*;
 import java.io.File;
 import java.io.Serializable;
 import java.sql.Date;
 
+
+@NamedNativeQuery(
+        name  = "getAllReservationsByUser",
+        query = "SELECT  res.ticket,service.type as service_type ,service.service_id,service.nom as service_name,formule.nom as formule_name,res.reservation_date,res.price,res.status " +
+                "FROM ((myschema.formule as formule " +
+                "INNER JOIN myschema.reservation as res ON res.formule_id  = formule.formule_id) " +
+                "INNER JOIN myschema.abstract_service as service ON service.service_id  = formule.service_id) " +
+                "Where res.user_id = :asking_user_id ;"
+        ,
+        resultSetMapping = "allReservationsByUser"
+)
+
+@SqlResultSetMapping(
+        name = "allReservationsByUser",
+        classes = {
+                @ConstructorResult(
+                        targetClass = ReservationClientDTO.class,
+                        columns = {
+                                @ColumnResult(name = "ticket", type = String.class),
+                                @ColumnResult(name = "service_type", type = String.class),
+                                @ColumnResult(name = "service_id", type = Long.class),
+                                @ColumnResult(name = "service_name", type = String.class),
+                                @ColumnResult(name = "formule_name", type = String.class),
+                                @ColumnResult(name = "reservation_date", type = Date.class),
+                                @ColumnResult(name = "price", type = Integer.class),
+                                @ColumnResult(name = "status", type = String.class),
+
+                        })
+        }
+)
+
+
+
 @Entity
 @Table(name = "reservation")
 @NoArgsConstructor
 @Data
-
+@JsonIdentityInfo(
+        generator = ObjectIdGenerators.PropertyGenerator.class,
+        property = "reservationID")
 public class ReservationEntity  implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -31,13 +67,15 @@ public class ReservationEntity  implements Serializable {
     @JoinColumn(name="service_id")
     private ServiceEntity serviceEntity;
 
-    @ManyToOne
-    @JoinColumn(name="user_id", nullable=false)
+    @JsonBackReference
+    @ManyToOne( targetEntity = UserEntity.class, fetch = FetchType.LAZY)
+    @JoinColumn(name="user_id")
     private UserEntity user;
 
     @JsonBackReference
     @ManyToOne
-    @JoinColumn(name="formule_id", nullable=false)
+    @JoinColumn(name="formule_id")
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private FormuleEntity formule;
 
     @Column(name = "price", nullable = false, length = 128)

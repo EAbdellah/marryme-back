@@ -2,10 +2,11 @@ package be.icc.ahe.marryme.dataaccess.entity;
 
 import be.icc.ahe.marryme.dataaccess.entity.enumeration.Role;
 import be.icc.ahe.marryme.model.Reservation;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import lombok.*;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -15,9 +16,8 @@ import java.util.List;
 @Entity
 @Table(name = "user")
 @NoArgsConstructor
-@Setter
-@Getter
-@ToString
+@Data
+
 public class UserEntity implements Serializable {
 
     @Id
@@ -36,8 +36,13 @@ public class UserEntity implements Serializable {
     private boolean isActive;
     @Column(name = "is_not_locked")
     private boolean isNotLocked;
-    @OneToMany(mappedBy="user")
+
+    @JsonManagedReference
+    @OneToMany(mappedBy="user", fetch = FetchType.LAZY)
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+    @ToString.Exclude
     private List<ReservationEntity> reservations;
+
     private String profileImageUrl;
     private Date lastLoginDate;
     private Date lastLoginDateDisplay;

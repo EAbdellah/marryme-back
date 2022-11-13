@@ -958,6 +958,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/be/icc/ahe/marryme/dataaccess/repository/ReservationRepo.java">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/src/main/java/be/icc/ahe/marryme/dataaccess/repository/ServicesRepo.java">
           <value>
             <set />
@@ -1198,6 +1203,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/be/icc/ahe/marryme/model/ReservationClientDTO.java">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/src/main/java/be/icc/ahe/marryme/model/ReservationDAO.java">
           <value>
             <set />
@@ -1283,12 +1293,22 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/be/icc/ahe/marryme/model/dto/ReservationClientDTO.java">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/src/main/java/be/icc/ahe/marryme/model/dto/ReservationRequestDTO.java">
           <value>
             <set />
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/src/main/java/be/icc/ahe/marryme/model/dto/SingleServiceViewDTO.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/be/icc/ahe/marryme/model/dto/Status.java">
           <value>
             <set />
           </value>
@@ -1683,6 +1703,21 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/../marryme-front/node_modules/@angular/cdk/schematics/ng-update/html-parsing/elements.d.ts">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../marryme-front/package-lock.json">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../marryme-front/package.json">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/../marryme-front/src/app/app-routing.module.ts">
           <value>
             <set />
@@ -1798,6 +1833,16 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/../marryme-front/src/app/user/components/paypal-payment/paypal-payment.component.html">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../marryme-front/src/app/user/components/paypal-payment/paypal-payment.component.ts">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/../marryme-front/src/app/user/components/provider-service/provider-service.component.css">
           <value>
             <set />
@@ -1833,6 +1878,21 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/../marryme-front/src/app/user/components/reservation-list-client/reservation-list-client.component.css">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../marryme-front/src/app/user/components/reservation-list-client/reservation-list-client.component.html">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../marryme-front/src/app/user/components/reservation-list-client/reservation-list-client.component.ts">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/../marryme-front/src/app/user/models/all-services.model.ts">
           <value>
             <set />
@@ -1854,6 +1914,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/../marryme-front/src/app/user/models/reservation-request-dto.ts">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../marryme-front/src/app/user/models/single-reservation.model.ts">
           <value>
             <set />
           </value>
@@ -1923,7 +1988,17 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/../marryme-front/src/environments/environment.prod.ts">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/../marryme-front/src/environments/environment.ts">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../marryme-front/src/index.html">
           <value>
             <set />
           </value>
