@@ -54,5 +54,8 @@ public class ReservationDAO {
         return reservationRepo.countByTicket(ticket);
     }
 
+    public ReservationEntity findByTicket (String ticket){
+        return reservationRepo.findByTicket(ticket);
+    }
 
 }

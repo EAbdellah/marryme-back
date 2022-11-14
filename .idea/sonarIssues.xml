@@ -33,6 +33,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$APPLICATION_CONFIG_DIR$/scratches/generated-requests.http">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/../../JWT/partie2/angular-13-login-registration-example-master/src/app/_helpers/auth.interceptor.ts">
           <value>
             <set />
@@ -1298,6 +1303,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/be/icc/ahe/marryme/model/dto/ReservationPaidDTO.java">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/src/main/java/be/icc/ahe/marryme/model/dto/ReservationRequestDTO.java">
           <value>
             <set />
@@ -1703,6 +1713,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/../marryme-front/angular.json">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/../marryme-front/node_modules/@angular/cdk/schematics/ng-update/html-parsing/elements.d.ts">
           <value>
             <set />
@@ -1913,6 +1928,16 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/../marryme-front/src/app/user/models/reservation-paid-dto.model.ts">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../marryme-front/src/app/user/models/reservation-request-dto.model.ts">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/../marryme-front/src/app/user/models/reservation-request-dto.ts">
           <value>
             <set />
@@ -1999,6 +2024,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/../marryme-front/src/index.html">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../marryme-front/src/proxy.conf.json">
           <value>
             <set />
           </value>

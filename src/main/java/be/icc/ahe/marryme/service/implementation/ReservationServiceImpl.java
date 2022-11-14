@@ -9,6 +9,7 @@ import be.icc.ahe.marryme.model.Formule;
 import be.icc.ahe.marryme.model.Reservation;
 import be.icc.ahe.marryme.model.dto.ReservationClientDTO;
 import be.icc.ahe.marryme.model.User;
+import be.icc.ahe.marryme.model.dto.ReservationPaidDTO;
 import be.icc.ahe.marryme.model.dto.ReservationRequestDTO;
 import be.icc.ahe.marryme.model.mapper.ReservationMapper;
 import be.icc.ahe.marryme.model.mapper.dtomapper.CycleAvoidingMappingContext;
@@ -77,7 +78,7 @@ public class ReservationServiceImpl implements ReservationService {
         Optional.ofNullable(reservation)
                 .orElseThrow(() -> new ReservationDatabaseException("Can not persist null reservation: " + reservation));
 
-        if (reservationDAO.existsById(reservation.getReservationID())) {
+        if (!reservationDAO.existsById(reservation.getReservationID())) {
             throw new ReservationDatabaseException("Try to update into data base a reservation that does not exist: " + reservation);
         }
 
@@ -167,6 +168,25 @@ public class ReservationServiceImpl implements ReservationService {
         return reservationDAO.isTicketExist(ticket) > 0;
     }
 
+    @Override
+    public ReservationEntity findByTicket(String ticket) {
+        return reservationDAO.findByTicket(ticket);
+    }
+
+    public void confimationPaid(ReservationPaidDTO reservationPaidDTO) throws Exception {
+        if (reservationPaidDTO.getStatus().equalsIgnoreCase("COMPLETED")) {
+            ReservationEntity reservation = findByTicket(reservationPaidDTO.getResTicket());
+            reservation.setStatus("Payed");
+            System.out.println(reservationPaidDTO.getPaymentId());
+            reservation.setPayementId(reservationPaidDTO.getPaymentId());
+            System.out.println(reservation);
+            this.update(ReservationMapper.INSTANCE.entityToModel(reservation,new CycleAvoidingMappingContext()));
+
+        }else {
+            throw new Exception("Payment return wrong status: "+ reservationPaidDTO.getStatus());
+        }
+    }
+
 
     public String generateString(int length) {
         Random random = new Random();
@@ -178,4 +198,8 @@ public class ReservationServiceImpl implements ReservationService {
 
         return builder.toString();
     }
+
+
+
+
 }

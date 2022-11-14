@@ -127,6 +127,7 @@ C:\Users\abdellah.elachhab\Desktop\MarryMe Project\marryme-back\src\main\java\be
 C:\Users\abdellah.elachhab\Desktop\MarryMe Project\marryme-back\src\main\java\be\icc\ahe\marryme\service\implementation\ServicesServiceImpl.java
 C:\Users\abdellah.elachhab\Desktop\MarryMe Project\marryme-back\src\main\java\be\icc\ahe\marryme\exception\UserNotFoundException.java
 C:\Users\abdellah.elachhab\Desktop\MarryMe Project\marryme-back\src\main\java\be\icc\ahe\marryme\constant\Authority.java
+C:\Users\abdellah.elachhab\Desktop\MarryMe Project\marryme-back\src\main\java\be\icc\ahe\marryme\model\dto\ReservationPaidDTO.java
 C:\Users\abdellah.elachhab\Desktop\MarryMe Project\marryme-back\src\main\java\be\icc\ahe\marryme\dataaccess\entity\enumeration\Role.java
 C:\Users\abdellah.elachhab\Desktop\MarryMe Project\marryme-back\src\main\java\be\icc\ahe\marryme\dataaccess\repository\FormuleRepo.java
 C:\Users\abdellah.elachhab\Desktop\MarryMe Project\marryme-back\src\main\java\be\icc\ahe\marryme\model\mapper\dtomapper\RegistrationUserMapper.java

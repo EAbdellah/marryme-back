@@ -1,40 +1,40 @@
-package be.icc.ahe.marryme.runner;
-
-
-import be.icc.ahe.marryme.dataaccess.entity.MusiqueEntity;
-import be.icc.ahe.marryme.dataaccess.entity.PersonEntity;
-import be.icc.ahe.marryme.dataaccess.entity.SocieteEntity;
-import be.icc.ahe.marryme.dataaccess.entity.UserEntity;
-import be.icc.ahe.marryme.dataaccess.entity.enumeration.HallType;
-import be.icc.ahe.marryme.dataaccess.entity.enumeration.MusiqueType;
-import be.icc.ahe.marryme.dataaccess.entity.enumeration.Role;
-import be.icc.ahe.marryme.exception.sqlexception.FermetureDatabaseException;
-import be.icc.ahe.marryme.model.*;
-import be.icc.ahe.marryme.model.dto.ReservationRequestDTO;
-import be.icc.ahe.marryme.model.dto.UserRegistrationFormDTO;
-import be.icc.ahe.marryme.model.mapper.PersonMapper;
-import be.icc.ahe.marryme.model.mapper.SocieteMapper;
-import be.icc.ahe.marryme.model.mapper.UserMapper;
-import be.icc.ahe.marryme.model.mapper.dtomapper.CycleAvoidingMappingContext;
-import be.icc.ahe.marryme.model.mapper.dtomapper.RegistrationUserMapper;
-import be.icc.ahe.marryme.service.*;
-import com.github.javafaker.Faker;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.CommandLineRunner;
-import org.springframework.stereotype.Component;
-
-import java.io.File;
-import java.sql.Date;
-import java.text.Normalizer;
-import java.time.Instant;
-import java.util.*;
-import java.util.concurrent.TimeUnit;
+//package be.icc.ahe.marryme.runner;
 //
-@Component
-public class MyRunner implements CommandLineRunner {
-
+//
+//import be.icc.ahe.marryme.dataaccess.entity.MusiqueEntity;
+//import be.icc.ahe.marryme.dataaccess.entity.PersonEntity;
+//import be.icc.ahe.marryme.dataaccess.entity.SocieteEntity;
+//import be.icc.ahe.marryme.dataaccess.entity.UserEntity;
+//import be.icc.ahe.marryme.dataaccess.entity.enumeration.HallType;
+//import be.icc.ahe.marryme.dataaccess.entity.enumeration.MusiqueType;
+//import be.icc.ahe.marryme.dataaccess.entity.enumeration.Role;
+//import be.icc.ahe.marryme.exception.sqlexception.FermetureDatabaseException;
+//import be.icc.ahe.marryme.model.*;
+//import be.icc.ahe.marryme.model.dto.ReservationRequestDTO;
+//import be.icc.ahe.marryme.model.dto.UserRegistrationFormDTO;
+//import be.icc.ahe.marryme.model.mapper.PersonMapper;
+//import be.icc.ahe.marryme.model.mapper.SocieteMapper;
+//import be.icc.ahe.marryme.model.mapper.UserMapper;
+//import be.icc.ahe.marryme.model.mapper.dtomapper.CycleAvoidingMappingContext;
+//import be.icc.ahe.marryme.model.mapper.dtomapper.RegistrationUserMapper;
+//import be.icc.ahe.marryme.service.*;
+//import com.github.javafaker.Faker;
+//import org.slf4j.Logger;
+//import org.slf4j.LoggerFactory;
+//import org.springframework.beans.factory.annotation.Autowired;
+//import org.springframework.boot.CommandLineRunner;
+//import org.springframework.stereotype.Component;
+//
+//import java.io.File;
+//import java.sql.Date;
+//import java.text.Normalizer;
+//import java.time.Instant;
+//import java.util.*;
+//import java.util.concurrent.TimeUnit;
+////
+//@Component
+//public class MyRunner implements CommandLineRunner {
+//
 //    private static final Logger LOG = LoggerFactory.getLogger(MyRunner.class);
 //
 //    private final AddressService addressService;
@@ -82,33 +82,33 @@ public class MyRunner implements CommandLineRunner {
 //        this.traiteurService = traiteurService;
 //        this.reservationService = reservationService;
 //    }
-//
-//    @Override
-    public void run(String... args) throws Exception {
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+////
+////    @Override
+//    public void run(String... args) throws Exception {
+////
+////
+////
+////
+////
+////
+////
+////
+////
+////
+////
+////
+////
+////
+////
+////
+////
+////
+////
+////
+////
+////
+////
+////
 //        UserRegistrationFormDTO urf = new UserRegistrationFormDTO(
 //                "Abdellah","Elachhab","Belgique","Bruxelles","1070","Boulevard Prince de Liege",
 //                "44","4","0484732465","tamere@tamer.tame","SalutLesBronzé","par eamil"
@@ -414,9 +414,9 @@ public class MyRunner implements CommandLineRunner {
 //////        musiqueEntity.setFormuleEntities(Arrays.asList(formuleEntity1));
 //////        musiqueService.save(musiqueEntity);
 //
-//
+////
 //    }
-//
+////
 //    private Address createAddress(Faker faker) throws Exception {
 //
 //        Address adress = new Address();
@@ -552,5 +552,5 @@ public class MyRunner implements CommandLineRunner {
 //        reservation.setPrice(50);
 //        reservation.setInceptionDate( new Date(java.util.Date.from(Instant.now()).getTime()));
 //        return reservation;
-    }
-}
+//    }
+//}

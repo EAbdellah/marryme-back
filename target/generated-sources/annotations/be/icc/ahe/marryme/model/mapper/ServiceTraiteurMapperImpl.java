@@ -22,7 +22,7 @@ import javax.annotation.processing.Generated;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2022-11-08T02:38:09+0100",
+    date = "2022-11-13T19:55:58+0100",
     comments = "version: 1.5.2.Final, compiler: javac, environment: Java 11.0.8 (Oracle Corporation)"
 )
 public class ServiceTraiteurMapperImpl implements ServiceTraiteurMapper {

@@ -51,6 +51,7 @@ public class FormuleEntity implements Serializable {
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     @ManyToOne( fetch = FetchType.LAZY)
     @JoinColumn(name="service_id")
+    @ToString.Exclude
     private ServiceEntity serviceEntity;
 
     @JsonManagedReference

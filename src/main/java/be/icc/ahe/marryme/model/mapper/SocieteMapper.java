@@ -17,6 +17,7 @@ public interface SocieteMapper {
 
     default Service map(ServiceEntity value) {
         if (value !=null) {
+
             if ((value).getClass().equals(SalleEntity.class)) {
                 return  SalleMapper.INSTANCE.entityToModel((SalleEntity) value);
         }else if(value.getClass().equals(MusiqueEntity.class)){
