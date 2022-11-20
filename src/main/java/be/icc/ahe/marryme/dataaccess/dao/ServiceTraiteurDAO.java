@@ -5,6 +5,8 @@ import be.icc.ahe.marryme.dataaccess.entity.ServiceEntity;
 import be.icc.ahe.marryme.dataaccess.entity.ServiceTraiteurEntity;
 import be.icc.ahe.marryme.dataaccess.repository.ServiceTraiteurRepo;
 import be.icc.ahe.marryme.exception.sqlexception.ServiceTraiteurDatabaseException;
+import be.icc.ahe.marryme.model.dto.GetShortMediaServiceDTO;
+import be.icc.ahe.marryme.model.dto.GetShortServiceTraiteurServiceDTO;
 import lombok.SneakyThrows;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -42,6 +44,9 @@ public class ServiceTraiteurDAO {
         return serviceTraiteurRepo.existsById(id);
     }
 
+    public GetShortServiceTraiteurServiceDTO getServiceTraiteurByProvider(String email){
+        return serviceTraiteurRepo.getServiceTraiteurByProvider(email);
+    }
 
 
 }

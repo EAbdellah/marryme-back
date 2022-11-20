@@ -7,7 +7,9 @@ import be.icc.ahe.marryme.dataaccess.entity.MusiqueEntity;
 
 import be.icc.ahe.marryme.exception.sqlexception.MusiqueDatabaseException;
 import be.icc.ahe.marryme.model.Musique;
+import be.icc.ahe.marryme.model.dto.GetShortMusiqueServiceDTO;
 import be.icc.ahe.marryme.model.mapper.MusiqueMapper;
+import be.icc.ahe.marryme.model.mapper.dtomapper.CycleAvoidingMappingContext;
 import be.icc.ahe.marryme.service.MusiqueService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -31,12 +33,12 @@ public class MusiqueServiceImpl implements MusiqueService {
         Optional.ofNullable(musique)
                 .orElseThrow(() -> new MusiqueDatabaseException("Can not persist null musique: " + musique));
 
-        MusiqueEntity persistedMusiqueEntity = musiqueDAO.save(MusiqueMapper.INSTANCE.modelToEntity(musique));
+        MusiqueEntity persistedMusiqueEntity = musiqueDAO.save(MusiqueMapper.INSTANCE.modelToEntity(musique,new CycleAvoidingMappingContext()));
 
         Optional.ofNullable(persistedMusiqueEntity)
                 .orElseThrow(() -> new MusiqueDatabaseException("Persisted musique is null: " + persistedMusiqueEntity));
 
-        return MusiqueMapper.INSTANCE.entityToModel(persistedMusiqueEntity);
+        return MusiqueMapper.INSTANCE.entityToModel(persistedMusiqueEntity,new CycleAvoidingMappingContext());
 
     }
 
@@ -46,7 +48,7 @@ public class MusiqueServiceImpl implements MusiqueService {
         MusiqueEntity musiqueEntity = this.musiqueDAO.findByID(id)
                 .orElseThrow(() -> new MusiqueDatabaseException("None musique found at id:" + id));
 
-        return MusiqueMapper.INSTANCE.entityToModel(musiqueEntity);
+        return MusiqueMapper.INSTANCE.entityToModel(musiqueEntity,new CycleAvoidingMappingContext());
 
     }
 
@@ -60,13 +62,13 @@ public class MusiqueServiceImpl implements MusiqueService {
             throw new MusiqueDatabaseException("Try to update into data base a musique that does not exist: " + musique);
         }
 
-        MusiqueEntity persistedMusiqueEntity = musiqueDAO.save(MusiqueMapper.INSTANCE.modelToEntity(musique));
+        MusiqueEntity persistedMusiqueEntity = musiqueDAO.save(MusiqueMapper.INSTANCE.modelToEntity(musique,new CycleAvoidingMappingContext()));
 
 
         Optional.ofNullable(persistedMusiqueEntity)
                 .orElseThrow(() -> new MusiqueDatabaseException("Persisted musique is null: " + persistedMusiqueEntity));
 
-        return MusiqueMapper.INSTANCE.entityToModel(persistedMusiqueEntity);
+        return MusiqueMapper.INSTANCE.entityToModel(persistedMusiqueEntity,new CycleAvoidingMappingContext());
     }
 
     @Override
@@ -79,5 +81,10 @@ public class MusiqueServiceImpl implements MusiqueService {
         if (musiqueDAO.existsById(id)) {
             throw new MusiqueDatabaseException("Failed to delete musique into database at id: " + id);
         }
+    }
+
+    @Override
+    public GetShortMusiqueServiceDTO getMusiqueByProvider(String providerEmail) {
+        return musiqueDAO.getMusiqueByProvider(providerEmail);
     }
 }

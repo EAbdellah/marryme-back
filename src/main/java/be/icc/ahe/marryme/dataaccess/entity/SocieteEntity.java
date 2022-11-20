@@ -1,17 +1,47 @@
 package be.icc.ahe.marryme.dataaccess.entity;
 
+import be.icc.ahe.marryme.listerner.AuditListener;
+import be.icc.ahe.marryme.model.dto.ProviderRequestRegistrationDTO;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import lombok.Getter;
+import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 import javax.persistence.*;
 import java.io.Serializable;
 
+@NamedNativeQuery(
+        name  = "getAllProviderRequestRegistration",
+        query = "SELECT  societe.nom, societe.n_tva as ntva, societe.n_entreprise as nentreprise ,  userr.email as email  ,person.first_name as fristName, person.last_name as LastName " +
+                "FROM ((myschema.person as person " +
+                "INNER JOIN myschema.societe as societe ON societe.person_id  = person.person_id) " +
+                "INNER JOIN myschema.user as userr ON userr.user_id  = person.user_id) " +
+                "Where userr.is_active = 0 AND societe.decision_registration= \"WAITING\" ;"
+        ,
+        resultSetMapping = "allProviderRequestRegistration"
+)
+
+@SqlResultSetMapping(
+        name = "allProviderRequestRegistration",
+        classes = {
+                @ConstructorResult(
+                        targetClass = ProviderRequestRegistrationDTO.class,
+                        columns = {
+                                @ColumnResult(name = "nom", type = String.class),
+                                @ColumnResult(name = "ntva", type = String.class),
+                                @ColumnResult(name = "nentreprise", type = Long.class),
+                                @ColumnResult(name = "email", type = String.class),
+                                @ColumnResult(name = "fristName", type = String.class),
+                                @ColumnResult(name = "LastName", type = String.class),
+                        })
+        }
+)
+
+
 @Entity
 @Table(name = "societe")
 @NoArgsConstructor
- @Getter @Setter
+@Data
+@EntityListeners(AuditListener.class)
 public class SocieteEntity implements Serializable {
 
     @Id
@@ -19,7 +49,7 @@ public class SocieteEntity implements Serializable {
     @Column(name = "societe_id", nullable = false)
     private Long societeID;
     @Column(name = "n_tva", nullable = false)
-    private Long nTVA;
+    private String nTVA;
     @Column(name = "n_entreprise", nullable = false)
     private Long nEntreprise;
     @Column(name = "nom", nullable = false, length = 128)
@@ -36,14 +66,14 @@ public class SocieteEntity implements Serializable {
 
     @OneToOne(targetEntity = PersonEntity.class, fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     @JoinColumn(name="person_id")
-    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private PersonEntity owner;
 
     @OneToOne(targetEntity = ServiceEntity.class, fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     @JoinColumn(name="service_id")
     private ServiceEntity service;
 
-
+    @Column(name="decision_registration")
+    private String decisionRegistration;
 
 //    public Long getSocieteID() {
 //        return societeID;

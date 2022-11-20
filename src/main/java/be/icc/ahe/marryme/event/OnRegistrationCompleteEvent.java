@@ -1,9 +1,7 @@
 package be.icc.ahe.marryme.event;
 
 import be.icc.ahe.marryme.model.Person;
-import be.icc.ahe.marryme.model.User;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.context.ApplicationEvent;
 
@@ -15,10 +13,9 @@ public class OnRegistrationCompleteEvent extends ApplicationEvent {
     private Locale locale;
     private Person person;
 
-    public OnRegistrationCompleteEvent(
-            Person person, Locale locale, String appUrl) {
+    public OnRegistrationCompleteEvent(Person person, Locale locale, String appUrl)
+    {
         super(person);
-
         this.person = person;
         this.locale = locale;
         this.appUrl = appUrl;

@@ -4,6 +4,8 @@ import be.icc.ahe.marryme.dataaccess.entity.MakeUpAndHairEntity;
 import be.icc.ahe.marryme.dataaccess.entity.MediaEntity;
 import be.icc.ahe.marryme.dataaccess.repository.MediaRepo;
 import be.icc.ahe.marryme.exception.sqlexception.MediaDatabaseException;
+import be.icc.ahe.marryme.model.dto.GetShortFormuleDTO;
+import be.icc.ahe.marryme.model.dto.GetShortMediaServiceDTO;
 import lombok.SneakyThrows;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.sql.SQLDataException;
+import java.util.List;
 import java.util.Optional;
 
 @Component
@@ -41,6 +44,11 @@ public class MediaDAO {
     public boolean existsById(Long id){
         return mediaRepo.existsById(id);
     }
+
+    public GetShortMediaServiceDTO getMediaByProvider(String email){
+        return mediaRepo.getMediaByProvider(email);
+    }
+
 
 
 }

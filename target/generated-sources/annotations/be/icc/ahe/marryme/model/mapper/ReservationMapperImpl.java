@@ -16,7 +16,7 @@ import javax.annotation.processing.Generated;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2022-11-13T19:55:57+0100",
+    date = "2022-11-20T03:32:04+0100",
     comments = "version: 1.5.2.Final, compiler: javac, environment: Java 11.0.8 (Oracle Corporation)"
 )
 public class ReservationMapperImpl implements ReservationMapper {
@@ -204,6 +204,7 @@ public class ReservationMapperImpl implements ReservationMapper {
         formule.setSupVeilleFerier( formuleEntity.getSupVeilleFerier() );
         formule.setImages( imageEntityListToImageList( formuleEntity.getImages(), cycleAvoidingMappingContext ) );
         formule.setReservation( reservationEntityListToReservationList( formuleEntity.getReservation(), cycleAvoidingMappingContext ) );
+        formule.setActive( formuleEntity.isActive() );
 
         return formule;
     }
@@ -329,6 +330,7 @@ public class ReservationMapperImpl implements ReservationMapper {
         formuleEntity.setSupSamedi( formule.getSupSamedi() );
         formuleEntity.setSupDimanche( formule.getSupDimanche() );
         formuleEntity.setSupVeilleFerier( formule.getSupVeilleFerier() );
+        formuleEntity.setActive( formule.isActive() );
         formuleEntity.setImages( imageListToImageEntityList( formule.getImages(), cycleAvoidingMappingContext ) );
         formuleEntity.setReservation( reservationListToReservationEntityList( formule.getReservation(), cycleAvoidingMappingContext ) );
 

@@ -4,6 +4,8 @@ import be.icc.ahe.marryme.dataaccess.entity.ReservationEntity;
 import be.icc.ahe.marryme.dataaccess.entity.UserEntity;
 import be.icc.ahe.marryme.dataaccess.repository.ReservationRepo;
 import be.icc.ahe.marryme.exception.sqlexception.ReservationDatabaseException;
+import be.icc.ahe.marryme.model.dto.GetShortMediaServiceDTO;
+import be.icc.ahe.marryme.model.dto.GetShortReservationDTO;
 import be.icc.ahe.marryme.model.dto.ReservationClientDTO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -58,4 +60,8 @@ public class ReservationDAO {
         return reservationRepo.findByTicket(ticket);
     }
 
+
+    public List<GetShortReservationDTO> getAllReservationByProvider(String email){
+        return reservationRepo.getAllReservationByProvider(email);
+    }
 }

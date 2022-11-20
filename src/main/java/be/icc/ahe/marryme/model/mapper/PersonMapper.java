@@ -2,6 +2,7 @@ package be.icc.ahe.marryme.model.mapper;
 
 import be.icc.ahe.marryme.dataaccess.entity.PersonEntity;
 import be.icc.ahe.marryme.model.Person;
+import be.icc.ahe.marryme.model.dto.ProviderRegisterFormDTO;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
@@ -15,5 +16,8 @@ public interface PersonMapper {
 
     @Mapping(source = "userEntity", target = "user")
     Person entityToModel(PersonEntity personEntity);
+
+    @Mapping(source = "phone", target = "phoneNbr")
+    Person RegistrationProviderDtoToModel(ProviderRegisterFormDTO providerRegisterFormDTO);
 
 }

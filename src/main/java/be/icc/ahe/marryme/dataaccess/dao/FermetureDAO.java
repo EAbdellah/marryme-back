@@ -3,6 +3,8 @@ package be.icc.ahe.marryme.dataaccess.dao;
 import be.icc.ahe.marryme.dataaccess.entity.AddressEntity;
 import be.icc.ahe.marryme.dataaccess.entity.FermetureEntity;
 import be.icc.ahe.marryme.dataaccess.repository.FermetureRepo;
+import be.icc.ahe.marryme.model.dto.GetShortFermetureDTO;
+import be.icc.ahe.marryme.model.dto.ReservationClientDTO;
 import lombok.SneakyThrows;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,6 +13,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.SQLDataException;
+import java.util.List;
 import java.util.Optional;
 
 @Component
@@ -44,6 +47,9 @@ public class FermetureDAO {
         return fermetureRepo.existsById(id);
     }
 
+    public List<GetShortFermetureDTO> getAllFermetureByProvider(String email){
+        return fermetureRepo.getAllFermetureByProvider(email);
+    }
 
 
 }

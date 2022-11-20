@@ -4,7 +4,9 @@ import be.icc.ahe.marryme.dataaccess.dao.TraiteurDAO;
 import be.icc.ahe.marryme.dataaccess.entity.TraiteurEntity;
 import be.icc.ahe.marryme.exception.sqlexception.TraiteurDatabaseException;
 import be.icc.ahe.marryme.model.Traiteur;
+import be.icc.ahe.marryme.model.dto.GetShortTraiteurServiceDTO;
 import be.icc.ahe.marryme.model.mapper.TraiteurMapper;
+import be.icc.ahe.marryme.model.mapper.dtomapper.CycleAvoidingMappingContext;
 import be.icc.ahe.marryme.service.TraiteurService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,12 +29,12 @@ public class TraiteurServiceImpl implements TraiteurService {
         Optional.ofNullable(traiteur)
                 .orElseThrow(() -> new TraiteurDatabaseException("Can not save null traiteur: " + traiteur));
 
-        TraiteurEntity persistedTraiteurEntity= this.traiteurDAO.save(TraiteurMapper.INSTANCE.modelToEntity(traiteur));
+        TraiteurEntity persistedTraiteurEntity= this.traiteurDAO.save(TraiteurMapper.INSTANCE.modelToEntity(traiteur,new CycleAvoidingMappingContext()));
 
         Optional.ofNullable(persistedTraiteurEntity)
                 .orElseThrow(() -> new TraiteurDatabaseException("Persisted traiteur is null: " + persistedTraiteurEntity));
 
-        return TraiteurMapper.INSTANCE.entityToModel(persistedTraiteurEntity);
+        return TraiteurMapper.INSTANCE.entityToModel(persistedTraiteurEntity,new CycleAvoidingMappingContext());
 
     }
 
@@ -42,7 +44,7 @@ public class TraiteurServiceImpl implements TraiteurService {
         TraiteurEntity traiteurEntity= this.traiteurDAO.findByID(id)
                 .orElseThrow(() -> new TraiteurDatabaseException("None traiteur found at id:" + id));
 
-        return TraiteurMapper.INSTANCE.entityToModel(traiteurEntity);
+        return TraiteurMapper.INSTANCE.entityToModel(traiteurEntity,new CycleAvoidingMappingContext());
 
     }
 
@@ -56,13 +58,13 @@ public class TraiteurServiceImpl implements TraiteurService {
             throw new TraiteurDatabaseException("Try to update into data base a traiteur that does not exist: " + traiteur);
         }
 
-        TraiteurEntity traiteurEntity= traiteurDAO.save(TraiteurMapper.INSTANCE.modelToEntity(traiteur));
+        TraiteurEntity traiteurEntity= traiteurDAO.save(TraiteurMapper.INSTANCE.modelToEntity(traiteur,new CycleAvoidingMappingContext()));
 
 
         Optional.ofNullable(traiteurEntity)
                 .orElseThrow(() -> new TraiteurDatabaseException("Persisted traiteur is null: " + traiteurEntity));
 
-        return TraiteurMapper.INSTANCE.entityToModel(traiteurEntity);
+        return TraiteurMapper.INSTANCE.entityToModel(traiteurEntity,new CycleAvoidingMappingContext());
     }
 
     @Override
@@ -75,6 +77,11 @@ public class TraiteurServiceImpl implements TraiteurService {
         if (traiteurDAO.existsById(id)) {
             throw new TraiteurDatabaseException("Failed to delete traiteur into database at id: " + id);
         }
+    }
+
+    @Override
+    public GetShortTraiteurServiceDTO getTraiteurByProvider(String providerEmail) {
+        return traiteurDAO.getTraiteurByProvider(providerEmail);
     }
 
 

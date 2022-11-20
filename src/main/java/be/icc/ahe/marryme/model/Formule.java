@@ -33,6 +33,7 @@ public class Formule {
     private Service service;
     @JsonManagedReference(value="formule-reservation")
     private List<Reservation> reservation;
+    private boolean isActive;
 
 
 

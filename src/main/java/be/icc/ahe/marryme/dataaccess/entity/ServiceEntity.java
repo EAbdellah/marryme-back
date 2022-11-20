@@ -3,6 +3,7 @@ package be.icc.ahe.marryme.dataaccess.entity;
 import be.icc.ahe.marryme.dataaccess.entity.enumeration.HallType;
 import be.icc.ahe.marryme.dataaccess.entity.enumeration.MusiqueType;
 import be.icc.ahe.marryme.model.dto.AllServicesDTO;
+import be.icc.ahe.marryme.model.dto.GetShortMusiqueServiceDTO;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
@@ -18,6 +19,36 @@ import java.util.*;
 @Table(name = "AbstractService")
 @NoArgsConstructor
 @Data
+
+
+//@NamedNativeQuery(
+//        name  = "getIdService",
+//        query = "SELECT service.service_id,service.nom,service.type,musique.musique_type " +
+//                "FROM ((((myschema.musique as musique  " +
+//                "INNER JOIN myschema.abstract_service as service ON service.service_id  = musique.service_id) " +
+//                "INNER JOIN myschema.societe as societe ON service.service_id  = societe.service_id) " +
+//                "INNER JOIN myschema.person as person ON societe.person_id  = person.person_id) " +
+//                "INNER JOIN myschema.user as user ON user.user_id  = person.user_id) " +
+//                "Where user.email = :provider_email ;"
+//        ,
+//        resultSetMapping = "musiqueByProvider"
+//)
+//
+//@SqlResultSetMapping(
+//        name = "musiqueByProvider",
+//        classes = {
+//                @ConstructorResult(
+//                        targetClass = GetShortMusiqueServiceDTO.class,
+//                        columns = {
+//                                @ColumnResult(name = "service_id", type = Long.class),
+//                                @ColumnResult(name = "nom", type = String.class),
+//                                @ColumnResult(name = "type", type = String.class),
+//                                @ColumnResult(name = "musique_type", type = String.class)
+//
+//                        })
+//        }
+//)
+
 
 @NamedNativeQuery(
         name  = "getAllServices",
@@ -108,11 +139,11 @@ public abstract class ServiceEntity implements Serializable {
     @Column(name = "type", nullable = false)
     private String type = getClass().getSimpleName();
 
-    @Column(name = "nom", nullable = false)
+    @Column(name = "nom", updatable = false)
     private String nom;
 
     @OneToOne(targetEntity = AddressEntity.class, fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
-    @JoinColumn(name = "adress_id", nullable = false)
+    @JoinColumn(name = "adress_id", nullable = false, updatable = false)
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private AddressEntity address;
 
@@ -133,7 +164,7 @@ public abstract class ServiceEntity implements Serializable {
 
 //    @JsonManagedReference
 //    @OneToMany(mappedBy = "serviceEntity", fetch = FetchType.LAZY,cascade = CascadeType.ALL, orphanRemoval = true)
-    @OneToMany(targetEntity = FormuleEntity.class, fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+    @OneToMany(targetEntity = FormuleEntity.class, fetch = FetchType.LAZY,cascade = CascadeType.ALL, orphanRemoval = false)
     @JoinColumn(name="service_id")
     private List<FormuleEntity> formules ;
 

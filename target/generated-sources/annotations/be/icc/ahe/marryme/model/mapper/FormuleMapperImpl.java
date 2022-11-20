@@ -8,6 +8,7 @@ import be.icc.ahe.marryme.model.Formule;
 import be.icc.ahe.marryme.model.Image;
 import be.icc.ahe.marryme.model.Reservation;
 import be.icc.ahe.marryme.model.User;
+import be.icc.ahe.marryme.model.dto.GetShortFormuleDTO;
 import be.icc.ahe.marryme.model.mapper.dtomapper.CycleAvoidingMappingContext;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -16,7 +17,7 @@ import javax.annotation.processing.Generated;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2022-11-13T19:55:58+0100",
+    date = "2022-11-20T03:32:04+0100",
     comments = "version: 1.5.2.Final, compiler: javac, environment: Java 11.0.8 (Oracle Corporation)"
 )
 public class FormuleMapperImpl implements FormuleMapper {
@@ -48,6 +49,7 @@ public class FormuleMapperImpl implements FormuleMapper {
         formule.setSupVeilleFerier( formuleEntity.getSupVeilleFerier() );
         formule.setImages( imageEntityListToImageList( formuleEntity.getImages(), cycleAvoidingMappingContext ) );
         formule.setReservation( reservationEntityListToReservationList( formuleEntity.getReservation(), cycleAvoidingMappingContext ) );
+        formule.setActive( formuleEntity.isActive() );
 
         return formule;
     }
@@ -77,10 +79,33 @@ public class FormuleMapperImpl implements FormuleMapper {
         formuleEntity.setSupSamedi( formule.getSupSamedi() );
         formuleEntity.setSupDimanche( formule.getSupDimanche() );
         formuleEntity.setSupVeilleFerier( formule.getSupVeilleFerier() );
+        formuleEntity.setActive( formule.isActive() );
         formuleEntity.setImages( imageListToImageEntityList( formule.getImages(), cycleAvoidingMappingContext ) );
         formuleEntity.setReservation( reservationListToReservationEntityList( formule.getReservation(), cycleAvoidingMappingContext ) );
 
         return formuleEntity;
+    }
+
+    @Override
+    public Formule dtoToModel(GetShortFormuleDTO form) {
+        if ( form == null ) {
+            return null;
+        }
+
+        Formule formule = new Formule();
+
+        formule.setFormuleID( form.getFormule_id() );
+        formule.setIsUniquePrix( form.getIs_unique_prix() );
+        formule.setSupDimanche( form.getSup_dimanche() );
+        formule.setSupFerrier( form.getSup_ferrier() );
+        formule.setSupSamedi( form.getSup_samedi() );
+        formule.setSupVeilleFerier( form.getSup_veille_ferier() );
+        formule.setNom( form.getNom() );
+        formule.setPrix( form.getPrix() );
+        formule.setDescription( form.getDescription() );
+        formule.setSupvendredi( form.getSupvendredi() );
+
+        return formule;
     }
 
     protected Image imageEntityToImage(ImageEntity imageEntity, CycleAvoidingMappingContext cycleAvoidingMappingContext) {

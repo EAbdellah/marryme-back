@@ -2,14 +2,18 @@ package be.icc.ahe.marryme.service.implementation;
 
 import be.icc.ahe.marryme.dataaccess.dao.PersonDAO;
 import be.icc.ahe.marryme.dataaccess.entity.PersonEntity;
+import be.icc.ahe.marryme.dataaccess.entity.UserEntity;
 import be.icc.ahe.marryme.exception.EmailExistException;
 import be.icc.ahe.marryme.exception.UserNotFoundException;
 import be.icc.ahe.marryme.exception.UsernameExistException;
 import be.icc.ahe.marryme.exception.sqlexception.PersonDatabaseException;
+import be.icc.ahe.marryme.exception.sqlexception.UserDatabaseException;
 import be.icc.ahe.marryme.model.Person;
 import be.icc.ahe.marryme.model.User;
+import be.icc.ahe.marryme.model.dto.ProviderRegisterFormDTO;
 import be.icc.ahe.marryme.model.dto.UserRegistrationFormDTO;
 import be.icc.ahe.marryme.model.mapper.PersonMapper;
+import be.icc.ahe.marryme.model.mapper.UserMapper;
 import be.icc.ahe.marryme.model.mapper.dtomapper.RegistrationUserMapper;
 import be.icc.ahe.marryme.service.EmailService;
 import be.icc.ahe.marryme.service.PersonService;
@@ -118,5 +122,34 @@ public class PersonServiceImpl implements PersonService {
         }
     }
 
+    @Override
+    public Person registerProvider(ProviderRegisterFormDTO userForm) throws UserNotFoundException, EmailExistException {
+        userService.validateNewEmail(EMPTY, userForm.getEmail_entreprise());
+
+        Person person = PersonMapper.INSTANCE.RegistrationProviderDtoToModel(userForm);
+
+        User user = UserMapper.INSTANCE.RegistrationProviderDtoToModel(userForm);
+        user.setJoinDate(new Date());
+        user.setPassword(userService.encodePassword(userForm.getPassword()));
+
+        user.setActive(false);
+
+        user.setNotLocked(true);
+        user.setRole(ROLE_PRESTATAIRE_ADMIN);
+        user.setAuthorities(ROLE_PRESTATAIRE_ADMIN.getAuthorities());
+        person.setUser(user);
+
+//        PersonEntity personEntity =  PersonMapper.INSTANCE.modelToEntity(person);
+//        personDAO.save(personEntity);
+//
+//
+//            return    PersonMapper.INSTANCE.entityToModel(personEntity);
+        return person;
+
+    }
+
+    public PersonEntity findPersonByUser(UserEntity userEntity) {
+        return personDAO.findPersonByUser(userEntity);
+    }
 
 }

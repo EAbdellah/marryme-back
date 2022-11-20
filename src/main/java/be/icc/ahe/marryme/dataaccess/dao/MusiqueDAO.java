@@ -4,6 +4,8 @@ import be.icc.ahe.marryme.dataaccess.entity.MediaEntity;
 import be.icc.ahe.marryme.dataaccess.entity.MusiqueEntity;
 import be.icc.ahe.marryme.dataaccess.repository.MusiqueRepo;
 import be.icc.ahe.marryme.exception.sqlexception.MusiqueDatabaseException;
+import be.icc.ahe.marryme.model.dto.GetShortFormuleDTO;
+import be.icc.ahe.marryme.model.dto.GetShortMusiqueServiceDTO;
 import lombok.SneakyThrows;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.sql.SQLDataException;
+import java.util.List;
 import java.util.Optional;
 
 @Component
@@ -39,6 +42,10 @@ public class MusiqueDAO {
 
     public boolean existsById(Long id){
         return musiqueRepo.existsById(id);
+    }
+
+    public GetShortMusiqueServiceDTO getMusiqueByProvider(String email){
+        return musiqueRepo.getMusiqueByProvider(email);
     }
 
 }

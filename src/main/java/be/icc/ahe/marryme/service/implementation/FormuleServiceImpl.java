@@ -4,12 +4,16 @@ import be.icc.ahe.marryme.dataaccess.dao.FormuleDAO;
 import be.icc.ahe.marryme.dataaccess.entity.FormuleEntity;
 import be.icc.ahe.marryme.exception.sqlexception.FormuleDatabaseException;
 import be.icc.ahe.marryme.model.Formule;
+import be.icc.ahe.marryme.model.dto.GetShortFermetureDTO;
+import be.icc.ahe.marryme.model.dto.GetShortFormuleDTO;
+import be.icc.ahe.marryme.model.dto.GetShortMediaServiceDTO;
 import be.icc.ahe.marryme.model.mapper.FormuleMapper;
 import be.icc.ahe.marryme.model.mapper.dtomapper.CycleAvoidingMappingContext;
 import be.icc.ahe.marryme.service.FormuleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -78,6 +82,18 @@ public class FormuleServiceImpl implements FormuleService {
             throw new FormuleDatabaseException("Failed to delete formule into database at id: " + id);
         }
     }
+
+    @Override
+    public List<GetShortFormuleDTO> getAllFormuleByProvider(String email) {
+        return formuleDAO.getAllFormuleByProvider(email);
+    }
+//
+//    @Override
+//    public void saveFormule(GetShortFormuleDTO form) {
+//
+//
+//    }
+
 
 
 }

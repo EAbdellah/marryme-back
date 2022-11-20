@@ -7,6 +7,7 @@ import be.icc.ahe.marryme.exception.sqlexception.AddressDatabaseException;
 import be.icc.ahe.marryme.exception.sqlexception.FermetureDatabaseException;
 import be.icc.ahe.marryme.model.Address;
 import be.icc.ahe.marryme.model.Fermeture;
+import be.icc.ahe.marryme.model.dto.GetShortFermetureDTO;
 import be.icc.ahe.marryme.model.mapper.AddressMapper;
 import be.icc.ahe.marryme.model.mapper.FermetureMapper;
 import be.icc.ahe.marryme.service.FermetureService;
@@ -14,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.sql.SQLDataException;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -80,5 +82,10 @@ public class FermetureServiceImpl implements FermetureService {
         if (fermetureDAO.existsById(id)){
             throw new FermetureDatabaseException("Failed to delete fermeture into database at id: " + id);
         }
+    }
+
+    @Override
+    public List<GetShortFermetureDTO> getAllFermetureByProvider(String email) {
+        return fermetureDAO.getAllFermetureByProvider(email);
     }
 }

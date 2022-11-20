@@ -7,6 +7,7 @@ import be.icc.ahe.marryme.dataaccess.entity.ImageEntity;
 import be.icc.ahe.marryme.dataaccess.entity.MusiqueEntity;
 import be.icc.ahe.marryme.dataaccess.entity.ReservationEntity;
 import be.icc.ahe.marryme.dataaccess.entity.UserEntity;
+import be.icc.ahe.marryme.dataaccess.entity.enumeration.MusiqueType;
 import be.icc.ahe.marryme.model.Address;
 import be.icc.ahe.marryme.model.Fermeture;
 import be.icc.ahe.marryme.model.Formule;
@@ -14,6 +15,8 @@ import be.icc.ahe.marryme.model.Image;
 import be.icc.ahe.marryme.model.Musique;
 import be.icc.ahe.marryme.model.Reservation;
 import be.icc.ahe.marryme.model.User;
+import be.icc.ahe.marryme.model.dto.GetShortMusiqueServiceDTO;
+import be.icc.ahe.marryme.model.mapper.dtomapper.CycleAvoidingMappingContext;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -22,55 +25,93 @@ import javax.annotation.processing.Generated;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2022-11-13T19:55:59+0100",
+    date = "2022-11-20T03:32:05+0100",
     comments = "version: 1.5.2.Final, compiler: javac, environment: Java 11.0.8 (Oracle Corporation)"
 )
 public class MusiqueMapperImpl implements MusiqueMapper {
 
     @Override
-    public Musique entityToModel(MusiqueEntity musiqueEntity) {
+    public Musique entityToModel(MusiqueEntity musiqueEntity, CycleAvoidingMappingContext cycleAvoidingMappingContext) {
+        Musique target = cycleAvoidingMappingContext.getMappedInstance( musiqueEntity, Musique.class );
+        if ( target != null ) {
+            return target;
+        }
+
         if ( musiqueEntity == null ) {
             return null;
         }
 
         Musique musique = new Musique();
 
+        cycleAvoidingMappingContext.storeMappedInstance( musiqueEntity, musique );
+
         musique.setServiceID( musiqueEntity.getServiceID() );
         musique.setNom( musiqueEntity.getNom() );
-        musique.setAddress( addressEntityToAddress( musiqueEntity.getAddress() ) );
-        musique.setFormules( formuleEntityListToFormuleList( musiqueEntity.getFormules() ) );
-        musique.setFermetures( fermetureEntityCollectionToFermetureCollection( musiqueEntity.getFermetures() ) );
-        musique.setImage( imageEntityToImage( musiqueEntity.getImage() ) );
+        musique.setAddress( addressEntityToAddress( musiqueEntity.getAddress(), cycleAvoidingMappingContext ) );
+        musique.setFormules( formuleEntityListToFormuleList( musiqueEntity.getFormules(), cycleAvoidingMappingContext ) );
+        musique.setFermetures( fermetureEntityCollectionToFermetureCollection( musiqueEntity.getFermetures(), cycleAvoidingMappingContext ) );
+        musique.setImage( imageEntityToImage( musiqueEntity.getImage(), cycleAvoidingMappingContext ) );
         musique.setMusiqueType( musiqueEntity.getMusiqueType() );
 
         return musique;
     }
 
     @Override
-    public MusiqueEntity modelToEntity(Musique musique) {
+    public MusiqueEntity modelToEntity(Musique musique, CycleAvoidingMappingContext cycleAvoidingMappingContext) {
+        MusiqueEntity target = cycleAvoidingMappingContext.getMappedInstance( musique, MusiqueEntity.class );
+        if ( target != null ) {
+            return target;
+        }
+
         if ( musique == null ) {
             return null;
         }
 
         MusiqueEntity musiqueEntity = new MusiqueEntity();
 
+        cycleAvoidingMappingContext.storeMappedInstance( musique, musiqueEntity );
+
         musiqueEntity.setServiceID( musique.getServiceID() );
         musiqueEntity.setNom( musique.getNom() );
-        musiqueEntity.setAddress( addressToAddressEntity( musique.getAddress() ) );
-        musiqueEntity.setFormules( formuleListToFormuleEntityList( musique.getFormules() ) );
-        musiqueEntity.setFermetures( fermetureCollectionToFermetureEntityCollection( musique.getFermetures() ) );
-        musiqueEntity.setImage( imageToImageEntity( musique.getImage() ) );
+        musiqueEntity.setAddress( addressToAddressEntity( musique.getAddress(), cycleAvoidingMappingContext ) );
+        musiqueEntity.setFormules( formuleListToFormuleEntityList( musique.getFormules(), cycleAvoidingMappingContext ) );
+        musiqueEntity.setFermetures( fermetureCollectionToFermetureEntityCollection( musique.getFermetures(), cycleAvoidingMappingContext ) );
+        musiqueEntity.setImage( imageToImageEntity( musique.getImage(), cycleAvoidingMappingContext ) );
         musiqueEntity.setMusiqueType( musique.getMusiqueType() );
 
         return musiqueEntity;
     }
 
-    protected Address addressEntityToAddress(AddressEntity addressEntity) {
+    @Override
+    public Musique dtoToModel(GetShortMusiqueServiceDTO form) {
+        if ( form == null ) {
+            return null;
+        }
+
+        Musique musique = new Musique();
+
+        musique.setServiceID( form.getService_id() );
+        if ( form.getMusique_type() != null ) {
+            musique.setMusiqueType( Enum.valueOf( MusiqueType.class, form.getMusique_type() ) );
+        }
+        musique.setNom( form.getNom() );
+
+        return musique;
+    }
+
+    protected Address addressEntityToAddress(AddressEntity addressEntity, CycleAvoidingMappingContext cycleAvoidingMappingContext) {
+        Address target = cycleAvoidingMappingContext.getMappedInstance( addressEntity, Address.class );
+        if ( target != null ) {
+            return target;
+        }
+
         if ( addressEntity == null ) {
             return null;
         }
 
         Address address = new Address();
+
+        cycleAvoidingMappingContext.storeMappedInstance( addressEntity, address );
 
         address.setAdressID( addressEntity.getAdressID() );
         address.setPays( addressEntity.getPays() );
@@ -83,55 +124,83 @@ public class MusiqueMapperImpl implements MusiqueMapper {
         return address;
     }
 
-    protected Image imageEntityToImage(ImageEntity imageEntity) {
+    protected Image imageEntityToImage(ImageEntity imageEntity, CycleAvoidingMappingContext cycleAvoidingMappingContext) {
+        Image target = cycleAvoidingMappingContext.getMappedInstance( imageEntity, Image.class );
+        if ( target != null ) {
+            return target;
+        }
+
         if ( imageEntity == null ) {
             return null;
         }
 
         Image image = new Image();
 
+        cycleAvoidingMappingContext.storeMappedInstance( imageEntity, image );
+
         image.setImageID( imageEntity.getImageID() );
         byte[] photo = imageEntity.getPhoto();
         if ( photo != null ) {
             image.setPhoto( Arrays.copyOf( photo, photo.length ) );
         }
-        image.setFormule( formuleEntityToFormule( imageEntity.getFormule() ) );
+        image.setFormule( formuleEntityToFormule( imageEntity.getFormule(), cycleAvoidingMappingContext ) );
 
         return image;
     }
 
-    protected List<Image> imageEntityListToImageList(List<ImageEntity> list) {
+    protected List<Image> imageEntityListToImageList(List<ImageEntity> list, CycleAvoidingMappingContext cycleAvoidingMappingContext) {
+        List<Image> target = cycleAvoidingMappingContext.getMappedInstance( list, List.class );
+        if ( target != null ) {
+            return target;
+        }
+
         if ( list == null ) {
             return null;
         }
 
         List<Image> list1 = new ArrayList<Image>( list.size() );
+        cycleAvoidingMappingContext.storeMappedInstance( list, list1 );
+
         for ( ImageEntity imageEntity : list ) {
-            list1.add( imageEntityToImage( imageEntity ) );
+            list1.add( imageEntityToImage( imageEntity, cycleAvoidingMappingContext ) );
         }
 
         return list1;
     }
 
-    protected List<Reservation> reservationEntityListToReservationList(List<ReservationEntity> list) {
+    protected List<Reservation> reservationEntityListToReservationList(List<ReservationEntity> list, CycleAvoidingMappingContext cycleAvoidingMappingContext) {
+        List<Reservation> target = cycleAvoidingMappingContext.getMappedInstance( list, List.class );
+        if ( target != null ) {
+            return target;
+        }
+
         if ( list == null ) {
             return null;
         }
 
         List<Reservation> list1 = new ArrayList<Reservation>( list.size() );
+        cycleAvoidingMappingContext.storeMappedInstance( list, list1 );
+
         for ( ReservationEntity reservationEntity : list ) {
-            list1.add( reservationEntityToReservation( reservationEntity ) );
+            list1.add( reservationEntityToReservation( reservationEntity, cycleAvoidingMappingContext ) );
         }
 
         return list1;
     }
 
-    protected User userEntityToUser(UserEntity userEntity) {
+    protected User userEntityToUser(UserEntity userEntity, CycleAvoidingMappingContext cycleAvoidingMappingContext) {
+        User target = cycleAvoidingMappingContext.getMappedInstance( userEntity, User.class );
+        if ( target != null ) {
+            return target;
+        }
+
         if ( userEntity == null ) {
             return null;
         }
 
         User user = new User();
+
+        cycleAvoidingMappingContext.storeMappedInstance( userEntity, user );
 
         user.setUserID( userEntity.getUserID() );
         user.setPassword( userEntity.getPassword() );
@@ -143,7 +212,7 @@ public class MusiqueMapperImpl implements MusiqueMapper {
         if ( authorities != null ) {
             user.setAuthorities( Arrays.copyOf( authorities, authorities.length ) );
         }
-        user.setReservations( reservationEntityListToReservationList( userEntity.getReservations() ) );
+        user.setReservations( reservationEntityListToReservationList( userEntity.getReservations(), cycleAvoidingMappingContext ) );
         user.setProfileImageUrl( userEntity.getProfileImageUrl() );
         user.setLastLoginDate( userEntity.getLastLoginDate() );
         user.setLastLoginDateDisplay( userEntity.getLastLoginDateDisplay() );
@@ -152,18 +221,25 @@ public class MusiqueMapperImpl implements MusiqueMapper {
         return user;
     }
 
-    protected Reservation reservationEntityToReservation(ReservationEntity reservationEntity) {
+    protected Reservation reservationEntityToReservation(ReservationEntity reservationEntity, CycleAvoidingMappingContext cycleAvoidingMappingContext) {
+        Reservation target = cycleAvoidingMappingContext.getMappedInstance( reservationEntity, Reservation.class );
+        if ( target != null ) {
+            return target;
+        }
+
         if ( reservationEntity == null ) {
             return null;
         }
 
         Reservation reservation = new Reservation();
 
+        cycleAvoidingMappingContext.storeMappedInstance( reservationEntity, reservation );
+
         reservation.setReservationID( reservationEntity.getReservationID() );
         reservation.setReservationDate( reservationEntity.getReservationDate() );
         reservation.setTicket( reservationEntity.getTicket() );
-        reservation.setUser( userEntityToUser( reservationEntity.getUser() ) );
-        reservation.setFormule( formuleEntityToFormule( reservationEntity.getFormule() ) );
+        reservation.setUser( userEntityToUser( reservationEntity.getUser(), cycleAvoidingMappingContext ) );
+        reservation.setFormule( formuleEntityToFormule( reservationEntity.getFormule(), cycleAvoidingMappingContext ) );
         reservation.setPrice( reservationEntity.getPrice() );
         reservation.setStatus( reservationEntity.getStatus() );
         reservation.setPayementId( reservationEntity.getPayementId() );
@@ -174,12 +250,19 @@ public class MusiqueMapperImpl implements MusiqueMapper {
         return reservation;
     }
 
-    protected Formule formuleEntityToFormule(FormuleEntity formuleEntity) {
+    protected Formule formuleEntityToFormule(FormuleEntity formuleEntity, CycleAvoidingMappingContext cycleAvoidingMappingContext) {
+        Formule target = cycleAvoidingMappingContext.getMappedInstance( formuleEntity, Formule.class );
+        if ( target != null ) {
+            return target;
+        }
+
         if ( formuleEntity == null ) {
             return null;
         }
 
         Formule formule = new Formule();
+
+        cycleAvoidingMappingContext.storeMappedInstance( formuleEntity, formule );
 
         formule.setFormuleID( formuleEntity.getFormuleID() );
         formule.setNom( formuleEntity.getNom() );
@@ -191,31 +274,46 @@ public class MusiqueMapperImpl implements MusiqueMapper {
         formule.setSupDimanche( formuleEntity.getSupDimanche() );
         formule.setSupSamedi( formuleEntity.getSupSamedi() );
         formule.setSupVeilleFerier( formuleEntity.getSupVeilleFerier() );
-        formule.setImages( imageEntityListToImageList( formuleEntity.getImages() ) );
-        formule.setReservation( reservationEntityListToReservationList( formuleEntity.getReservation() ) );
+        formule.setImages( imageEntityListToImageList( formuleEntity.getImages(), cycleAvoidingMappingContext ) );
+        formule.setReservation( reservationEntityListToReservationList( formuleEntity.getReservation(), cycleAvoidingMappingContext ) );
+        formule.setActive( formuleEntity.isActive() );
 
         return formule;
     }
 
-    protected List<Formule> formuleEntityListToFormuleList(List<FormuleEntity> list) {
+    protected List<Formule> formuleEntityListToFormuleList(List<FormuleEntity> list, CycleAvoidingMappingContext cycleAvoidingMappingContext) {
+        List<Formule> target = cycleAvoidingMappingContext.getMappedInstance( list, List.class );
+        if ( target != null ) {
+            return target;
+        }
+
         if ( list == null ) {
             return null;
         }
 
         List<Formule> list1 = new ArrayList<Formule>( list.size() );
+        cycleAvoidingMappingContext.storeMappedInstance( list, list1 );
+
         for ( FormuleEntity formuleEntity : list ) {
-            list1.add( formuleEntityToFormule( formuleEntity ) );
+            list1.add( formuleEntityToFormule( formuleEntity, cycleAvoidingMappingContext ) );
         }
 
         return list1;
     }
 
-    protected Fermeture fermetureEntityToFermeture(FermetureEntity fermetureEntity) {
+    protected Fermeture fermetureEntityToFermeture(FermetureEntity fermetureEntity, CycleAvoidingMappingContext cycleAvoidingMappingContext) {
+        Fermeture target = cycleAvoidingMappingContext.getMappedInstance( fermetureEntity, Fermeture.class );
+        if ( target != null ) {
+            return target;
+        }
+
         if ( fermetureEntity == null ) {
             return null;
         }
 
         Fermeture fermeture = new Fermeture();
+
+        cycleAvoidingMappingContext.storeMappedInstance( fermetureEntity, fermeture );
 
         fermeture.setId( fermetureEntity.getId() );
         fermeture.setDate( fermetureEntity.getDate() );
@@ -223,25 +321,39 @@ public class MusiqueMapperImpl implements MusiqueMapper {
         return fermeture;
     }
 
-    protected Collection<Fermeture> fermetureEntityCollectionToFermetureCollection(Collection<FermetureEntity> collection) {
+    protected Collection<Fermeture> fermetureEntityCollectionToFermetureCollection(Collection<FermetureEntity> collection, CycleAvoidingMappingContext cycleAvoidingMappingContext) {
+        Collection<Fermeture> target = cycleAvoidingMappingContext.getMappedInstance( collection, Collection.class );
+        if ( target != null ) {
+            return target;
+        }
+
         if ( collection == null ) {
             return null;
         }
 
         Collection<Fermeture> collection1 = new ArrayList<Fermeture>( collection.size() );
+        cycleAvoidingMappingContext.storeMappedInstance( collection, collection1 );
+
         for ( FermetureEntity fermetureEntity : collection ) {
-            collection1.add( fermetureEntityToFermeture( fermetureEntity ) );
+            collection1.add( fermetureEntityToFermeture( fermetureEntity, cycleAvoidingMappingContext ) );
         }
 
         return collection1;
     }
 
-    protected AddressEntity addressToAddressEntity(Address address) {
+    protected AddressEntity addressToAddressEntity(Address address, CycleAvoidingMappingContext cycleAvoidingMappingContext) {
+        AddressEntity target = cycleAvoidingMappingContext.getMappedInstance( address, AddressEntity.class );
+        if ( target != null ) {
+            return target;
+        }
+
         if ( address == null ) {
             return null;
         }
 
         AddressEntity addressEntity = new AddressEntity();
+
+        cycleAvoidingMappingContext.storeMappedInstance( address, addressEntity );
 
         addressEntity.setAdressID( address.getAdressID() );
         addressEntity.setPays( address.getPays() );
@@ -254,55 +366,83 @@ public class MusiqueMapperImpl implements MusiqueMapper {
         return addressEntity;
     }
 
-    protected ImageEntity imageToImageEntity(Image image) {
+    protected ImageEntity imageToImageEntity(Image image, CycleAvoidingMappingContext cycleAvoidingMappingContext) {
+        ImageEntity target = cycleAvoidingMappingContext.getMappedInstance( image, ImageEntity.class );
+        if ( target != null ) {
+            return target;
+        }
+
         if ( image == null ) {
             return null;
         }
 
         ImageEntity imageEntity = new ImageEntity();
 
+        cycleAvoidingMappingContext.storeMappedInstance( image, imageEntity );
+
         imageEntity.setImageID( image.getImageID() );
         byte[] photo = image.getPhoto();
         if ( photo != null ) {
             imageEntity.setPhoto( Arrays.copyOf( photo, photo.length ) );
         }
-        imageEntity.setFormule( formuleToFormuleEntity( image.getFormule() ) );
+        imageEntity.setFormule( formuleToFormuleEntity( image.getFormule(), cycleAvoidingMappingContext ) );
 
         return imageEntity;
     }
 
-    protected List<ImageEntity> imageListToImageEntityList(List<Image> list) {
+    protected List<ImageEntity> imageListToImageEntityList(List<Image> list, CycleAvoidingMappingContext cycleAvoidingMappingContext) {
+        List<ImageEntity> target = cycleAvoidingMappingContext.getMappedInstance( list, List.class );
+        if ( target != null ) {
+            return target;
+        }
+
         if ( list == null ) {
             return null;
         }
 
         List<ImageEntity> list1 = new ArrayList<ImageEntity>( list.size() );
+        cycleAvoidingMappingContext.storeMappedInstance( list, list1 );
+
         for ( Image image : list ) {
-            list1.add( imageToImageEntity( image ) );
+            list1.add( imageToImageEntity( image, cycleAvoidingMappingContext ) );
         }
 
         return list1;
     }
 
-    protected List<ReservationEntity> reservationListToReservationEntityList(List<Reservation> list) {
+    protected List<ReservationEntity> reservationListToReservationEntityList(List<Reservation> list, CycleAvoidingMappingContext cycleAvoidingMappingContext) {
+        List<ReservationEntity> target = cycleAvoidingMappingContext.getMappedInstance( list, List.class );
+        if ( target != null ) {
+            return target;
+        }
+
         if ( list == null ) {
             return null;
         }
 
         List<ReservationEntity> list1 = new ArrayList<ReservationEntity>( list.size() );
+        cycleAvoidingMappingContext.storeMappedInstance( list, list1 );
+
         for ( Reservation reservation : list ) {
-            list1.add( reservationToReservationEntity( reservation ) );
+            list1.add( reservationToReservationEntity( reservation, cycleAvoidingMappingContext ) );
         }
 
         return list1;
     }
 
-    protected UserEntity userToUserEntity(User user) {
+    protected UserEntity userToUserEntity(User user, CycleAvoidingMappingContext cycleAvoidingMappingContext) {
+        UserEntity target = cycleAvoidingMappingContext.getMappedInstance( user, UserEntity.class );
+        if ( target != null ) {
+            return target;
+        }
+
         if ( user == null ) {
             return null;
         }
 
         UserEntity userEntity = new UserEntity();
+
+        cycleAvoidingMappingContext.storeMappedInstance( user, userEntity );
 
         userEntity.setUserID( user.getUserID() );
         userEntity.setEmail( user.getEmail() );
@@ -314,7 +454,7 @@ public class MusiqueMapperImpl implements MusiqueMapper {
         }
         userEntity.setActive( user.isActive() );
         userEntity.setNotLocked( user.isNotLocked() );
-        userEntity.setReservations( reservationListToReservationEntityList( user.getReservations() ) );
+        userEntity.setReservations( reservationListToReservationEntityList( user.getReservations(), cycleAvoidingMappingContext ) );
         userEntity.setProfileImageUrl( user.getProfileImageUrl() );
         userEntity.setLastLoginDate( user.getLastLoginDate() );
         userEntity.setLastLoginDateDisplay( user.getLastLoginDateDisplay() );
@@ -323,18 +463,25 @@ public class MusiqueMapperImpl implements MusiqueMapper {
         return userEntity;
     }
 
-    protected ReservationEntity reservationToReservationEntity(Reservation reservation) {
+    protected ReservationEntity reservationToReservationEntity(Reservation reservation, CycleAvoidingMappingContext cycleAvoidingMappingContext) {
+        ReservationEntity target = cycleAvoidingMappingContext.getMappedInstance( reservation, ReservationEntity.class );
+        if ( target != null ) {
+            return target;
+        }
+
         if ( reservation == null ) {
             return null;
         }
 
         ReservationEntity reservationEntity = new ReservationEntity();
 
+        cycleAvoidingMappingContext.storeMappedInstance( reservation, reservationEntity );
+
         reservationEntity.setReservationID( reservation.getReservationID() );
         reservationEntity.setReservationDate( reservation.getReservationDate() );
         reservationEntity.setTicket( reservation.getTicket() );
-        reservationEntity.setUser( userToUserEntity( reservation.getUser() ) );
-        reservationEntity.setFormule( formuleToFormuleEntity( reservation.getFormule() ) );
+        reservationEntity.setUser( userToUserEntity( reservation.getUser(), cycleAvoidingMappingContext ) );
+        reservationEntity.setFormule( formuleToFormuleEntity( reservation.getFormule(), cycleAvoidingMappingContext ) );
         reservationEntity.setPrice( reservation.getPrice() );
         reservationEntity.setStatus( reservation.getStatus() );
         reservationEntity.setPayementId( reservation.getPayementId() );
@@ -345,12 +492,19 @@ public class MusiqueMapperImpl implements MusiqueMapper {
         return reservationEntity;
     }
 
-    protected FormuleEntity formuleToFormuleEntity(Formule formule) {
+    protected FormuleEntity formuleToFormuleEntity(Formule formule, CycleAvoidingMappingContext cycleAvoidingMappingContext) {
+        FormuleEntity target = cycleAvoidingMappingContext.getMappedInstance( formule, FormuleEntity.class );
+        if ( target != null ) {
+            return target;
+        }
+
         if ( formule == null ) {
             return null;
         }
 
         FormuleEntity formuleEntity = new FormuleEntity();
+
+        cycleAvoidingMappingContext.storeMappedInstance( formule, formuleEntity );
 
         formuleEntity.setFormuleID( formule.getFormuleID() );
         formuleEntity.setNom( formule.getNom() );
@@ -362,31 +516,46 @@ public class MusiqueMapperImpl implements MusiqueMapper {
         formuleEntity.setSupSamedi( formule.getSupSamedi() );
         formuleEntity.setSupDimanche( formule.getSupDimanche() );
         formuleEntity.setSupVeilleFerier( formule.getSupVeilleFerier() );
-        formuleEntity.setImages( imageListToImageEntityList( formule.getImages() ) );
-        formuleEntity.setReservation( reservationListToReservationEntityList( formule.getReservation() ) );
+        formuleEntity.setActive( formule.isActive() );
+        formuleEntity.setImages( imageListToImageEntityList( formule.getImages(), cycleAvoidingMappingContext ) );
+        formuleEntity.setReservation( reservationListToReservationEntityList( formule.getReservation(), cycleAvoidingMappingContext ) );
 
         return formuleEntity;
     }
 
-    protected List<FormuleEntity> formuleListToFormuleEntityList(List<Formule> list) {
+    protected List<FormuleEntity> formuleListToFormuleEntityList(List<Formule> list, CycleAvoidingMappingContext cycleAvoidingMappingContext) {
+        List<FormuleEntity> target = cycleAvoidingMappingContext.getMappedInstance( list, List.class );
+        if ( target != null ) {
+            return target;
+        }
+
         if ( list == null ) {
             return null;
         }
 
         List<FormuleEntity> list1 = new ArrayList<FormuleEntity>( list.size() );
+        cycleAvoidingMappingContext.storeMappedInstance( list, list1 );
+
         for ( Formule formule : list ) {
-            list1.add( formuleToFormuleEntity( formule ) );
+            list1.add( formuleToFormuleEntity( formule, cycleAvoidingMappingContext ) );
         }
 
         return list1;
     }
 
-    protected FermetureEntity fermetureToFermetureEntity(Fermeture fermeture) {
+    protected FermetureEntity fermetureToFermetureEntity(Fermeture fermeture, CycleAvoidingMappingContext cycleAvoidingMappingContext) {
+        FermetureEntity target = cycleAvoidingMappingContext.getMappedInstance( fermeture, FermetureEntity.class );
+        if ( target != null ) {
+            return target;
+        }
+
         if ( fermeture == null ) {
             return null;
         }
 
         FermetureEntity fermetureEntity = new FermetureEntity();
+
+        cycleAvoidingMappingContext.storeMappedInstance( fermeture, fermetureEntity );
 
         fermetureEntity.setId( fermeture.getId() );
         fermetureEntity.setDate( fermeture.getDate() );
@@ -394,14 +563,21 @@ public class MusiqueMapperImpl implements MusiqueMapper {
         return fermetureEntity;
     }
 
-    protected Collection<FermetureEntity> fermetureCollectionToFermetureEntityCollection(Collection<Fermeture> collection) {
+    protected Collection<FermetureEntity> fermetureCollectionToFermetureEntityCollection(Collection<Fermeture> collection, CycleAvoidingMappingContext cycleAvoidingMappingContext) {
+        Collection<FermetureEntity> target = cycleAvoidingMappingContext.getMappedInstance( collection, Collection.class );
+        if ( target != null ) {
+            return target;
+        }
+
         if ( collection == null ) {
             return null;
         }
 
         Collection<FermetureEntity> collection1 = new ArrayList<FermetureEntity>( collection.size() );
+        cycleAvoidingMappingContext.storeMappedInstance( collection, collection1 );
+
         for ( Fermeture fermeture : collection ) {
-            collection1.add( fermetureToFermetureEntity( fermeture ) );
+            collection1.add( fermetureToFermetureEntity( fermeture, cycleAvoidingMappingContext ) );
         }
 
         return collection1;

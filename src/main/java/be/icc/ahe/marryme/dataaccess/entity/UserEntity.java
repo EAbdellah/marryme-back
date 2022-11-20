@@ -2,6 +2,8 @@ package be.icc.ahe.marryme.dataaccess.entity;
 
 import be.icc.ahe.marryme.dataaccess.entity.enumeration.Role;
 import be.icc.ahe.marryme.model.Reservation;
+import be.icc.ahe.marryme.model.dto.GetShortTraiteurServiceDTO;
+import be.icc.ahe.marryme.model.dto.GetTypeOfService;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
@@ -12,6 +14,31 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
+
+
+@NamedNativeQuery(
+        name  = "getTypeOfServiceByProvider",
+        query = "SELECT service.type as type " +
+                "FROM (((myschema.societe as societe " +
+                "INNER JOIN myschema.abstract_service as service ON service.service_id  = societe.service_id) " +
+                "INNER JOIN myschema.person as person ON societe.person_id  = person.person_id) " +
+                "INNER JOIN myschema.user as user ON user.user_id  = person.user_id) " +
+                "Where user.email = :provider_email ; "
+        ,
+        resultSetMapping = "typeOfServiceByProvider"
+)
+
+@SqlResultSetMapping(
+        name = "typeOfServiceByProvider",
+        classes = {
+                @ConstructorResult(
+                        targetClass = String.class,
+                        columns = {
+                                @ColumnResult(name = "type", type = String.class),
+                        })
+        }
+)
+
 
 @Entity
 @Table(name = "user")

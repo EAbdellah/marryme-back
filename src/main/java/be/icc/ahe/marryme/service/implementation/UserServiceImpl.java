@@ -17,7 +17,6 @@ import be.icc.ahe.marryme.model.mapper.dtomapper.CycleAvoidingMappingContext;
 import be.icc.ahe.marryme.security.domain.UserPrincipal;
 import be.icc.ahe.marryme.service.UserService;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.tomcat.util.http.fileupload.FileUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +26,6 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
 
 import javax.transaction.Transactional;
 
@@ -36,10 +34,7 @@ import static be.icc.ahe.marryme.constant.UserImplConstant.EMAIL_ALREADY_EXISTS;
 import static be.icc.ahe.marryme.constant.UserImplConstant.FOUND_USER_BY_EMAIL;
 
 
-import java.io.File;
 import java.io.IOException;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.Date;
 import java.util.Optional;
 
@@ -143,6 +138,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         return this.userDAO.findByID(id).orElseThrow(UserDatabaseException::new);
     }
 
+
 //    @Override
 //    public UserEntity update(Long id) throws UserDatabaseException {
 //        return userDAO.update(id);
@@ -151,6 +147,11 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     @Override
     public void deleteById(Long id) throws UserDatabaseException {
         userDAO.deleteById(id);
+    }
+
+    @Override
+    public String getTypeOfServiceByProvider(String providerEmail) {
+        return userDAO.getTypeOfServiceByProvider(providerEmail);
     }
 
 

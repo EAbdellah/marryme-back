@@ -6,10 +6,12 @@ import be.icc.ahe.marryme.exception.sqlexception.FormuleDatabaseException;
 import be.icc.ahe.marryme.exception.sqlexception.ReservationDatabaseException;
 import be.icc.ahe.marryme.exception.sqlexception.UserDatabaseException;
 import be.icc.ahe.marryme.model.Reservation;
+import be.icc.ahe.marryme.model.dto.GetShortReservationDTO;
 import be.icc.ahe.marryme.model.dto.ReservationClientDTO;
 import be.icc.ahe.marryme.model.User;
 import be.icc.ahe.marryme.model.dto.ReservationPaidDTO;
 import be.icc.ahe.marryme.model.dto.ReservationRequestDTO;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -26,4 +28,6 @@ public interface ReservationService {
     boolean isTicketExist(String ticket);
     ReservationEntity findByTicket(String ticket);
     void confimationPaid(ReservationPaidDTO reservationPaidDTO) throws Exception;
+    List<GetShortReservationDTO> getAllReservationByProvider(String providerEmail);
+
 }

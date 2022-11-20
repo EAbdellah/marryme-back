@@ -1,11 +1,10 @@
 package be.icc.ahe.marryme.service.implementation;
 
 import be.icc.ahe.marryme.dataaccess.dao.ServiceDAO;
-import be.icc.ahe.marryme.dataaccess.entity.AddressEntity;
-import be.icc.ahe.marryme.dataaccess.entity.ServiceEntity;
-import be.icc.ahe.marryme.exception.sqlexception.AddressDatabaseException;
+import be.icc.ahe.marryme.dataaccess.entity.*;
 import be.icc.ahe.marryme.exception.sqlexception.ServiceDatabaseException;
 //import be.icc.ahe.marryme.model.mapper.ServiceMapper;
+import be.icc.ahe.marryme.model.*;
 import be.icc.ahe.marryme.model.dto.SingleServiceViewDTO;
 import be.icc.ahe.marryme.model.mapper.dtomapper.CycleAvoidingMappingContext;
 import be.icc.ahe.marryme.model.mapper.dtomapper.ServiceViewMapper;
@@ -14,9 +13,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class ServicesServiceImpl implements ServicesService {
@@ -97,7 +96,8 @@ public class ServicesServiceImpl implements ServicesService {
     }
 
     public SingleServiceViewDTO mapServiceToSingleViewDTO (ServiceEntity serviceEntity){
-
+        List<FormuleEntity> formulesList= serviceEntity.getFormules().stream().filter(FormuleEntity::isActive).collect(Collectors.toList());
+        serviceEntity.setFormules(formulesList);
 
         return ServiceViewMapper.INSTANCE.entityToDTO(serviceEntity,new CycleAvoidingMappingContext());
     }
@@ -112,6 +112,31 @@ public class ServicesServiceImpl implements ServicesService {
 
         serviceEntity.setType(type);
         return serviceEntity;
+    }
+
+    @Override
+    public be.icc.ahe.marryme.model.Service getTypeOfService(String type){
+        if(type == null){
+            return null;
+        }
+        if(type.equalsIgnoreCase("SalleEntity")){
+            return new Salle();
+
+        } else if(type.equalsIgnoreCase("TraiteurEntity")){
+            return  new Traiteur();
+
+        } else if(type.equalsIgnoreCase("MusiqueEntity")){
+            return new Musique();
+        }else if(type.equalsIgnoreCase("MakeUpAndHairEntity")){
+            return  new MakeUpAndHair();
+        }else if(type.equalsIgnoreCase("MediaEntity")){
+            return   new Media();
+        }else if(type.equalsIgnoreCase("ServiceTraiteurEntity")){
+            return  new ServiceTraiteur();
+        }
+
+        return null;
+        
     }
 
 

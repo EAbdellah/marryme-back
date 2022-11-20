@@ -8,6 +8,7 @@ import be.icc.ahe.marryme.model.Formule;
 import be.icc.ahe.marryme.model.Image;
 import be.icc.ahe.marryme.model.Reservation;
 import be.icc.ahe.marryme.model.User;
+import be.icc.ahe.marryme.model.dto.ProviderRegisterFormDTO;
 import be.icc.ahe.marryme.model.mapper.dtomapper.CycleAvoidingMappingContext;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -16,7 +17,7 @@ import javax.annotation.processing.Generated;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2022-11-13T19:55:59+0100",
+    date = "2022-11-20T03:32:05+0100",
     comments = "version: 1.5.2.Final, compiler: javac, environment: Java 11.0.8 (Oracle Corporation)"
 )
 public class UserMapperImpl implements UserMapper {
@@ -85,6 +86,20 @@ public class UserMapperImpl implements UserMapper {
         user.setLastLoginDate( userEntity.getLastLoginDate() );
         user.setLastLoginDateDisplay( userEntity.getLastLoginDateDisplay() );
         user.setJoinDate( userEntity.getJoinDate() );
+
+        return user;
+    }
+
+    @Override
+    public User RegistrationProviderDtoToModel(ProviderRegisterFormDTO providerRegisterFormDTO) {
+        if ( providerRegisterFormDTO == null ) {
+            return null;
+        }
+
+        User user = new User();
+
+        user.setEmail( providerRegisterFormDTO.getEmail_entreprise() );
+        user.setPassword( providerRegisterFormDTO.getPassword() );
 
         return user;
     }
@@ -177,6 +192,7 @@ public class UserMapperImpl implements UserMapper {
         formuleEntity.setSupSamedi( formule.getSupSamedi() );
         formuleEntity.setSupDimanche( formule.getSupDimanche() );
         formuleEntity.setSupVeilleFerier( formule.getSupVeilleFerier() );
+        formuleEntity.setActive( formule.isActive() );
         formuleEntity.setImages( imageListToImageEntityList( formule.getImages(), cycleAvoidingMappingContext ) );
         formuleEntity.setReservation( reservationListToReservationEntityList( formule.getReservation(), cycleAvoidingMappingContext ) );
 
@@ -302,6 +318,7 @@ public class UserMapperImpl implements UserMapper {
         formule.setSupVeilleFerier( formuleEntity.getSupVeilleFerier() );
         formule.setImages( imageEntityListToImageList( formuleEntity.getImages(), cycleAvoidingMappingContext ) );
         formule.setReservation( reservationEntityListToReservationList( formuleEntity.getReservation(), cycleAvoidingMappingContext ) );
+        formule.setActive( formuleEntity.isActive() );
 
         return formule;
     }

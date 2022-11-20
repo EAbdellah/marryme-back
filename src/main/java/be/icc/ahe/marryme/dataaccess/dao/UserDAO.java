@@ -5,6 +5,7 @@ import be.icc.ahe.marryme.dataaccess.entity.TraiteurEntity;
 import be.icc.ahe.marryme.dataaccess.entity.UserEntity;
 import be.icc.ahe.marryme.dataaccess.repository.UserRepo;
 import be.icc.ahe.marryme.exception.sqlexception.UserDatabaseException;
+import be.icc.ahe.marryme.model.dto.GetShortTraiteurServiceDTO;
 import lombok.SneakyThrows;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -52,5 +53,8 @@ public class UserDAO {
         return userRepo.existsById(id);
     }
 
+    public String getTypeOfServiceByProvider(String email){
+        return userRepo.getTypeOfServiceByProvider(email);
+    }
 
 }

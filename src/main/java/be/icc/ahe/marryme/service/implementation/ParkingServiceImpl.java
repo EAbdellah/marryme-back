@@ -5,6 +5,7 @@ import be.icc.ahe.marryme.dataaccess.entity.ParkingEntity;
 import be.icc.ahe.marryme.exception.sqlexception.ParkingDatabaseException;
 import be.icc.ahe.marryme.model.Parking;
 import be.icc.ahe.marryme.model.mapper.ParkingMapper;
+import be.icc.ahe.marryme.model.mapper.dtomapper.CycleAvoidingMappingContext;
 import be.icc.ahe.marryme.service.ParkingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -28,12 +29,12 @@ public class ParkingServiceImpl implements ParkingService {
         Optional.ofNullable(parking)
                 .orElseThrow(() -> new ParkingDatabaseException("Can not persist null parking: " + parking));
 
-        ParkingEntity persistedParkingEntity = parkingDAO.save(ParkingMapper.INSTANCE.modelToEntity(parking));
+        ParkingEntity persistedParkingEntity = parkingDAO.save(ParkingMapper.INSTANCE.modelToEntity(parking,new CycleAvoidingMappingContext()));
 
         Optional.ofNullable(persistedParkingEntity)
                 .orElseThrow(() -> new ParkingDatabaseException("Persisted parking is null: " + persistedParkingEntity));
 
-        return ParkingMapper.INSTANCE.entityToModel(persistedParkingEntity);
+        return ParkingMapper.INSTANCE.entityToModel(persistedParkingEntity,new CycleAvoidingMappingContext());
 
     }
 
@@ -43,7 +44,7 @@ public class ParkingServiceImpl implements ParkingService {
         ParkingEntity parkingEntity = this.parkingDAO.findByID(id)
                 .orElseThrow(() -> new ParkingDatabaseException("None parking found at id:" + id));
 
-        return ParkingMapper.INSTANCE.entityToModel(parkingEntity);
+        return ParkingMapper.INSTANCE.entityToModel(parkingEntity,new CycleAvoidingMappingContext());
 
     }
 
@@ -57,13 +58,13 @@ public class ParkingServiceImpl implements ParkingService {
             throw new ParkingDatabaseException("Try to update into data base a parking that does not exist: " + parking);
         }
 
-        ParkingEntity persistedParkingEntity = parkingDAO.save(ParkingMapper.INSTANCE.modelToEntity(parking));
+        ParkingEntity persistedParkingEntity = parkingDAO.save(ParkingMapper.INSTANCE.modelToEntity(parking,new CycleAvoidingMappingContext()));
 
 
         Optional.ofNullable(persistedParkingEntity)
                 .orElseThrow(() -> new ParkingDatabaseException("Persisted parking is null: " + persistedParkingEntity));
 
-        return ParkingMapper.INSTANCE.entityToModel(persistedParkingEntity);
+        return ParkingMapper.INSTANCE.entityToModel(persistedParkingEntity,new CycleAvoidingMappingContext());
     }
 
     @Override

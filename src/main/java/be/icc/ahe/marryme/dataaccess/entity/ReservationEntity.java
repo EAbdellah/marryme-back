@@ -1,5 +1,7 @@
 package be.icc.ahe.marryme.dataaccess.entity;
 
+import be.icc.ahe.marryme.model.dto.GetShortMediaServiceDTO;
+import be.icc.ahe.marryme.model.dto.GetShortReservationDTO;
 import be.icc.ahe.marryme.model.dto.ReservationClientDTO;
 import be.icc.ahe.marryme.model.dto.Status;
 import com.fasterxml.jackson.annotation.JsonBackReference;
@@ -44,6 +46,40 @@ import java.sql.Date;
         }
 )
 
+
+@NamedNativeQuery(
+        name  = "getAllReservationByProvider",
+        query = "SELECT reservation.reservation_id,reservation.inception_date,reservation.payement_id,reservation.price,reservation.reservation_date,reservation.status,reservation.ticket," +
+                "formule.nom as formule_Name " +
+                "FROM (((((myschema.formule as formule " +
+                "INNER JOIN myschema.reservation as reservation ON reservation.formule_id  = formule.formule_id) " +
+                "INNER JOIN myschema.abstract_service as service ON service.service_id  = formule.service_id) " +
+                "INNER JOIN myschema.societe as societe ON service.service_id  = societe.service_id) " +
+                "INNER JOIN myschema.person as person ON societe.person_id  = person.person_id) " +
+                "INNER JOIN myschema.user as user ON user.user_id  = person.user_id) " +
+                "Where user.email = :provider_email ; "
+        ,
+        resultSetMapping = "allReservationByProvider"
+)
+
+@SqlResultSetMapping(
+        name = "allReservationByProvider",
+        classes = {
+                @ConstructorResult(
+                        targetClass = GetShortReservationDTO.class,
+                        columns = {
+                                @ColumnResult(name = "reservation_id", type = Long.class),
+                                @ColumnResult(name = "inception_date", type = java.util.Date.class),
+                                @ColumnResult(name = "payement_id", type = String.class),
+                                @ColumnResult(name = "price", type = Integer.class),
+                                @ColumnResult(name = "reservation_date", type = java.util.Date.class),
+                                @ColumnResult(name = "status", type = String.class),
+                                @ColumnResult(name = "ticket", type = String.class),
+                                @ColumnResult(name = "formule_Name", type = String.class),
+
+                        })
+        }
+)
 
 
 @Entity

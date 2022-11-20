@@ -5,12 +5,17 @@ import be.icc.ahe.marryme.dataaccess.entity.ServiceTraiteurEntity;
 import be.icc.ahe.marryme.exception.sqlexception.ReservationDatabaseException;
 import be.icc.ahe.marryme.exception.sqlexception.ServiceTraiteurDatabaseException;
 import be.icc.ahe.marryme.model.ServiceTraiteur;
+import be.icc.ahe.marryme.model.dto.GetShortServiceTraiteurServiceDTO;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
-@Component
+@Service
 public interface ServiceTraiteurService {
     ServiceTraiteur save(ServiceTraiteur serviceTraiteur) throws ServiceTraiteurDatabaseException;
     ServiceTraiteur findByID(Long id) throws ServiceTraiteurDatabaseException;
     ServiceTraiteur update(ServiceTraiteur serviceTraiteur) throws ServiceTraiteurDatabaseException;
     void deleteById(Long id) throws ServiceTraiteurDatabaseException;
+    GetShortServiceTraiteurServiceDTO getServiceTraiteurByProvider(String providerEmail);
+
 }

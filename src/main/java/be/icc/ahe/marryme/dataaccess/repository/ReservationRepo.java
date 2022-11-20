@@ -3,6 +3,8 @@ package be.icc.ahe.marryme.dataaccess.repository;
 import be.icc.ahe.marryme.dataaccess.entity.ReservationEntity;
 import be.icc.ahe.marryme.dataaccess.entity.UserEntity;
 import be.icc.ahe.marryme.model.Reservation;
+import be.icc.ahe.marryme.model.dto.GetShortMediaServiceDTO;
+import be.icc.ahe.marryme.model.dto.GetShortReservationDTO;
 import be.icc.ahe.marryme.model.dto.ReservationClientDTO;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -24,4 +26,9 @@ public interface ReservationRepo extends JpaRepository<ReservationEntity,Long> {
 
     Integer countByTicket(String ticket);
     ReservationEntity findByTicket(String ticket);
+
+    @Transactional(readOnly = true)
+    @Query(nativeQuery = true, name = "getAllReservationByProvider")
+    List<GetShortReservationDTO> getAllReservationByProvider(@Param("provider_email") String ProviderEmail);
+
 }

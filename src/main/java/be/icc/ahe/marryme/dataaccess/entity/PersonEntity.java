@@ -1,5 +1,6 @@
 package be.icc.ahe.marryme.dataaccess.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -18,13 +19,13 @@ public class PersonEntity implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "person_id", nullable = false)
+    @Column(name = "person_id")
     private Long personID;
-    @Column(name = "firstName", nullable = false, length = 128)
+    @Column(name = "firstName",length = 128)
     private String firstName;
-    @Column(name = "lastName", nullable = false, length = 128)
+    @Column(name = "lastName",  length = 128)
     private String lastName;
-    @Column(name = "phoneNbr", nullable = false)
+    @Column(name = "phoneNbr")
     private Long phoneNbr;
 
 //    @OneToOne(targetEntity = SocieteEntity.class, fetch = FetchType.EAGER)
@@ -36,6 +37,7 @@ public class PersonEntity implements Serializable {
     private AddressEntity localisation;
     @OneToOne(targetEntity = UserEntity.class, fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     @JoinColumn(name="user_id")
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private UserEntity userEntity;
 
 

@@ -7,6 +7,7 @@ import be.icc.ahe.marryme.exception.UserNotFoundException;
 import be.icc.ahe.marryme.exception.sqlexception.*;
 import be.icc.ahe.marryme.model.Formule;
 import be.icc.ahe.marryme.model.Reservation;
+import be.icc.ahe.marryme.model.dto.GetShortReservationDTO;
 import be.icc.ahe.marryme.model.dto.ReservationClientDTO;
 import be.icc.ahe.marryme.model.User;
 import be.icc.ahe.marryme.model.dto.ReservationPaidDTO;
@@ -25,9 +26,11 @@ import java.util.Optional;
 import java.util.Random;
 import java.util.UUID;
 import java.util.stream.Collectors;
+import static be.icc.ahe.marryme.constant.ReservationStatus.*;
 
 @Service
 public class ReservationServiceImpl implements ReservationService {
+
     private static final String ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
 
         private final ReservationDAO reservationDAO;
@@ -120,7 +123,7 @@ public class ReservationServiceImpl implements ReservationService {
         }while (isTicketExist(ticket));
 
         reservation.setTicket( ticket);
-        reservation.setStatus("Waiting");
+        reservation.setStatus(STATUS_WAITING);
 
         try{
             Formule f = formuleService.findByID(Long.valueOf(rrdto.getFormuleId()));
@@ -174,9 +177,9 @@ public class ReservationServiceImpl implements ReservationService {
     }
 
     public void confimationPaid(ReservationPaidDTO reservationPaidDTO) throws Exception {
-        if (reservationPaidDTO.getStatus().equalsIgnoreCase("COMPLETED")) {
+        if (reservationPaidDTO.getStatus().equalsIgnoreCase(STATUS_COMPLETED)) {
             ReservationEntity reservation = findByTicket(reservationPaidDTO.getResTicket());
-            reservation.setStatus("Payed");
+            reservation.setStatus(STATUS_PAYED);
             System.out.println(reservationPaidDTO.getPaymentId());
             reservation.setPayementId(reservationPaidDTO.getPaymentId());
             System.out.println(reservation);
@@ -185,6 +188,11 @@ public class ReservationServiceImpl implements ReservationService {
         }else {
             throw new Exception("Payment return wrong status: "+ reservationPaidDTO.getStatus());
         }
+    }
+
+    @Override
+    public List<GetShortReservationDTO> getAllReservationByProvider(String providerEmail) {
+        return reservationDAO.getAllReservationByProvider(providerEmail);
     }
 
 

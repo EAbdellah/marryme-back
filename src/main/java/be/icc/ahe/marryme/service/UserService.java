@@ -8,6 +8,7 @@ import be.icc.ahe.marryme.exception.UserNotFoundException;
 import be.icc.ahe.marryme.exception.sqlexception.ReservationDatabaseException;
 import be.icc.ahe.marryme.exception.sqlexception.UserDatabaseException;
 import be.icc.ahe.marryme.model.User;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -35,4 +36,7 @@ public interface UserService {
 
 //    UserEntity update(Long id) throws UserDatabaseException;
 
-    void deleteById(Long id) throws UserDatabaseException;}
+    void deleteById(Long id) throws UserDatabaseException;
+
+    String getTypeOfServiceByProvider(String providerEmail);
+}

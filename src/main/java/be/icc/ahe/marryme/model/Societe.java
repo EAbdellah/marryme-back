@@ -14,7 +14,7 @@ import javax.persistence.*;
 public class Societe {
 
     private Long societeID;
-    private Long nTVA;
+    private String nTVA;
     private Long nEntreprise;
     private String nom;
     private String email;
@@ -22,6 +22,7 @@ public class Societe {
     private Address localisation;
     private Person owner;
     private Service service;
+    private String decisionRegistration;
 
 
 

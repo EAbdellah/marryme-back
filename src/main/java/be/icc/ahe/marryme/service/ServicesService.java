@@ -16,4 +16,5 @@ public interface ServicesService {
     ServiceEntity update( ServiceEntity service) throws ServiceDatabaseException;
     void deleteById(Long id) throws ServiceDatabaseException;
     SingleServiceViewDTO mapServiceToSingleViewDTO ( ServiceEntity serviceEntity);
-}
+     Object getTypeOfService(String type);
+    }

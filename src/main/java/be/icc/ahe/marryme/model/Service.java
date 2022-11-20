@@ -1,9 +1,7 @@
 package be.icc.ahe.marryme.model;
 
-import be.icc.ahe.marryme.dataaccess.entity.*;
 import lombok.*;
 
-import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
@@ -22,6 +20,8 @@ public abstract class Service {
     private List<Reservation> reservations = new ArrayList<>();
     private Collection<Fermeture> fermetures = new HashSet<>() ;
     private Image image;
+
+
 
 
 }
