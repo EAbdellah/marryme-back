@@ -15,11 +15,11 @@ public abstract class Service {
     private Long ServiceID;
     private String nom;
     private Address address;
-//    private Societe societe;
     private List<Formule> formules = new ArrayList<>();
     private List<Reservation> reservations = new ArrayList<>();
     private Collection<Fermeture> fermetures = new HashSet<>() ;
     private Image image;
+    private String presentation;
 
 
 

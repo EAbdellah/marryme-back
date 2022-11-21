@@ -11,7 +11,7 @@ import java.io.Serializable;
 
 @NamedNativeQuery(
         name  = "getServiceTraiteurByProvider",
-        query = "SELECT service.service_id,service.nom,service.type,Straiteur.man_only,Straiteur.woman_only " +
+        query = "SELECT service.service_id,service.presentation,service.nom,service.type,Straiteur.man_only,Straiteur.woman_only " +
                 "FROM ((((myschema.service_traiteur as Straiteur  " +
                 "INNER JOIN myschema.abstract_service as service ON service.service_id  = Straiteur.service_id) " +
                 "INNER JOIN myschema.societe as societe ON service.service_id  = societe.service_id) " +
@@ -34,6 +34,7 @@ import java.io.Serializable;
                                 @ColumnResult(name = "type", type = String.class),
                                 @ColumnResult(name = "man_only", type = Boolean.class),
                                 @ColumnResult(name = "woman_only", type = Boolean.class),
+                                @ColumnResult(name = "presentation", type = String.class)
                         })
         }
 )

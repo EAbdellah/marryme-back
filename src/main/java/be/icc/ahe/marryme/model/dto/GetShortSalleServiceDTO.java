@@ -22,4 +22,6 @@ public class GetShortSalleServiceDTO {
     private Boolean traiteur;
     private Integer capacity;
     private Boolean voiturier;
+    private String presentation;
+
 }

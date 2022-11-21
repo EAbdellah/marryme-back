@@ -12,7 +12,7 @@ import java.io.Serializable;
 
 @NamedNativeQuery(
         name  = "getMakeUpAndAirByProvider",
-        query = "SELECT  service.service_id,service.nom,service.type,muah.do_hair,muah.do_make_up,muah.do_man,muah.do_woman " +
+        query = "SELECT  service.service_id,service.presentation,service.nom,service.type,muah.do_hair,muah.do_make_up,muah.do_man,muah.do_woman " +
                 "FROM ((((myschema.make_up_and_hair as muah " +
                 "INNER JOIN myschema.abstract_service as service ON service.service_id  = muah.service_id) " +
                 "INNER JOIN myschema.societe as societe ON service.service_id  = societe.service_id) " +
@@ -35,7 +35,8 @@ import java.io.Serializable;
                                 @ColumnResult(name = "do_hair", type = Boolean.class),
                                 @ColumnResult(name = "do_make_up", type = Boolean.class),
                                 @ColumnResult(name = "do_man", type = Boolean.class),
-                                @ColumnResult(name = "do_woman", type = Boolean.class)
+                                @ColumnResult(name = "do_woman", type = Boolean.class),
+                                @ColumnResult(name = "presentation", type = String.class)
 
                         })
         }

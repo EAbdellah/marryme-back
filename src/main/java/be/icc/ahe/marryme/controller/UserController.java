@@ -135,11 +135,6 @@ public class UserController {
         return headers;
     }
 
-    @GetMapping(value = "/hello")
-    public ResponseEntity Hello(@RequestBody UserRegistrationFormDTO userForm) throws Exception {
-        return ResponseEntity.ok("Hello");
-    }
-
 
     private void authenticate(String username, String password) {
         authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));

@@ -51,7 +51,7 @@ spring:
     host: smtp.gmail.com
     port: 587
     username: marrymebelgium@gmail.com
-    password: joruixbmwjndohev
+    password: rxjnvgfiohtfrxzy
     properties:
       mail:
         transport:
@@ -61,3 +61,6 @@ spring:
           starttls:
             enable: true
 
+
+# mail:  marrymebelgium@gmail.com
+# password: Marryme00.

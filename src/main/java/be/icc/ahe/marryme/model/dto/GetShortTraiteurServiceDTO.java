@@ -14,5 +14,6 @@ public class GetShortTraiteurServiceDTO {
     private Boolean do_fish;
     private Boolean do_meat;
     private Boolean do_vegetarian;
+    private String presentation;
 
 }

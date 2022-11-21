@@ -52,7 +52,7 @@ import java.util.*;
 
 @NamedNativeQuery(
         name  = "getAllServices",
-        query = "SELECT ase.service_id,ase.type,ase.nom,ase.image_id," +
+        query = "SELECT ase.service_id,ase.presentation,ase.type,ase.nom,ase.image_id," +
                 "ma.do_hair,ma.do_make_up,ma.do_man,ma.do_woman," +
                 "me.is_photo,me.is_video,me.do_album,me.do_souvenir," +
                 "mu.musique_type," +
@@ -119,6 +119,8 @@ import java.util.*;
                                 @ColumnResult(name = "do_fish", type = Boolean.class),
                                 @ColumnResult(name = "do_vegan", type = Boolean.class),
                                 @ColumnResult(name = "do_vegetarian", type = Boolean.class),
+                                @ColumnResult(name = "presentation", type = String.class),
+
                         })
         }
 )
@@ -147,23 +149,6 @@ public abstract class ServiceEntity implements Serializable {
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private AddressEntity address;
 
-    //    private AddressEntity serviceAdress;
-
-//    @OneToOne(targetEntity = SocieteEntity.class, fetch = FetchType.LAZY)
-//    @JoinColumn(name = "societe_id",nullable = false)
-//    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-
-//    @OneToOne
-//    @MapsId
-//    @JoinColumn(name = "societe_id")
-
-//    @OneToOne(fetch = FetchType.LAZY, optional = false)
-//    @JoinColumn(name = "societe_id")
-//    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-//    private SocieteEntity societe;
-
-//    @JsonManagedReference
-//    @OneToMany(mappedBy = "serviceEntity", fetch = FetchType.LAZY,cascade = CascadeType.ALL, orphanRemoval = true)
     @OneToMany(targetEntity = FormuleEntity.class, fetch = FetchType.LAZY,cascade = CascadeType.ALL, orphanRemoval = false)
     @JoinColumn(name="service_id")
     private List<FormuleEntity> formules ;
@@ -189,6 +174,9 @@ public abstract class ServiceEntity implements Serializable {
     @OneToOne(targetEntity = ImageEntity.class, fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST,CascadeType.REMOVE})
     @JoinColumn(name = "image_id")
     private ImageEntity image;
+
+    @Column(name = "presentation")
+    private String presentation;
 
 
 

@@ -24,7 +24,7 @@ import javax.annotation.processing.Generated;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2022-11-20T03:32:04+0100",
+    date = "2022-11-21T04:35:38+0100",
     comments = "version: 1.5.2.Final, compiler: javac, environment: Java 11.0.8 (Oracle Corporation)"
 )
 public class ServiceTraiteurMapperImpl implements ServiceTraiteurMapper {
@@ -50,6 +50,7 @@ public class ServiceTraiteurMapperImpl implements ServiceTraiteurMapper {
         serviceTraiteur.setFormules( formuleEntityListToFormuleList( serviceTraiteurEntity.getFormules(), cycleAvoidingMappingContext ) );
         serviceTraiteur.setFermetures( fermetureEntityCollectionToFermetureCollection( serviceTraiteurEntity.getFermetures(), cycleAvoidingMappingContext ) );
         serviceTraiteur.setImage( imageEntityToImage( serviceTraiteurEntity.getImage(), cycleAvoidingMappingContext ) );
+        serviceTraiteur.setPresentation( serviceTraiteurEntity.getPresentation() );
         serviceTraiteur.setManOnly( serviceTraiteurEntity.getManOnly() );
         serviceTraiteur.setWomanOnly( serviceTraiteurEntity.getWomanOnly() );
 
@@ -77,6 +78,7 @@ public class ServiceTraiteurMapperImpl implements ServiceTraiteurMapper {
         serviceTraiteurEntity.setFormules( formuleListToFormuleEntityList( serviceTraiteur.getFormules(), cycleAvoidingMappingContext ) );
         serviceTraiteurEntity.setFermetures( fermetureCollectionToFermetureEntityCollection( serviceTraiteur.getFermetures(), cycleAvoidingMappingContext ) );
         serviceTraiteurEntity.setImage( imageToImageEntity( serviceTraiteur.getImage(), cycleAvoidingMappingContext ) );
+        serviceTraiteurEntity.setPresentation( serviceTraiteur.getPresentation() );
         serviceTraiteurEntity.setManOnly( serviceTraiteur.getManOnly() );
         serviceTraiteurEntity.setWomanOnly( serviceTraiteur.getWomanOnly() );
 
@@ -95,6 +97,7 @@ public class ServiceTraiteurMapperImpl implements ServiceTraiteurMapper {
         serviceTraiteur.setManOnly( form.getMan_only() );
         serviceTraiteur.setWomanOnly( form.getWoman_only() );
         serviceTraiteur.setNom( form.getNom() );
+        serviceTraiteur.setPresentation( form.getPresentation() );
 
         return serviceTraiteur;
     }

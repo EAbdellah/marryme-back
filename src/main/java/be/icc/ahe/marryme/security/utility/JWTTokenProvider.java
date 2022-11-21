@@ -39,8 +39,9 @@ public class JWTTokenProvider {
     public String generateJwtToken(UserPrincipal userPrincipal) {
         String[] claims = getClaimsFromUser(userPrincipal);
         String serviceOwn = getServiceProvider(userPrincipal);
+        String customer= getTypeOfUser(userPrincipal);
         return JWT.create().withIssuer(MARRY_ME_SPRL).withAudience(MARRY_ME_ADMINISTRATION)
-                .withIssuedAt(new Date()).withClaim("type",serviceOwn).withSubject(userPrincipal.getUsername())
+                .withIssuedAt(new Date()).withClaim("type",serviceOwn).withClaim("whichCustomer",customer).withSubject(userPrincipal.getUsername())
                 .withArrayClaim(AUTHORITIES, claims).withExpiresAt(new Date(System.currentTimeMillis() + EXPIRATION_TIME))
                 .sign(HMAC512(secret.getBytes()));
     }
@@ -48,6 +49,10 @@ public class JWTTokenProvider {
     private String getServiceProvider(UserPrincipal userPrincipal) {
         return userService.getTypeOfServiceByProvider(userPrincipal.getUsername());
     }
+    private String getTypeOfUser(UserPrincipal userPrincipal) {
+        return userService.getTypeOfUser(userPrincipal.getUsername());
+    }
+
 
     public List<GrantedAuthority> getAuthorities(String token) {
         String[] claims = getClaimsFromToken(token);
@@ -99,4 +104,6 @@ public class JWTTokenProvider {
         }
         return authorities.toArray(new String[0]);
     }
+
+
 }

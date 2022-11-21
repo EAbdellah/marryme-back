@@ -16,5 +16,6 @@ public class GetShortMakeUpAndAirServiceDTO {
     private Boolean do_make_up;
     private Boolean do_man;
     private Boolean do_woman;
+    private String presentation;
 
 }

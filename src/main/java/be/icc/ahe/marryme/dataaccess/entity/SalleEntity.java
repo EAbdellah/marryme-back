@@ -12,7 +12,7 @@ import java.io.Serializable;
 
 @NamedNativeQuery(
         name  = "getSalleByProvider",
-        query = "SELECT service.service_id,service.nom,service.type,salle.capacite_total," +
+        query = "SELECT service.service_id,service.presentation,service.nom,service.type,salle.capacite_total," +
                 "salle.cuisine," +
                 "salle.decoration,"+
                 "salle.hall_type,"+
@@ -55,7 +55,9 @@ import java.io.Serializable;
                                 @ColumnResult(name = "place_assise", type = Integer.class),
                                 @ColumnResult(name = "traiteur", type = Boolean.class),
                                 @ColumnResult(name = "capacity", type = Integer.class),
-                                @ColumnResult(name = "voiturier", type = Boolean.class)
+                                @ColumnResult(name = "voiturier", type = Boolean.class),
+                                @ColumnResult(name = "presentation", type = String.class)
+
                         })
         }
 )

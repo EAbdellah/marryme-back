@@ -118,6 +118,7 @@ be\icc\ahe\marryme\model\Fermeture.class
 be\icc\ahe\marryme\constant\SecurityConstant.class
 be\icc\ahe\marryme\dataaccess\repository\ParkingRepo.class
 be\icc\ahe\marryme\service\implementation\AddressServiceImpl.class
+be\icc\ahe\marryme\model\dto\DecisionRequestRegistrationUser.class
 be\icc\ahe\marryme\exception\sqlexception\FermetureDatabaseException.class
 be\icc\ahe\marryme\service\implementation\MakeUpAndHairServiceImpl.class
 be\icc\ahe\marryme\dataaccess\dao\MediaDAO.class

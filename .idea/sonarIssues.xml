@@ -2003,7 +2003,27 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/../marryme-front/src/app/app.component.ts">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/../marryme-front/src/app/app.module.ts">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../marryme-front/src/app/core/components/all-services-list/all-services-list.component.html">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../marryme-front/src/app/core/components/all-services-list/all-services-list.component.scss">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../marryme-front/src/app/core/components/all-services-list/all-services-list.component.ts">
           <value>
             <set />
           </value>
@@ -2063,12 +2083,32 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/../marryme-front/src/app/core/components/register-form/register-form.component.html">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/../marryme-front/src/app/core/core.module.ts">
           <value>
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/../marryme-front/src/app/guard/adminGuard.guard.ts">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/../marryme-front/src/app/guard/authentication.guard.ts">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../marryme-front/src/app/guard/providerGuard.guard.ts">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../marryme-front/src/app/guard/userGuard.guard.ts">
           <value>
             <set />
           </value>
@@ -2114,6 +2154,16 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/../marryme-front/src/app/provider/components/register-provider/register-provider.component.ts">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../marryme-front/src/app/provider/components/view-all-fermeture/view-all-fermeture.component.html">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../marryme-front/src/app/provider/components/view-all-fermeture/view-all-fermeture.component.ts">
           <value>
             <set />
           </value>
@@ -2203,12 +2253,22 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/../marryme-front/src/app/provider/models/make-uphair-provider-dash-board-dto.model.ts">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/../marryme-front/src/app/provider/models/make-uphair-provider-dash-board-dto.modell.ts">
           <value>
             <set />
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/../marryme-front/src/app/provider/models/media-provider-dash-board-dto.model.ts">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../marryme-front/src/app/provider/models/musique-provider-dash-board-dto.model.ts">
           <value>
             <set />
           </value>
@@ -2238,7 +2298,17 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/../marryme-front/src/app/provider/models/service-traiteur-provider-dash-board-dto.model.ts">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/../marryme-front/src/app/provider/models/service-traiteur-provider-dash-board-dto.modell.ts">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../marryme-front/src/app/provider/models/traiteur-provider-dash-board-dto.model.ts">
           <value>
             <set />
           </value>

@@ -25,7 +25,7 @@ import javax.annotation.processing.Generated;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2022-11-20T03:32:04+0100",
+    date = "2022-11-21T04:35:41+0100",
     comments = "version: 1.5.2.Final, compiler: javac, environment: Java 11.0.8 (Oracle Corporation)"
 )
 public class SalleMapperImpl implements SalleMapper {
@@ -51,6 +51,7 @@ public class SalleMapperImpl implements SalleMapper {
         salle.setFormules( formuleEntityListToFormuleList( salleEntity.getFormules(), cycleAvoidingMappingContext ) );
         salle.setFermetures( fermetureEntityCollectionToFermetureCollection( salleEntity.getFermetures(), cycleAvoidingMappingContext ) );
         salle.setImage( imageEntityToImage( salleEntity.getImage(), cycleAvoidingMappingContext ) );
+        salle.setPresentation( salleEntity.getPresentation() );
         salle.setCapaciteTotal( salleEntity.getCapaciteTotal() );
         salle.setPlaceAssise( salleEntity.getPlaceAssise() );
         salle.setPisteDance( salleEntity.getPisteDance() );
@@ -86,6 +87,7 @@ public class SalleMapperImpl implements SalleMapper {
         salleEntity.setFormules( formuleListToFormuleEntityList( salle.getFormules(), cycleAvoidingMappingContext ) );
         salleEntity.setFermetures( fermetureCollectionToFermetureEntityCollection( salle.getFermetures(), cycleAvoidingMappingContext ) );
         salleEntity.setImage( imageToImageEntity( salle.getImage(), cycleAvoidingMappingContext ) );
+        salleEntity.setPresentation( salle.getPresentation() );
         salleEntity.setCapaciteTotal( salle.getCapaciteTotal() );
         salleEntity.setPlaceAssise( salle.getPlaceAssise() );
         salleEntity.setPisteDance( salle.getPisteDance() );
@@ -119,6 +121,7 @@ public class SalleMapperImpl implements SalleMapper {
         salle.setHaveParking( form.getHave_parking() );
         salle.setMaterielMusique( form.getMateriel_musique() );
         salle.setNom( form.getNom() );
+        salle.setPresentation( form.getPresentation() );
         salle.setDecoration( form.getDecoration() );
         salle.setTraiteur( form.getTraiteur() );
         salle.setCuisine( form.getCuisine() );

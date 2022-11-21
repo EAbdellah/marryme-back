@@ -6,6 +6,7 @@ import be.icc.ahe.marryme.dataaccess.dao.UserDAO;
 import be.icc.ahe.marryme.dataaccess.entity.PersonEntity;
 import be.icc.ahe.marryme.dataaccess.entity.UserEntity;
 import be.icc.ahe.marryme.dataaccess.entity.VerificationTokenEntity;
+import be.icc.ahe.marryme.dataaccess.entity.enumeration.Role;
 import be.icc.ahe.marryme.exception.EmailExistException;
 import be.icc.ahe.marryme.exception.UserNotFoundException;
 import be.icc.ahe.marryme.exception.sqlexception.UserDatabaseException;
@@ -17,6 +18,7 @@ import be.icc.ahe.marryme.model.mapper.dtomapper.CycleAvoidingMappingContext;
 import be.icc.ahe.marryme.security.domain.UserPrincipal;
 import be.icc.ahe.marryme.service.UserService;
 import org.apache.commons.lang3.StringUtils;
+import org.hibernate.proxy.HibernateProxy;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -152,6 +154,17 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     @Override
     public String getTypeOfServiceByProvider(String providerEmail) {
         return userDAO.getTypeOfServiceByProvider(providerEmail);
+    }
+
+    @Override
+    public String getTypeOfUser(String userEmail) {
+        UserEntity user = userDAO.findUserByEmail(userEmail);
+        if (user instanceof HibernateProxy) {
+            user = (UserEntity) ((HibernateProxy) user).getHibernateLazyInitializer()
+                    .getImplementation();
+        }
+        Role role = user.getRole();
+        return role.name();
     }
 
 

@@ -42,6 +42,7 @@ public class AllServicesDTO {
     private Boolean doFish;
     private Boolean doVegan;
     private Boolean DoVegetarian;
+    private String presentation;
 
 
 }

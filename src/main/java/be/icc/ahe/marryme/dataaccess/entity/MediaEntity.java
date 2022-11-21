@@ -11,7 +11,7 @@ import java.io.Serializable;
 
 @NamedNativeQuery(
         name  = "getMediaByProvider",
-        query = "SELECT  service.service_id,service.nom,service.type,media.do_album,media.do_souvenir,media.is_photo,media.is_video " +
+        query = "SELECT  service.service_id,service.presentation,service.nom,service.type,media.do_album,media.do_souvenir,media.is_photo,media.is_video " +
                 "FROM ((((myschema.media as media " +
                 "INNER JOIN myschema.abstract_service as service ON service.service_id  = media.service_id) " +
                 "INNER JOIN myschema.societe as societe ON service.service_id  = societe.service_id) " +
@@ -36,6 +36,7 @@ import java.io.Serializable;
                                 @ColumnResult(name = "do_album", type = Boolean.class),
                                 @ColumnResult(name = "is_photo", type = Boolean.class),
                                 @ColumnResult(name = "is_video", type = Boolean.class),
+                                @ColumnResult(name = "presentation", type = String.class)
                         })
         }
 )

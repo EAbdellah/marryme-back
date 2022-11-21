@@ -15,5 +15,6 @@ public class GetShortServiceTraiteurServiceDTO {
     private String type;
     private Boolean man_only;
     private Boolean woman_only;
+    private String presentation;
 
 }

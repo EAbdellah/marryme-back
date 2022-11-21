@@ -25,7 +25,7 @@ import javax.annotation.processing.Generated;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2022-11-20T03:32:05+0100",
+    date = "2022-11-21T04:35:39+0100",
     comments = "version: 1.5.2.Final, compiler: javac, environment: Java 11.0.8 (Oracle Corporation)"
 )
 public class MusiqueMapperImpl implements MusiqueMapper {
@@ -51,6 +51,7 @@ public class MusiqueMapperImpl implements MusiqueMapper {
         musique.setFormules( formuleEntityListToFormuleList( musiqueEntity.getFormules(), cycleAvoidingMappingContext ) );
         musique.setFermetures( fermetureEntityCollectionToFermetureCollection( musiqueEntity.getFermetures(), cycleAvoidingMappingContext ) );
         musique.setImage( imageEntityToImage( musiqueEntity.getImage(), cycleAvoidingMappingContext ) );
+        musique.setPresentation( musiqueEntity.getPresentation() );
         musique.setMusiqueType( musiqueEntity.getMusiqueType() );
 
         return musique;
@@ -77,6 +78,7 @@ public class MusiqueMapperImpl implements MusiqueMapper {
         musiqueEntity.setFormules( formuleListToFormuleEntityList( musique.getFormules(), cycleAvoidingMappingContext ) );
         musiqueEntity.setFermetures( fermetureCollectionToFermetureEntityCollection( musique.getFermetures(), cycleAvoidingMappingContext ) );
         musiqueEntity.setImage( imageToImageEntity( musique.getImage(), cycleAvoidingMappingContext ) );
+        musiqueEntity.setPresentation( musique.getPresentation() );
         musiqueEntity.setMusiqueType( musique.getMusiqueType() );
 
         return musiqueEntity;
@@ -95,6 +97,7 @@ public class MusiqueMapperImpl implements MusiqueMapper {
             musique.setMusiqueType( Enum.valueOf( MusiqueType.class, form.getMusique_type() ) );
         }
         musique.setNom( form.getNom() );
+        musique.setPresentation( form.getPresentation() );
 
         return musique;
     }

@@ -15,4 +15,6 @@ public class GetShortMediaServiceDTO {
     private Boolean is_video;
     private Boolean do_album;
     private Boolean do_souvenir;
+    private String presentation;
+
 }

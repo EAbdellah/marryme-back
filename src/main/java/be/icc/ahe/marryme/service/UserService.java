@@ -39,4 +39,6 @@ public interface UserService {
     void deleteById(Long id) throws UserDatabaseException;
 
     String getTypeOfServiceByProvider(String providerEmail);
+
+    String getTypeOfUser(String userEmail);
 }

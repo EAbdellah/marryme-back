@@ -24,7 +24,7 @@ import javax.annotation.processing.Generated;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2022-11-20T03:32:04+0100",
+    date = "2022-11-21T04:35:39+0100",
     comments = "version: 1.5.2.Final, compiler: javac, environment: Java 11.0.8 (Oracle Corporation)"
 )
 public class MediaMapperImpl implements MediaMapper {
@@ -50,6 +50,7 @@ public class MediaMapperImpl implements MediaMapper {
         media.setFormules( formuleEntityListToFormuleList( mediaEntity.getFormules(), cycleAvoidingMappingContext ) );
         media.setFermetures( fermetureEntityCollectionToFermetureCollection( mediaEntity.getFermetures(), cycleAvoidingMappingContext ) );
         media.setImage( imageEntityToImage( mediaEntity.getImage(), cycleAvoidingMappingContext ) );
+        media.setPresentation( mediaEntity.getPresentation() );
         media.setIsPhoto( mediaEntity.getIsPhoto() );
         media.setIsVideo( mediaEntity.getIsVideo() );
         media.setDoAlbum( mediaEntity.getDoAlbum() );
@@ -79,6 +80,7 @@ public class MediaMapperImpl implements MediaMapper {
         mediaEntity.setFormules( formuleListToFormuleEntityList( media.getFormules(), cycleAvoidingMappingContext ) );
         mediaEntity.setFermetures( fermetureCollectionToFermetureEntityCollection( media.getFermetures(), cycleAvoidingMappingContext ) );
         mediaEntity.setImage( imageToImageEntity( media.getImage(), cycleAvoidingMappingContext ) );
+        mediaEntity.setPresentation( media.getPresentation() );
         mediaEntity.setIsPhoto( media.getIsPhoto() );
         mediaEntity.setIsVideo( media.getIsVideo() );
         mediaEntity.setDoAlbum( media.getDoAlbum() );
@@ -101,6 +103,7 @@ public class MediaMapperImpl implements MediaMapper {
         media.setDoAlbum( form.getDo_album() );
         media.setDoSouvenir( form.getDo_souvenir() );
         media.setNom( form.getNom() );
+        media.setPresentation( form.getPresentation() );
 
         return media;
     }

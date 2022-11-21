@@ -30,7 +30,10 @@ import org.springframework.web.context.request.WebRequest;
 import static be.icc.ahe.marryme.constant.ReservationStatus.*;
 
 import javax.mail.MessagingException;
+import java.sql.Date;
 import java.text.Normalizer;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -275,7 +278,8 @@ public class ProviderController {
         societe.setService(ServiceTraiteurMapper.INSTANCE.dtoToModel(providerForm));
         societeService.save(societe);
 
-        return ResponseEntity.ok(providerForm);    }
+        return ResponseEntity.ok(providerForm);
+    }
 
     @SneakyThrows
     @PostMapping(value = "/decision")
@@ -305,5 +309,29 @@ public class ProviderController {
         reservationService.update(ReservationMapper.INSTANCE.entityToModel(reservation,new CycleAvoidingMappingContext()));
 
         return new ResponseEntity<>(drrp, HttpStatus.OK);
+    }
+
+    @PostMapping(value = "/addFermeture")
+    public ResponseEntity<String> addFermeture(@RequestBody String date, WebRequest request) throws SocieteDatabaseException, UserNotFoundException, UsernameExistException, EmailExistException, MessagingException, AddressDatabaseException, FormuleDatabaseException, ParseException {
+
+        Societe societe = societeService.findUserByEmail(request.getUserPrincipal().getName());
+        Fermeture f = new Fermeture();
+
+//        SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+//        java.util.Date parsed = format.parse(date);
+
+        java.util.Date d = new SimpleDateFormat("dd/MM/yyyy").parse(date); // This throws a ParseException
+//        java.sql.Date sql = new java.sql.Date(parsed.getTime());
+
+// Rest everything stays pretty much the same
+        java.sql.Date d1 = new java.sql.Date(d.getTime());
+
+
+        f.setDate(d1);
+
+        societe.getService().getFermetures().add(f);
+        societeService.save(societe);
+
+        return ResponseEntity.ok(date);
     }
 }

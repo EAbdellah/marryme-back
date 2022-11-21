@@ -11,4 +11,6 @@ public class GetShortMusiqueServiceDTO {
     private String nom;
     private String type;
     private String musique_type ;
+    private String presentation;
+
 }

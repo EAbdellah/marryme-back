@@ -24,7 +24,7 @@ import javax.annotation.processing.Generated;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2022-11-20T03:32:04+0100",
+    date = "2022-11-21T04:35:40+0100",
     comments = "version: 1.5.2.Final, compiler: javac, environment: Java 11.0.8 (Oracle Corporation)"
 )
 public class MakeUpAndHairMapperImpl implements MakeUpAndHairMapper {
@@ -50,6 +50,7 @@ public class MakeUpAndHairMapperImpl implements MakeUpAndHairMapper {
         makeUpAndHair.setFormules( formuleEntityListToFormuleList( makeUpAndHairEntity.getFormules(), cycleAvoidingMappingContext ) );
         makeUpAndHair.setFermetures( fermetureEntityCollectionToFermetureCollection( makeUpAndHairEntity.getFermetures(), cycleAvoidingMappingContext ) );
         makeUpAndHair.setImage( imageEntityToImage( makeUpAndHairEntity.getImage(), cycleAvoidingMappingContext ) );
+        makeUpAndHair.setPresentation( makeUpAndHairEntity.getPresentation() );
         makeUpAndHair.setDoHair( makeUpAndHairEntity.getDoHair() );
         makeUpAndHair.setDoMakeUp( makeUpAndHairEntity.getDoMakeUp() );
         makeUpAndHair.setDoMan( makeUpAndHairEntity.getDoMan() );
@@ -79,6 +80,7 @@ public class MakeUpAndHairMapperImpl implements MakeUpAndHairMapper {
         makeUpAndHairEntity.setFormules( formuleListToFormuleEntityList( makeUpAndHair.getFormules(), cycleAvoidingMappingContext ) );
         makeUpAndHairEntity.setFermetures( fermetureCollectionToFermetureEntityCollection( makeUpAndHair.getFermetures(), cycleAvoidingMappingContext ) );
         makeUpAndHairEntity.setImage( imageToImageEntity( makeUpAndHair.getImage(), cycleAvoidingMappingContext ) );
+        makeUpAndHairEntity.setPresentation( makeUpAndHair.getPresentation() );
         makeUpAndHairEntity.setDoHair( makeUpAndHair.getDoHair() );
         makeUpAndHairEntity.setDoMakeUp( makeUpAndHair.getDoMakeUp() );
         makeUpAndHairEntity.setDoMan( makeUpAndHair.getDoMan() );
@@ -101,6 +103,7 @@ public class MakeUpAndHairMapperImpl implements MakeUpAndHairMapper {
         makeUpAndHair.setDoMan( form.getDo_man() );
         makeUpAndHair.setDoWoman( form.getDo_woman() );
         makeUpAndHair.setNom( form.getNom() );
+        makeUpAndHair.setPresentation( form.getPresentation() );
 
         return makeUpAndHair;
     }

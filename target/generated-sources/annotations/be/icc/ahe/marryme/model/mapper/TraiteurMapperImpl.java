@@ -24,7 +24,7 @@ import javax.annotation.processing.Generated;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2022-11-20T03:32:05+0100",
+    date = "2022-11-21T04:35:40+0100",
     comments = "version: 1.5.2.Final, compiler: javac, environment: Java 11.0.8 (Oracle Corporation)"
 )
 public class TraiteurMapperImpl implements TraiteurMapper {
@@ -50,6 +50,7 @@ public class TraiteurMapperImpl implements TraiteurMapper {
         traiteur.setFormules( formuleEntityListToFormuleList( traiteurEntity.getFormules(), cycleAvoidingMappingContext ) );
         traiteur.setFermetures( fermetureEntityCollectionToFermetureCollection( traiteurEntity.getFermetures(), cycleAvoidingMappingContext ) );
         traiteur.setImage( imageEntityToImage( traiteurEntity.getImage(), cycleAvoidingMappingContext ) );
+        traiteur.setPresentation( traiteurEntity.getPresentation() );
         traiteur.setDoMeat( traiteurEntity.getDoMeat() );
         traiteur.setDoFish( traiteurEntity.getDoFish() );
         traiteur.setDoVegan( traiteurEntity.getDoVegan() );
@@ -79,6 +80,7 @@ public class TraiteurMapperImpl implements TraiteurMapper {
         traiteurEntity.setFormules( formuleListToFormuleEntityList( traiteur.getFormules(), cycleAvoidingMappingContext ) );
         traiteurEntity.setFermetures( fermetureCollectionToFermetureEntityCollection( traiteur.getFermetures(), cycleAvoidingMappingContext ) );
         traiteurEntity.setImage( imageToImageEntity( traiteur.getImage(), cycleAvoidingMappingContext ) );
+        traiteurEntity.setPresentation( traiteur.getPresentation() );
         traiteurEntity.setDoMeat( traiteur.getDoMeat() );
         traiteurEntity.setDoFish( traiteur.getDoFish() );
         traiteurEntity.setDoVegan( traiteur.getDoVegan() );
@@ -101,6 +103,7 @@ public class TraiteurMapperImpl implements TraiteurMapper {
         traiteur.setDoVegan( form.getDo_vegan() );
         traiteur.setDoVegetarian( form.getDo_vegetarian() );
         traiteur.setNom( form.getNom() );
+        traiteur.setPresentation( form.getPresentation() );
 
         return traiteur;
     }
