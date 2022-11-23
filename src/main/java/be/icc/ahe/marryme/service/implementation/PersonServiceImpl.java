@@ -45,8 +45,8 @@ public class PersonServiceImpl implements PersonService {
 
     @Override
     public Person register(UserRegistrationFormDTO userForm) throws UserNotFoundException, UsernameExistException, EmailExistException, MessagingException {
-        userService.validateNewEmail(EMPTY, userForm.getEmail());
 
+        userService.validateNewEmail(EMPTY, userForm.getEmail());
         Person person = RegistrationUserMapper.INSTANCE.dtotomodel(userForm);
         User user = person.getUser();
         user.setJoinDate(new Date());

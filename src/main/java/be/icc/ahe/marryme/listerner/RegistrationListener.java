@@ -38,7 +38,7 @@ public class RegistrationListener implements
 
         String email = person.getUser().getEmail();
         String firstName = person.getFirstName();
-        String confirmationUrl  = /*.getAppUrl() +*/ "localhost:8080/api/user/regitrationConfirm?token=" + token;
+        String confirmationUrl  = /*.getAppUrl() +*/ "http://localhost:8080/api/user/regitrationConfirm?token=" + token;
 
         LOGGER.info(confirmationUrl);
 

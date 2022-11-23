@@ -2088,6 +2088,21 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/../marryme-front/src/app/core/components/register-form/register-form.component.ts">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../marryme-front/src/app/core/components/register-provider/register-provider.component.html">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../marryme-front/src/app/core/components/register-provider/register-provider.component.ts">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/../marryme-front/src/app/core/core.module.ts">
           <value>
             <set />

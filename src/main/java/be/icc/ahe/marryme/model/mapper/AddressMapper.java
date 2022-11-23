@@ -19,8 +19,8 @@ public interface AddressMapper {
     @Mapping(source = "city", target = "ville")
     @Mapping(source = "postalCode", target = "codePostal")
     @Mapping(source = "street", target = "rue")
-    @Mapping(source = "houseNumber", target = "numero")
     @Mapping(source = "box", target = "box")
+    @Mapping(source = "houseNumber", target = "numero")
     Address RegistrationProviderDtoToModel(ProviderRegisterFormDTO providerRegisterFormDTO);
 
 

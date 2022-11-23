@@ -169,7 +169,6 @@ public abstract class ServiceEntity implements Serializable {
     @JsonManagedReference
     private Collection<FermetureEntity> fermetures = new HashSet<>();
 
-    //@OneToOne(targetEntity = ImageEntity.class,cascade = CascadeType.ALL,fetch = FetchType.LAZY,mappedBy = "serviceEntity")
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     @OneToOne(targetEntity = ImageEntity.class, fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST,CascadeType.REMOVE})
     @JoinColumn(name = "image_id")

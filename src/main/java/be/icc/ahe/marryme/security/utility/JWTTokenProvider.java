@@ -40,9 +40,15 @@ public class JWTTokenProvider {
         String[] claims = getClaimsFromUser(userPrincipal);
         String serviceOwn = getServiceProvider(userPrincipal);
         String customer= getTypeOfUser(userPrincipal);
-        return JWT.create().withIssuer(MARRY_ME_SPRL).withAudience(MARRY_ME_ADMINISTRATION)
-                .withIssuedAt(new Date()).withClaim("type",serviceOwn).withClaim("whichCustomer",customer).withSubject(userPrincipal.getUsername())
-                .withArrayClaim(AUTHORITIES, claims).withExpiresAt(new Date(System.currentTimeMillis() + EXPIRATION_TIME))
+        return JWT.create()
+                .withIssuer(MARRY_ME_SPRL)
+                .withAudience(MARRY_ME_ADMINISTRATION)
+                .withIssuedAt(new Date()).
+                        withClaim("type",serviceOwn).
+                        withClaim("whichCustomer",customer)
+                .withSubject(userPrincipal.getUsername())
+                .withArrayClaim(AUTHORITIES, claims).
+                        withExpiresAt(new Date(System.currentTimeMillis() + EXPIRATION_TIME))
                 .sign(HMAC512(secret.getBytes()));
     }
 

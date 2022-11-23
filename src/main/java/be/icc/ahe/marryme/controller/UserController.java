@@ -1,7 +1,6 @@
 package be.icc.ahe.marryme.controller;
 
 
-import be.icc.ahe.marryme.dataaccess.entity.PersonEntity;
 import be.icc.ahe.marryme.dataaccess.entity.UserEntity;
 import be.icc.ahe.marryme.dataaccess.entity.VerificationTokenEntity;
 import be.icc.ahe.marryme.event.OnRegistrationCompleteEvent;
@@ -11,9 +10,6 @@ import be.icc.ahe.marryme.exception.UsernameExistException;
 import be.icc.ahe.marryme.model.Person;
 import be.icc.ahe.marryme.model.User;
 import be.icc.ahe.marryme.model.dto.UserRegistrationFormDTO;
-import be.icc.ahe.marryme.model.mapper.PersonMapper;
-import be.icc.ahe.marryme.model.mapper.dtomapper.RegistrationUserMapper;
-import be.icc.ahe.marryme.security.domain.HttpResponse;
 import be.icc.ahe.marryme.security.domain.UserPrincipal;
 import be.icc.ahe.marryme.security.utility.JWTTokenProvider;
 import be.icc.ahe.marryme.service.PersonService;
@@ -22,17 +18,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.request.WebRequest;
-import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.mail.MessagingException;
 import java.io.IOException;
-import java.time.Period;
 import java.util.Calendar;
 import java.util.Locale;
 
@@ -68,7 +62,6 @@ public class UserController {
     public ResponseEntity<UserRegistrationFormDTO> register(@RequestBody UserRegistrationFormDTO userForm,WebRequest request) throws UserNotFoundException, UsernameExistException, EmailExistException, MessagingException {
 
         Person person = personService.register(userForm);
-
         String appUrl = request.getContextPath();
         eventPublisher.publishEvent(new OnRegistrationCompleteEvent(person,
                 request.getLocale(), appUrl));
@@ -87,7 +80,7 @@ public class UserController {
     }
 
     @GetMapping("/regitrationConfirm")
-    public String confirmRegistration
+    public ModelAndView confirmRegistration
             (WebRequest request, Model model, @RequestParam("token") String token) throws Exception {
 
         Locale locale = request.getLocale();
@@ -107,7 +100,7 @@ public class UserController {
 
         user.setActive(true);
         userService.save(user);
-        return "redirect:/login.html?lang=" + request.getLocale().getLanguage();
+        return new ModelAndView("redirect:" + "http://localhost:4200/login");
     }
 
     @PostMapping("/update")

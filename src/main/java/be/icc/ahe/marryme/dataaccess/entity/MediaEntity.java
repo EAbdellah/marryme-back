@@ -2,6 +2,7 @@ package be.icc.ahe.marryme.dataaccess.entity;
 
 import be.icc.ahe.marryme.model.dto.GetShortFormuleDTO;
 import be.icc.ahe.marryme.model.dto.GetShortMediaServiceDTO;
+import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -44,8 +45,7 @@ import java.io.Serializable;
 @Entity
 @Table(name = "media")
 @NoArgsConstructor
-@Setter
-@Getter
+@Data
 public class MediaEntity extends ServiceEntity implements Serializable {
 
     @Column(name = "isPhoto")

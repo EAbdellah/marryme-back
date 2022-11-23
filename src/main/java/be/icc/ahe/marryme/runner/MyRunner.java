@@ -166,7 +166,14 @@ public class MyRunner implements CommandLineRunner {
         Parking parking = createParking(faker);
         salle.setParking(parking);
         salle.setAddress(addressSalle);
-        salle.setFormules(Arrays.asList(createFormule(faker), createFormule(faker), createFormule(faker)));
+        Formule f1 = createFormule(faker);
+        f1.setActive(true);
+        Formule f2 = createFormule(faker);
+        f2.setActive(true);
+        Formule f3 = createFormule(faker);
+        f3.setActive(true);
+
+        salle.setFormules(Arrays.asList(f1, f2, f3));
         salle.setFermetures(Arrays.asList(createFermeture(faker), createFermeture(faker), createFermeture(faker)));
 
         societeSalle.setService(salle);
@@ -207,7 +214,13 @@ public class MyRunner implements CommandLineRunner {
         addressMusique = addressService.save(addressMusique);
         Musique musique = createMusique(faker);
         musique.setAddress(addressMusique);
-        musique.setFormules(Arrays.asList(createFormule(faker), createFormule(faker), createFormule(faker)));
+         f1 = createFormule(faker);
+        f1.setActive(true);
+         f2 = createFormule(faker);
+        f2.setActive(true);
+         f3 = createFormule(faker);
+        f3.setActive(true);
+        musique.setFormules(Arrays.asList(f1, f2, f3));
         musique.setFermetures(Arrays.asList(createFermeture(faker), createFermeture(faker), createFermeture(faker)));
 
         societeMusique.setService(musique);
@@ -244,7 +257,13 @@ public class MyRunner implements CommandLineRunner {
         addressMedia = addressService.save(addressMedia);
         Media media = createMedia(faker);
         media.setAddress(addressMedia);
-        media.setFormules(Arrays.asList(createFormule(faker), createFormule(faker), createFormule(faker)));
+         f1 = createFormule(faker);
+        f1.setActive(true);
+         f2 = createFormule(faker);
+        f2.setActive(true);
+         f3 = createFormule(faker);
+        f3.setActive(true);
+        media.setFormules(Arrays.asList(f1, f2, f2));
         media.setFermetures(Arrays.asList(createFermeture(faker), createFermeture(faker), createFermeture(faker)));
 
 
@@ -283,7 +302,13 @@ public class MyRunner implements CommandLineRunner {
         addressTraiteur = addressService.save(addressTraiteur);
         Traiteur traiteur = createTraiteur(faker);
         traiteur.setAddress(addressTraiteur);
-        traiteur.setFormules(Arrays.asList(createFormule(faker), createFormule(faker), createFormule(faker)));
+        f1 = createFormule(faker);
+        f1.setActive(true);
+        f2 = createFormule(faker);
+        f2.setActive(true);
+        f3 = createFormule(faker);
+        f3.setActive(true);
+        traiteur.setFormules(Arrays.asList(f1 ,f2, f3));
         traiteur.setFermetures(Arrays.asList(createFermeture(faker), createFermeture(faker), createFermeture(faker)));
 
         societeTraiteur.setService(traiteur);
@@ -319,7 +344,13 @@ public class MyRunner implements CommandLineRunner {
         addressServiceTraiteur= addressService.save(addressServiceTraiteur);
         ServiceTraiteur serviceTraiteur = createServiceTraiteur(faker);
         serviceTraiteur.setAddress(addressServiceTraiteur);
-        serviceTraiteur.setFormules(Arrays.asList(createFormule(faker), createFormule(faker), createFormule(faker)));
+        f1 = createFormule(faker);
+        f1.setActive(true);
+        f2 = createFormule(faker);
+        f2.setActive(true);
+        f3 = createFormule(faker);
+        f3.setActive(true);
+        serviceTraiteur.setFormules(Arrays.asList(f1, f2, f3));
         serviceTraiteur.setFermetures(Arrays.asList(createFermeture(faker), createFermeture(faker), createFermeture(faker)));
 
         societeServiceTraiteur.setService(serviceTraiteur);
@@ -355,7 +386,13 @@ public class MyRunner implements CommandLineRunner {
         addressMakeUp= addressService.save(addressMakeUp);
         MakeUpAndHair makeUpAndHair = createServiceMakeUpAndHair(faker);
         makeUpAndHair.setAddress(addressMakeUp);
-        makeUpAndHair.setFormules(Arrays.asList(createFormule(faker), createFormule(faker), createFormule(faker)));
+        f1 = createFormule(faker);
+        f1.setActive(true);
+        f2 = createFormule(faker);
+        f2.setActive(true);
+        f3 = createFormule(faker);
+        f3.setActive(true);
+        makeUpAndHair.setFormules(Arrays.asList(f1, f2, f3));
         makeUpAndHair.setFermetures(Arrays.asList(createFermeture(faker), createFermeture(faker), createFermeture(faker)));
 
         societeMakeUp.setService(makeUpAndHair);

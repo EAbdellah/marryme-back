@@ -27,11 +27,6 @@ public class PersonEntity implements Serializable {
     private String lastName;
     @Column(name = "phoneNbr")
     private Long phoneNbr;
-
-//    @OneToOne(targetEntity = SocieteEntity.class, fetch = FetchType.EAGER)
-//    @JoinColumn(name="societe_id")
-//    private SocieteEntity societeEntity;
-
     @OneToOne(targetEntity = AddressEntity.class, fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     @JoinColumn(name="adress_id")
     private AddressEntity localisation;

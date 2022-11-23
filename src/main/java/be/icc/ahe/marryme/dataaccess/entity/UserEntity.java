@@ -44,7 +44,6 @@ import java.util.List;
 @Table(name = "user")
 @NoArgsConstructor
 @Data
-
 public class UserEntity implements Serializable {
 
     @Id
@@ -63,7 +62,6 @@ public class UserEntity implements Serializable {
     private boolean isActive;
     @Column(name = "is_not_locked")
     private boolean isNotLocked;
-
     @JsonManagedReference
     @OneToMany(mappedBy="user", fetch = FetchType.LAZY)
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
