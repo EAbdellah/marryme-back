@@ -1,0 +1,16 @@
+From d6fe5ce38e0cf5eaaeea603449c9e93569b6135a Mon Sep 17 00:00:00 2001
+From: AHE <elachhab.abdellah@gmail.com>
+Date: Wed, 3 Aug 2022 19:01:12 +0200
+Subject: [PATCH] commit change
+
+---
+ .gitignore | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 .gitignore
+
+diff --git a/.gitignore b/.gitignore
+new file mode 100644
+index 0000000..e69de29
+-- 
+2.36.0.windows.1
+
